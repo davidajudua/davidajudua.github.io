@@ -158,10 +158,10 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ==========================================
      8. ACTIVE NAV LINK
      ========================================== */
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  const path = window.location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '') || '/';
   document.querySelectorAll('.nav__link').forEach(link => {
     const href = link.getAttribute('href');
-    if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+    if (href === path || (path === '' && href === '/')) {
       link.classList.add('active');
     }
   });
