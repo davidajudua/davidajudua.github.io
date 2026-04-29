@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>David Ajudua | CS @ Howard University</title>
+  <meta name="description" content="David Ajudua. Computer Science student at Howard University.">
+  <meta property="og:title" content="David Ajudua | CS @ Howard University">
+  <meta property="og:description" content="Computer Science student at Howard University. Builder, writer, photographer.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://davidajudua.com">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="David Ajudua | CS @ Howard University">
+  <meta name="twitter:description" content="Computer Science student at Howard University. Builder, writer, photographer.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Loading Entrance -->
+  <div class="site-loader" aria-hidden="true">
+    <span class="site-loader__text">David Ajudua</span>
+  </div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <!-- Mobile Backdrop -->
+  <div class="nav__backdrop" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <a href="index.html" class="nav__logo">David Ajudua</a>
+    <ul class="nav__links">
+      <li><a href="index.html" class="nav__link active">Home</a></li>
+      <li><a href="about.html" class="nav__link">About</a></li>
+      <li><a href="projects.html" class="nav__link">Projects</a></li>
+      <li><a href="writing.html" class="nav__link">Writing</a></li>
+      <li><a href="contact.html" class="nav__link">Contact</a></li>
+    </ul>
+    <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <p class="hero__eyebrow">Computer Science &bull; Howard University &bull; Class of 2029</p>
+    <h1 class="hero__title">
+      I build things<br>
+      that <em class="gradient-text">matter.</em>
+    </h1>
+    <p class="hero__subtitle">
+      Computer Science student at Howard University. AI engineering, cybersecurity,
+      and using technology to solve real problems.
+    </p>
+    <div class="hero__cta">
+      <a href="projects.html" class="btn btn--primary">
+        View My Work
+        <svg class="btn__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="writing.html" class="btn btn--outline">Read My Writing</a>
+    </div>
+    <div class="hero__scroll-indicator" aria-hidden="true">
+      <span>Scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- At a Glance -->
+  <section class="section section--dark">
+    <div class="section__container">
+      <div class="reveal">
+        <p class="section__eyebrow">At a Glance</p>
+        <h2 class="section__title">Building toward the future,<br>one line at a time.</h2>
+        <div class="section__divider"></div>
+      </div>
+      <div class="card-grid" style="grid-template-columns: repeat(2, 1fr);">
+        <a href="projects.html" class="card reveal reveal-delay-1" style="color: inherit;">
+          <div class="card__number">01</div>
+          <div class="card__tag">Engineering</div>
+          <h3 class="card__title">Software Development</h3>
+          <p class="card__text">From PowerShell system optimization toolkits to Python Discord bots with SQLite backends. Building tools that solve real problems.</p>
+          <span class="card__link">See Projects <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a href="writing.html" class="card reveal reveal-delay-2" style="color: inherit;">
+          <div class="card__number">02</div>
+          <div class="card__tag">Writing</div>
+          <h3 class="card__title">Words & Ideas</h3>
+          <p class="card__text">From persuasive narratives to research papers. Writing as a tool for critical thinking, advocacy, and connecting ideas across disciplines.</p>
+          <span class="card__link">Read Writing <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Writing Preview -->
+  <section class="section">
+    <div class="section__container">
+      <div class="reveal">
+        <p class="section__eyebrow">Featured Writing</p>
+        <h2 class="section__title">Selected work from<br>ENGW 103</h2>
+        <p class="section__subtitle">A curated collection of essays and papers from my freshman writing course. Pieces that shaped the way I think, argue, and create.</p>
+      </div>
+      <div class="card-grid">
+        <a href="writing.html#mp1" class="card reveal reveal-delay-1" style="color: inherit;">
+          <div class="card__tag">Major Paper 1</div>
+          <h3 class="card__title">Gym as Mental Survival</h3>
+          <p class="card__text">A persuasive narrative about bodybuilding as mental discipline, and why I want to wear my body like armor, not take it off like a coat.</p>
+          <span class="card__link">Read More <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a href="writing.html#mp2" class="card reveal reveal-delay-2" style="color: inherit;">
+          <div class="card__tag">Major Paper 2</div>
+          <h3 class="card__title">Beyond the Canon: Drake, Authenticity, and Hip-Hop Identity</h3>
+          <p class="card__text">An artistic argument about gatekeeping in hip-hop, and why the genre that started from people who were shut out is now shutting people out.</p>
+          <span class="card__link">Read More <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a href="writing.html#mp3" class="card reveal reveal-delay-3" style="color: inherit;">
+          <div class="card__tag">Major Paper 3</div>
+          <h3 class="card__title">Earned, Not Given: Selective Orgs at Howard</h3>
+          <p class="card__text">A research paper arguing that selectivity isn't a flaw in Howard's system. It IS Howard's system. From Du Bois to the yard in 2026.</p>
+          <span class="card__link">Read More <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p class="footer__text">&copy; 2026 David Ajudua</p>
+    <ul class="footer__links">
+      <li><a href="https://github.com/davidajudua" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/david-ajudua-26589b355" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
