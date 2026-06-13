@@ -1798,14 +1798,19 @@ body.is-dark .social-rail a:hover { color: var(--accent); }
 .work-modal.open .work-modal__backdrop { opacity: 1; }
 .work-modal__panel {
   position: relative; z-index: 1;
-  width: min(640px, 100%); max-height: 86vh; overflow-y: auto;
-  padding: clamp(1.6rem, 4vw, 2.75rem);
+  width: min(640px, 100%); max-height: 86vh;
+  display: flex; flex-direction: column; overflow: hidden;
   background: var(--bg-elevated); border: 1px solid var(--border-hover);
   border-radius: 20px; box-shadow: 0 40px 120px rgba(0, 0, 0, 0.55);
   opacity: 0; transform: translateY(18px) scale(0.985);
   transition: opacity 0.22s var(--ease-out), transform 0.22s var(--ease-out);
 }
 .work-modal.open .work-modal__panel { opacity: 1; transform: none; }
+.work-modal__scroll {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: clamp(1.6rem, 4vw, 2.75rem);
+}
 .work-modal__close {
   position: absolute; top: 1.1rem; right: 1.1rem;
   width: 38px; height: 38px; display: grid; place-items: center;
@@ -1831,6 +1836,27 @@ body.is-dark .social-rail a:hover { color: var(--accent); }
 .work-detail__list code { font-family: var(--font-mono); font-size: 0.85em; color: var(--accent); background: var(--accent-dim); padding: 0.1em 0.35em; border-radius: 3px; }
 .work-modal__body .work-card__tags { margin: 0.5rem 0 1.5rem; }
 .work-modal__body .work-card__link { margin-top: 0; }
+
+/* Pinned Work (desktop): bound the section to the viewport so each card, including
+   its Details / View-on-GitHub row, always fits on screen during the horizontal pan.
+   The media is the only element that flexes, so the body (with the actions) is never clipped. */
+@media (min-width: 769px) {
+  .work {
+    height: 100vh; height: 100dvh;
+    padding-top: 4rem; padding-bottom: 4rem;
+    display: flex; flex-direction: column;
+  }
+  .work__head { flex: 0 0 auto; margin-bottom: 1.5rem; }
+  .work__viewport { flex: 1 1 auto; min-height: 0; }
+  .work__track { height: 100%; align-items: center; }
+  .work-card { height: 100%; max-height: 580px; }
+  .work-card__media { flex: 1 1 auto; min-height: 0; aspect-ratio: auto; }
+  .work-card__body { flex: 0 0 auto; }
+  .work-card__desc {
+    flex: none;
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+  }
+}
 
 /* ===== WRITING ===== */
 .writing__head { text-align: center; max-width: 720px; margin: 0 auto 4rem; }
