@@ -24,6 +24,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }, prefersReducedMotion ? 0 : 400);
   }
 
+  /* 1b. INTRO ENTRANCE — gentle fade/rise on the pill + hint, soft fade-in on marquees */
+  if (hasGSAP && animate) {
+    const introPill = document.querySelector('.intro__pill');
+    const introHint = document.querySelector('.intro__hint');
+    gsap.from('.marquee__track', { opacity: 0, duration: 1.1, ease: 'power2.out', stagger: 0.14, delay: 0.45 });
+    if (introPill) gsap.from(introPill, { y: 18, opacity: 0, duration: 0.85, ease: 'power3.out', delay: 0.6 });
+    if (introHint) gsap.from(introHint, { opacity: 0, duration: 0.8, ease: 'power2.out', delay: 1.0 });
+  }
+
   /* 2. LENIS SMOOTH SCROLL + ScrollTrigger bridge */
   let lenis = null;
   if (hasLenis && animate) {
@@ -114,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* 6. KINETIC WORD LOOP (About visual) — masked roll, no empty/black frame */
   const kw = document.querySelector('.kinetic__word');
   if (kw) {
-    const words = ['businesses', 'software', 'AI tools', 'systems'];
+    const words = ['software', 'businesses', 'systems', 'AI tools'];
     const makeItem = (text) => {
       const el = document.createElement('span');
       el.className = 'kinetic__item';
@@ -156,13 +165,38 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollTrigger: { trigger: '.whatido', start: 'top bottom', end: 'bottom top', scrub: true } });
   }
 
-  /* 7. SCROLL REVEALS */
+  /* 6c. COUNT-UP NUMBERS (About metrics) — animate 0 -> target on scroll into view.
+     The literal final text stays in the HTML as the no-JS / reduced-motion fallback. */
+  document.querySelectorAll('[data-count]').forEach((el) => {
+    const target = parseFloat(el.getAttribute('data-count'));
+    if (isNaN(target) || !hasST || !animate) return; // leave literal text untouched
+    const prefix = el.getAttribute('data-prefix') || '';
+    const suffix = el.getAttribute('data-suffix') || '';
+    const render = (v) => { el.textContent = prefix + Math.round(v) + suffix; };
+    const obj = { v: 0 };
+    render(0);
+    gsap.to(obj, {
+      v: target,
+      duration: 1.4,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+      onUpdate: () => render(obj.v),
+      onComplete: () => render(target),
+    });
+  });
+
+  /* 7. SCROLL REVEALS — batched for staggered, Apple-style entrances */
   const reveals = document.querySelectorAll('.reveal');
   if (hasST && animate) {
-    reveals.forEach((el) => {
-      gsap.fromTo(el, { opacity: 0, y: 42 },
-        { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+    gsap.set(reveals, { opacity: 0, y: 44, scale: 0.985 });
+    ScrollTrigger.batch(reveals, {
+      start: 'top 88%',
+      once: true,
+      onEnter: (batch) => gsap.to(batch, {
+        opacity: 1, y: 0, scale: 1,
+        duration: 0.9, ease: 'power3.out',
+        stagger: 0.09, overwrite: true,
+      }),
     });
   } else if (animate && 'IntersectionObserver' in window) {
     const ob = new IntersectionObserver((entries) => {
@@ -189,9 +223,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const workSection = document.querySelector('.work');
   const workTrack = document.querySelector('.work__track');
   const workViewport = document.querySelector('.work__viewport');
+  let workPan = null;
   if (hasST && animate && isDesktop && workTrack && workViewport) {
     const distance = () => Math.max(0, workTrack.scrollWidth - workViewport.offsetWidth);
-    gsap.to(workTrack, {
+    workPan = gsap.to(workTrack, {
       x: () => -distance(),
       ease: 'none',
       scrollTrigger: {
@@ -204,6 +239,18 @@ document.addEventListener('DOMContentLoaded', () => {
         anticipatePin: 1,
       },
     });
+  }
+
+  /* 9b. WORK image settle — project images scale 1.1 -> 1 with a gentle stagger
+     as the Work section comes into view (fires before the desktop pin engages). */
+  if (hasST && animate && workTrack && workSection) {
+    const wImgs = workTrack.querySelectorAll('.work-card__media img');
+    if (wImgs.length) {
+      gsap.fromTo(wImgs,
+        { scale: 1.1 },
+        { scale: 1, duration: 1.2, ease: 'power3.out', stagger: 0.12,
+          scrollTrigger: { trigger: workSection, start: 'top 75%', once: true } });
+    }
   }
 
   /* 10. TOP NAV scrolled border already via is-dark; mobile menu */

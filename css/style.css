@@ -1567,6 +1567,7 @@ body.is-dark .social-rail a:hover { color: var(--accent); }
   letter-spacing: -0.03em;
   color: var(--text-bright);
   white-space: nowrap;
+  font-variant-numeric: tabular-nums; /* stable digit width while counting up */
 }
 .about__stat-label {
   font-family: var(--font-mono);
@@ -1743,9 +1744,9 @@ body.is-dark .social-rail a:hover { color: var(--accent); }
 .work-card__media img {
   width: 100%; height: 100%;
   object-fit: cover;
-  transition: transform var(--duration-slow) var(--ease-out);
+  transform-origin: center;
+  will-change: transform; /* scroll-driven Ken-Burns scale (main.js 9b) */
 }
-.work-card:hover .work-card__media img { transform: scale(1.04); }
 .work-card__body { padding: 1.75rem 2rem 2rem; display: flex; flex-direction: column; flex: 1; }
 .work-card__meta { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
 .work-card__title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: var(--text-bright); }
