@@ -165,54 +165,66 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollTrigger: { trigger: '.whatido', start: 'top bottom', end: 'bottom top', scrub: true } });
   }
 
-  /* 6c. COUNT-UP NUMBERS (About metrics) — animate 0 -> target on scroll into view.
-     The literal final text stays in the HTML as the no-JS / reduced-motion fallback. */
-  document.querySelectorAll('[data-count]').forEach((el) => {
-    const target = parseFloat(el.getAttribute('data-count'));
-    if (isNaN(target) || !hasST || !animate) return; // leave literal text untouched
-    const prefix = el.getAttribute('data-prefix') || '';
-    const suffix = el.getAttribute('data-suffix') || '';
-    const render = (v) => { el.textContent = prefix + Math.round(v) + suffix; };
-    const obj = { v: 0 };
-    render(0);
-    let tween;
-    const runCount = () => {
-      tween?.kill();
-      obj.v = 0;
-      tween = gsap.to(obj, {
-        v: target, duration: 1.4, ease: 'power2.out',
-        onUpdate: () => render(obj.v),
-        onComplete: () => render(target),
-      });
-    };
-    const reset = () => { tween?.kill(); obj.v = 0; render(0); };
-    // Re-count each time the strip re-enters view; reset to 0 while it's off-screen.
-    ScrollTrigger.create({
-      trigger: el, start: 'top 85%',
-      onEnter: runCount, onEnterBack: runCount,
-      onLeave: reset, onLeaveBack: reset,
-    });
-  });
+  /* 6c removed — the count-up is now driven inside §7 so it shares the About
+     section's reveal lifecycle (keeps its value during the fade-out, then
+     re-counts on return) instead of having its own over-eager trigger. */
 
-  /* 7. SCROLL REVEALS — batched, staggered, and re-playable (fade in on enter,
-     fade out on leave) in both scroll directions. */
+  /* 7. SCROLL REVEALS — grouped by section so each panel fades in/out as ONE unit.
+     One ScrollTrigger per panel, anchored to the panel's own bounds: scrolling
+     within a section never toggles it, and tall sections (the essays) never get
+     stuck hidden. The About metrics count-up rides the same lifecycle. */
   const reveals = document.querySelectorAll('.reveal');
   if (hasST && animate) {
-    gsap.set(reveals, { opacity: 0, y: 44, scale: 0.985 });
-    const revealIn = (batch) => gsap.to(batch, {
-      opacity: 1, y: 0, scale: 1,
-      duration: 0.9, ease: 'power3.out', stagger: 0.09, overwrite: true,
+    // Count-up helpers, one per [data-count], tagged with their containing panel.
+    const counters = [];
+    document.querySelectorAll('[data-count]').forEach((el) => {
+      const target = parseFloat(el.getAttribute('data-count'));
+      if (isNaN(target)) return; // leave literal HTML text untouched
+      const prefix = el.getAttribute('data-prefix') || '';
+      const suffix = el.getAttribute('data-suffix') || '';
+      const render = (v) => { el.textContent = prefix + Math.round(v) + suffix; };
+      const obj = { v: 0 };
+      let tween;
+      render(0);
+      counters.push({
+        panel: el.closest('.panel'),
+        runCount: () => {
+          tween?.kill(); obj.v = 0;
+          tween = gsap.to(obj, { v: target, duration: 1.4, ease: 'power2.out', onUpdate: () => render(obj.v), onComplete: () => render(target) });
+        },
+        reset: () => { tween?.kill(); obj.v = 0; render(0); },
+      });
     });
-    const revealOut = (batch) => gsap.to(batch, {
-      opacity: 0, y: 44, scale: 0.985,
-      duration: 0.45, ease: 'power2.in', stagger: 0.05, overwrite: true,
+
+    // Group reveal elements by their section (panel) so they animate together.
+    const groups = new Map();
+    reveals.forEach((el) => {
+      const panel = el.closest('.panel') || el.parentElement;
+      if (!groups.has(panel)) groups.set(panel, []);
+      groups.get(panel).push(el);
     });
-    ScrollTrigger.batch(reveals, {
-      start: 'top 88%',
-      onEnter: revealIn,
-      onEnterBack: revealIn,
-      onLeave: revealOut,
-      onLeaveBack: revealOut,
+
+    gsap.set(reveals, { opacity: 0, y: 40 });
+
+    groups.forEach((items, panel) => {
+      const panelCounters = counters.filter((c) => c.panel === panel);
+      let outTween;
+      const playIn = () => {
+        outTween && outTween.kill(); // cancel a pending out so its reset can't fire mid-recount
+        gsap.to(items, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.06, overwrite: true });
+        panelCounters.forEach((c) => c.runCount());
+      };
+      const playOut = () => {
+        outTween = gsap.to(items, {
+          opacity: 0, y: 40, duration: 0.4, ease: 'power2.in', overwrite: true,
+          onComplete: () => panelCounters.forEach((c) => c.reset()), // reset value only once invisible
+        });
+      };
+      ScrollTrigger.create({
+        trigger: panel, start: 'top 80%', end: 'bottom 25%',
+        onEnter: playIn, onEnterBack: playIn,
+        onLeave: playOut, onLeaveBack: playOut,
+      });
     });
   } else if (animate && 'IntersectionObserver' in window) {
     const ob = new IntersectionObserver((entries) => {
