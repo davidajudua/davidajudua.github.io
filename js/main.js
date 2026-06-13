@@ -122,6 +122,13 @@ document.addEventListener('DOMContentLoaded', () => {
       return el;
     };
     kw.textContent = '';
+    // Hidden in-flow sizer = longest word, so the clip container keeps its width
+    // (absolute items below contribute no width and would otherwise collapse it).
+    const sizer = document.createElement('span');
+    sizer.className = 'kinetic__sizer';
+    sizer.setAttribute('aria-hidden', 'true');
+    sizer.textContent = words.reduce((a, b) => (b.length > a.length ? b : a));
+    kw.appendChild(sizer);
     let current = makeItem(words[0]);
     kw.appendChild(current);
     if (hasGSAP && animate) {

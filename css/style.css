@@ -1537,6 +1537,9 @@ body.is-dark .social-rail a:hover { color: var(--accent); }
   -webkit-text-fill-color: transparent;
   will-change: transform, opacity;
 }
+/* in-flow, invisible — gives the clip container its width (longest word) so
+   the absolutely-positioned items above are never clipped horizontally */
+.kinetic__sizer { visibility: hidden; display: inline-block; }
 .about__content { max-width: 560px; min-width: 0; }
 .about__lead {
   font-size: clamp(1.05rem, 1.5vw, 1.3rem);
