@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
       gsap.from(chars, {
         opacity: 0, y: 30, filter: 'blur(12px)',
         duration: 0.8, ease: 'power3.out', stagger: 0.02,
-        scrollTrigger: hasST ? { trigger: el, start: 'top 88%', once: true } : undefined,
+        scrollTrigger: hasST ? { trigger: el, start: 'top 88%', toggleActions: 'play reverse play reverse' } : undefined,
         delay: hasST ? 0 : 0.1,
       });
     } else {
@@ -175,28 +175,44 @@ document.addEventListener('DOMContentLoaded', () => {
     const render = (v) => { el.textContent = prefix + Math.round(v) + suffix; };
     const obj = { v: 0 };
     render(0);
-    gsap.to(obj, {
-      v: target,
-      duration: 1.4,
-      ease: 'power2.out',
-      scrollTrigger: { trigger: el, start: 'top 85%', once: true },
-      onUpdate: () => render(obj.v),
-      onComplete: () => render(target),
+    let tween;
+    const runCount = () => {
+      tween?.kill();
+      obj.v = 0;
+      tween = gsap.to(obj, {
+        v: target, duration: 1.4, ease: 'power2.out',
+        onUpdate: () => render(obj.v),
+        onComplete: () => render(target),
+      });
+    };
+    const reset = () => { tween?.kill(); obj.v = 0; render(0); };
+    // Re-count each time the strip re-enters view; reset to 0 while it's off-screen.
+    ScrollTrigger.create({
+      trigger: el, start: 'top 85%',
+      onEnter: runCount, onEnterBack: runCount,
+      onLeave: reset, onLeaveBack: reset,
     });
   });
 
-  /* 7. SCROLL REVEALS — batched for staggered, Apple-style entrances */
+  /* 7. SCROLL REVEALS — batched, staggered, and re-playable (fade in on enter,
+     fade out on leave) in both scroll directions. */
   const reveals = document.querySelectorAll('.reveal');
   if (hasST && animate) {
     gsap.set(reveals, { opacity: 0, y: 44, scale: 0.985 });
+    const revealIn = (batch) => gsap.to(batch, {
+      opacity: 1, y: 0, scale: 1,
+      duration: 0.9, ease: 'power3.out', stagger: 0.09, overwrite: true,
+    });
+    const revealOut = (batch) => gsap.to(batch, {
+      opacity: 0, y: 44, scale: 0.985,
+      duration: 0.45, ease: 'power2.in', stagger: 0.05, overwrite: true,
+    });
     ScrollTrigger.batch(reveals, {
       start: 'top 88%',
-      once: true,
-      onEnter: (batch) => gsap.to(batch, {
-        opacity: 1, y: 0, scale: 1,
-        duration: 0.9, ease: 'power3.out',
-        stagger: 0.09, overwrite: true,
-      }),
+      onEnter: revealIn,
+      onEnterBack: revealIn,
+      onLeave: revealOut,
+      onLeaveBack: revealOut,
     });
   } else if (animate && 'IntersectionObserver' in window) {
     const ob = new IntersectionObserver((entries) => {
@@ -249,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
       gsap.fromTo(wImgs,
         { scale: 1.1 },
         { scale: 1, duration: 1.2, ease: 'power3.out', stagger: 0.12,
-          scrollTrigger: { trigger: workSection, start: 'top 75%', once: true } });
+          scrollTrigger: { trigger: workSection, start: 'top 75%', toggleActions: 'restart reset restart reset' } });
     }
   }
 
