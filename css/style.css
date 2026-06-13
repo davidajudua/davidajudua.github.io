@@ -1550,6 +1550,32 @@ body.is-dark .social-rail a:hover { color: var(--accent); }
 .about__sub { margin-top: 1.25rem; color: var(--text-secondary); line-height: 1.7; }
 .btn-row { margin-top: 2.5rem; display: flex; gap: 1.25rem; flex-wrap: wrap; align-items: center; }
 
+/* founder proof metrics — sits between the lead and the CTAs */
+.about__stats {
+  margin-top: 2.25rem;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  justify-content: start;
+  gap: 1.5rem 2.5rem;
+}
+.about__stat { display: flex; flex-direction: column; gap: 0.35rem; }
+.about__stat-num {
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 2.4vw, 2.15rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--text-bright);
+  white-space: nowrap;
+}
+.about__stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
 /* ===== WHAT I DO ===== */
 .whatido { min-height: 100vh; }
 .whatido__inner {
@@ -1838,6 +1864,7 @@ a.contact__value:hover { color: var(--accent); }
   .about { grid-template-columns: 1fr; gap: 2.5rem; min-height: auto; }
   .about__visual { order: -1; }
   .kinetic__word { font-size: clamp(3rem, 18vw, 5rem); }
+  .about__stats { grid-template-columns: repeat(2, auto); gap: 1.5rem 2.5rem; }
 
   .whatido__inner { grid-template-columns: 1fr; gap: 2.5rem; min-height: auto; }
   .ghost-title { font-size: 4.5rem; top: 4rem; }

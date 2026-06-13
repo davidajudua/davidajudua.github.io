@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* 6. KINETIC WORD LOOP (About visual) — masked roll, no empty/black frame */
   const kw = document.querySelector('.kinetic__word');
   if (kw) {
-    const words = ['AI', 'security', 'systems', 'automation'];
+    const words = ['businesses', 'software', 'AI tools', 'systems'];
     const makeItem = (text) => {
       const el = document.createElement('span');
       el.className = 'kinetic__item';
