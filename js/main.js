@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* 6. KINETIC WORD LOOP (About visual) — masked roll, no empty/black frame */
   const kw = document.querySelector('.kinetic__word');
   if (kw) {
-    const words = ['software', 'businesses', 'systems', 'AI tools'];
+    const words = ['software', 'systems', 'platforms', 'tools'];
     const makeItem = (text) => {
       const el = document.createElement('span');
       el.className = 'kinetic__item';
@@ -251,6 +251,57 @@ document.addEventListener('DOMContentLoaded', () => {
         { scale: 1, duration: 1.2, ease: 'power3.out', stagger: 0.12,
           scrollTrigger: { trigger: workSection, start: 'top 75%', once: true } });
     }
+  }
+
+  /* 9c. WORK DETAIL MODAL — opens a project's deep-dive overlay (keeps the
+     pinned horizontal pan untouched; works on desktop + mobile). */
+  const workModal = document.querySelector('.work-modal');
+  if (workModal) {
+    const panel = workModal.querySelector('.work-modal__panel');
+    const modalTitle = workModal.querySelector('.work-modal__title');
+    const modalBody = workModal.querySelector('.work-modal__body');
+    const modalClose = workModal.querySelector('.work-modal__close');
+    let lastTrigger = null;
+
+    const openModal = (card, trigger) => {
+      const detail = card.querySelector('.work-card__detail');
+      if (!detail) return;
+      lastTrigger = trigger;
+      modalTitle.textContent = card.querySelector('.work-card__title')?.textContent || 'Project';
+      // Clone the card's own static detail markup (first-party, no user input) via safe DOM nodes.
+      modalBody.replaceChildren(...detail.cloneNode(true).childNodes);
+      workModal.hidden = false;
+      requestAnimationFrame(() => workModal.classList.add('open'));
+      document.body.style.overflow = 'hidden';
+      lenis?.stop();
+      modalClose.focus();
+    };
+
+    const closeModal = () => {
+      if (workModal.hidden) return;
+      workModal.classList.remove('open');
+      document.body.style.overflow = '';
+      lenis?.start();
+      const finish = () => { workModal.hidden = true; modalBody.replaceChildren(); };
+      prefersReducedMotion ? finish() : setTimeout(finish, 220);
+      lastTrigger?.focus();
+    };
+
+    document.querySelectorAll('.work-card__details-btn').forEach((btn) => {
+      btn.addEventListener('click', () => openModal(btn.closest('.work-card'), btn));
+    });
+    workModal.querySelectorAll('[data-modal-close]').forEach((el) => el.addEventListener('click', closeModal));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+    // basic focus trap within the dialog
+    panel.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab') return;
+      const f = panel.querySelectorAll('a[href], button:not([disabled])');
+      if (!f.length) return;
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
   }
 
   /* 10. TOP NAV scrolled border already via is-dark; mobile menu */
