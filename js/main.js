@@ -1,8 +1,7 @@
 /* ============================================
-   DAVID AJUDUA — Portfolio Scripts v7
-   Kinetic type · Lenis smooth-scroll · GSAP
-   Progressive enhancement: works with or without
-   the CDN libraries and honors reduced-motion.
+   DAVID AJUDUA — Portfolio Scripts v8
+   Single-page cinematic scroll · Lenis · GSAP
+   Progressive enhancement + reduced-motion safe.
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -12,12 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const hasST    = hasGSAP && typeof window.ScrollTrigger !== 'undefined';
   const hasLenis = typeof window.Lenis !== 'undefined';
   const animate  = !prefersReducedMotion;
+  const isDesktop = window.matchMedia('(min-width: 769px)').matches;
 
   if (hasST) gsap.registerPlugin(ScrollTrigger);
 
-  /* ==========================================
-     1. LOADING ENTRANCE
-     ========================================== */
+  /* 1. LOADER */
   const loader = document.querySelector('.site-loader');
   if (loader) {
     setTimeout(() => {
@@ -26,9 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, prefersReducedMotion ? 0 : 400);
   }
 
-  /* ==========================================
-     2. LENIS SMOOTH SCROLL (+ ScrollTrigger bridge)
-     ========================================== */
+  /* 2. LENIS SMOOTH SCROLL + ScrollTrigger bridge */
   let lenis = null;
   if (hasLenis && animate) {
     lenis = new Lenis({
@@ -38,9 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
       wheelMultiplier: 1,
       touchMultiplier: 1.8,
     });
-    // Lenis owns scrolling — disable native smooth so they don't fight.
     document.documentElement.style.scrollBehavior = 'auto';
-
     if (hasST) {
       lenis.on('scroll', ScrollTrigger.update);
       gsap.ticker.add((time) => lenis.raf(time * 1000));
@@ -51,15 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Unified scroll helpers (use Lenis if present, else native).
   const getScrollY = () => (lenis ? lenis.scroll : window.scrollY);
   const scrollToTarget = (target) => {
-    if (lenis) lenis.scrollTo(target, { offset: 0 });
-    else target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
-  };
-  const scrollToTop = () => {
-    if (lenis) lenis.scrollTo(0);
-    else window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (lenis) { lenis.scrollTo(target, { offset: 0 }); return; }
+    if (typeof target === 'number') { window.scrollTo({ top: target, behavior: prefersReducedMotion ? 'auto' : 'smooth' }); return; }
+    target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
   };
   const onScroll = (fn) => {
     if (lenis) lenis.on('scroll', fn);
@@ -67,9 +57,21 @@ document.addEventListener('DOMContentLoaded', () => {
     fn();
   };
 
-  /* ==========================================
-     3. SPLIT TEXT — wrap words/chars for reveals
-     ========================================== */
+  /* 3. LIGHT → DARK background + theme class */
+  const bgLayer = document.querySelector('.bg-layer');
+  const introEl = document.querySelector('.intro');
+  if (hasST && animate && bgLayer) {
+    gsap.to(bgLayer, {
+      backgroundColor: '#0b080c',
+      ease: 'none',
+      scrollTrigger: { trigger: '#about', start: 'top 85%', end: 'top 35%', scrub: true },
+    });
+  }
+  // theme class toggle (works even without GSAP — CSS handles the bg fallback)
+  const themeThreshold = () => (introEl ? introEl.offsetHeight : window.innerHeight) * 0.55;
+  onScroll(() => document.body.classList.toggle('is-dark', getScrollY() > themeThreshold()));
+
+  /* 4. SPLIT TEXT helper */
   function splitText(el) {
     const original = el.textContent.trim();
     el.setAttribute('aria-label', original);
@@ -93,107 +95,93 @@ document.addEventListener('DOMContentLoaded', () => {
     return el.querySelectorAll('.char');
   }
 
-  /* ==========================================
-     4. HERO / HEADER CHAR REVEAL (on load)
-     ========================================== */
-  const splitTargets = document.querySelectorAll('[data-split]');
-  splitTargets.forEach((el) => {
+  /* 5. CHAR REVEAL for [data-split] (on scroll into view) */
+  document.querySelectorAll('[data-split]').forEach((el) => {
     if (hasGSAP && animate) {
       const chars = splitText(el);
       gsap.set(el, { opacity: 1 });
       gsap.from(chars, {
-        opacity: 0,
-        y: 30,
-        filter: 'blur(12px)',
-        duration: 0.85,
-        ease: 'power3.out',
-        stagger: 0.022,
-        delay: 0.12,
+        opacity: 0, y: 30, filter: 'blur(12px)',
+        duration: 0.8, ease: 'power3.out', stagger: 0.02,
+        scrollTrigger: hasST ? { trigger: el, start: 'top 88%', once: true } : undefined,
+        delay: hasST ? 0 : 0.1,
       });
     } else {
-      // No GSAP or reduced motion: just make sure it's visible.
       el.style.opacity = '1';
     }
   });
 
-  /* ==========================================
-     5. HERO ROLE-SWAP LOOP
-     ========================================== */
-  const swap = document.querySelector('.hero__role-word');
-  if (swap && hasGSAP && animate) {
-    const phrases = ['things that matter.', 'AI tools.', 'secure systems.', 'things people use.'];
-    let idx = 0;
-    const cycle = () => {
-      const tl = gsap.timeline({ onComplete: cycle });
-      tl.to(swap, { opacity: 0, filter: 'blur(8px)', y: -10, duration: 0.4, ease: 'power2.in', delay: 2 })
-        .add(() => { idx = (idx + 1) % phrases.length; swap.textContent = phrases[idx]; })
-        .fromTo(swap,
-          { opacity: 0, filter: 'blur(8px)', y: 10 },
-          { opacity: 1, filter: 'blur(0px)', y: 0, duration: 0.55, ease: 'power2.out' });
-    };
-    cycle();
-  }
-
-  /* ==========================================
-     6. HERO SCROLL PARALLAX (fade + lift)
-     ========================================== */
-  if (animate) {
-    const heroContent = document.querySelectorAll('.hero__eyebrow, .hero__title, .hero__role, .hero__cta');
-    if (heroContent.length && hasST) {
-      gsap.to(heroContent, {
-        yPercent: -14,
-        opacity: 0,
-        ease: 'none',
-        stagger: 0.04,
-        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
-      });
+  /* 6. KINETIC WORD LOOP (About visual) */
+  const kw = document.querySelector('.kinetic__word');
+  if (kw) {
+    const words = ['AI', 'security', 'systems', 'automation'];
+    kw.textContent = words[0];
+    if (hasGSAP && animate) {
+      let i = 0;
+      const cycle = () => {
+        const tl = gsap.timeline({ onComplete: cycle });
+        tl.to(kw, { opacity: 0, filter: 'blur(10px)', y: -14, duration: 0.45, ease: 'power2.in', delay: 2 })
+          .add(() => { i = (i + 1) % words.length; kw.textContent = words[i]; })
+          .fromTo(kw, { opacity: 0, filter: 'blur(10px)', y: 14 }, { opacity: 1, filter: 'blur(0px)', y: 0, duration: 0.55, ease: 'power2.out' });
+      };
+      cycle();
     }
   }
 
-  /* ==========================================
-     7. SCROLL-TRIGGERED REVEALS
-     GSAP if available, else IntersectionObserver,
-     else show everything.
-     ========================================== */
+  /* 7. SCROLL REVEALS */
   const reveals = document.querySelectorAll('.reveal');
   if (hasST && animate) {
     reveals.forEach((el) => {
-      gsap.fromTo(el,
-        { opacity: 0, y: 42 },
-        {
-          opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 88%', once: true },
-        });
+      gsap.fromTo(el, { opacity: 0, y: 42 },
+        { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
     });
   } else if (animate && 'IntersectionObserver' in window) {
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          revealObserver.unobserve(entry.target);
-        }
-      });
+    const ob = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('visible'); ob.unobserve(e.target); } });
     }, { threshold: 0.06, rootMargin: '0px 0px -50px 0px' });
-    reveals.forEach((el) => revealObserver.observe(el));
+    reveals.forEach((el) => ob.observe(el));
   } else {
     reveals.forEach((el) => el.classList.add('visible'));
   }
 
-  /* ==========================================
-     8. NAV scrolled state
-     ========================================== */
-  const nav = document.querySelector('.nav');
-  if (nav) {
-    onScroll(() => nav.classList.toggle('scrolled', getScrollY() > 80));
+  /* 8. TIMELINE scrub */
+  const timeline = document.querySelector('.timeline');
+  if (hasST && animate && timeline) {
+    ScrollTrigger.create({
+      trigger: timeline,
+      start: 'top 70%',
+      end: 'bottom 80%',
+      scrub: true,
+      onUpdate: (self) => timeline.style.setProperty('--progress', (self.progress * 100).toFixed(2) + '%'),
+    });
   }
 
-  /* ==========================================
-     9. MOBILE MENU + BACKDROP
-     ========================================== */
-  const toggle = document.querySelector('.nav__toggle');
-  const navLinks = document.querySelector('.nav__links');
-  const backdrop = document.querySelector('.nav__backdrop');
+  /* 9. WORK horizontal pan (desktop only) */
+  const workSection = document.querySelector('.work');
+  const workTrack = document.querySelector('.work__track');
+  const workViewport = document.querySelector('.work__viewport');
+  if (hasST && animate && isDesktop && workTrack && workViewport) {
+    const distance = () => Math.max(0, workTrack.scrollWidth - workViewport.offsetWidth);
+    gsap.to(workTrack, {
+      x: () => -distance(),
+      ease: 'none',
+      scrollTrigger: {
+        trigger: workSection,
+        start: 'top top',
+        end: () => '+=' + distance(),
+        pin: true,
+        scrub: 1,
+        invalidateOnRefresh: true,
+        anticipatePin: 1,
+      },
+    });
+  }
 
+  /* 10. TOP NAV scrolled border already via is-dark; mobile menu */
+  const toggle = document.querySelector('.topnav__toggle');
+  const navLinks = document.querySelector('.topnav__links');
+  const backdrop = document.querySelector('.nav__backdrop');
   function closeMobileMenu() {
     toggle?.classList.remove('open');
     navLinks?.classList.remove('open');
@@ -214,157 +202,113 @@ document.addEventListener('DOMContentLoaded', () => {
     toggle.addEventListener('click', () => {
       navLinks.classList.contains('open') ? closeMobileMenu() : openMobileMenu();
     });
-    navLinks.querySelectorAll('.nav__link').forEach((link) => {
-      link.addEventListener('click', closeMobileMenu);
-    });
   }
   backdrop?.addEventListener('click', closeMobileMenu);
 
-  /* ==========================================
-     10. WRITING ACCORDIONS + KEYBOARD
-     ========================================== */
+  /* 11. ANCHOR NAV (data-scroll + pill data-scroll-to) */
+  document.querySelectorAll('[data-scroll]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      const href = a.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        const target = href === '#top' ? 0 : document.querySelector(href);
+        // Close the mobile menu FIRST so Lenis is restarted before we scroll.
+        closeMobileMenu();
+        if (target !== null) requestAnimationFrame(() => scrollToTarget(target));
+      }
+    });
+  });
+  document.querySelectorAll('[data-scroll-to]').forEach((b) => {
+    b.addEventListener('click', () => {
+      const target = document.querySelector(b.getAttribute('data-scroll-to'));
+      if (target) scrollToTarget(target);
+    });
+  });
+
+  /* 12. EXPANDABLE CARDS (What I Do) */
+  function toggleExpandCard(card) {
+    const isOpen = card.classList.contains('open');
+    document.querySelectorAll('.expand-card.open').forEach((c) => {
+      if (c !== card) { c.classList.remove('open'); c.setAttribute('aria-expanded', 'false'); }
+    });
+    card.classList.toggle('open', !isOpen);
+    card.setAttribute('aria-expanded', String(!isOpen));
+    if (hasST) setTimeout(() => ScrollTrigger.refresh(), 550);
+  }
+  document.querySelectorAll('.expand-card').forEach((card) => {
+    card.addEventListener('click', () => toggleExpandCard(card));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleExpandCard(card); }
+    });
+  });
+
+  /* 13. WRITING ACCORDIONS */
   function toggleWritingPiece(piece) {
     const isOpen = piece.classList.contains('open');
     const header = piece.querySelector('.writing-piece__header');
-
     document.querySelectorAll('.writing-piece.open').forEach((p) => {
       if (p !== piece) {
         p.classList.remove('open');
         p.querySelector('.writing-piece__header')?.setAttribute('aria-expanded', 'false');
       }
     });
-
     piece.classList.toggle('open', !isOpen);
     header?.setAttribute('aria-expanded', String(!isOpen));
-    // Recalculate ScrollTrigger positions after the panel expands/collapses.
     if (hasST) setTimeout(() => ScrollTrigger.refresh(), 650);
   }
-
   document.querySelectorAll('.writing-piece__header').forEach((header) => {
     header.addEventListener('click', () => toggleWritingPiece(header.closest('.writing-piece')));
     header.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        toggleWritingPiece(header.closest('.writing-piece'));
-      }
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleWritingPiece(header.closest('.writing-piece')); }
     });
   });
 
-  /* ==========================================
-     11. AUTO-OPEN FROM HASH
-     ========================================== */
+  /* 14. AUTO-OPEN writing from hash */
   function openFromHash() {
     const hash = window.location.hash;
     if (hash) {
       const target = document.querySelector(hash);
       if (target?.classList.contains('writing-piece')) {
-        setTimeout(() => {
-          toggleWritingPiece(target);
-          scrollToTarget(target);
-        }, prefersReducedMotion ? 100 : 600);
+        setTimeout(() => { toggleWritingPiece(target); scrollToTarget(target); }, prefersReducedMotion ? 100 : 600);
       }
     }
   }
   openFromHash();
   window.addEventListener('hashchange', openFromHash);
 
-  /* ==========================================
-     12. ACTIVE NAV LINK
-     ========================================== */
-  const path = window.location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '') || '/';
-  document.querySelectorAll('.nav__link').forEach((link) => {
-    const href = link.getAttribute('href');
-    if (href === path || (path === '' && href === '/')) {
-      link.classList.add('active');
-    }
-  });
-
-  /* ==========================================
-     13. SMOOTH ANCHOR SCROLLING
-     ========================================== */
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener('click', (e) => {
-      const target = document.querySelector(anchor.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        scrollToTarget(target);
-      }
-    });
-  });
-
-  /* ==========================================
-     14. PAGE TRANSITIONS (fallback)
-     ========================================== */
-  if (!document.startViewTransition) {
-    document.querySelectorAll('a').forEach((link) => {
-      const href = link.getAttribute('href');
-      if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto:')) return;
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        document.body.classList.remove('page-transition');
-        document.body.classList.add('page-transition-out');
-        setTimeout(() => { window.location.href = href; }, 220);
-      });
-    });
-  }
-
-  /* ==========================================
-     15. CUSTOM CURSOR (desktop, motion on)
-     ========================================== */
+  /* 15. CUSTOM CURSOR */
   const cursorDot = document.querySelector('.cursor-dot');
   const cursorRing = document.querySelector('.cursor-ring');
-
   if (cursorDot && cursorRing && window.matchMedia('(hover: hover) and (pointer: fine)').matches && !prefersReducedMotion) {
     let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
-
     document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
+      mouseX = e.clientX; mouseY = e.clientY;
       cursorDot.style.left = mouseX + 'px';
       cursorDot.style.top = mouseY + 'px';
     });
-
-    function animateRing() {
+    (function animateRing() {
       ringX += (mouseX - ringX) * 0.15;
       ringY += (mouseY - ringY) * 0.15;
       cursorRing.style.left = ringX + 'px';
       cursorRing.style.top = ringY + 'px';
       requestAnimationFrame(animateRing);
-    }
-    animateRing();
-
-    const hoverTargets = 'a, button, [role="button"], input, textarea, .card, .project-card, .writing-piece__header, .btn, .nav__toggle';
-
+    })();
+    const hoverTargets = 'a, button, [role="button"], input, textarea, .expand-card, .work-card, .writing-piece__header, .btn, .pill-btn, .intro__pill, .topnav__toggle';
     document.addEventListener('mouseover', (e) => {
-      if (e.target.closest(hoverTargets)) {
-        cursorDot.classList.add('hovering');
-        cursorRing.classList.add('hovering');
-      }
+      if (e.target.closest(hoverTargets)) { cursorDot.classList.add('hovering'); cursorRing.classList.add('hovering'); }
     });
     document.addEventListener('mouseout', (e) => {
-      if (e.target.closest(hoverTargets)) {
-        cursorDot.classList.remove('hovering');
-        cursorRing.classList.remove('hovering');
-      }
+      if (e.target.closest(hoverTargets)) { cursorDot.classList.remove('hovering'); cursorRing.classList.remove('hovering'); }
     });
-
-    document.addEventListener('mouseleave', () => {
-      cursorDot.style.opacity = '0';
-      cursorRing.style.opacity = '0';
-    });
-    document.addEventListener('mouseenter', () => {
-      cursorDot.style.opacity = '1';
-      cursorRing.style.opacity = '1';
-    });
+    document.addEventListener('mouseleave', () => { cursorDot.style.opacity = '0'; cursorRing.style.opacity = '0'; });
+    document.addEventListener('mouseenter', () => { cursorDot.style.opacity = '1'; cursorRing.style.opacity = '1'; });
   }
 
-  /* ==========================================
-     16. BACK TO TOP
-     ========================================== */
+  /* 16. BACK TO TOP */
   const backToTop = document.querySelector('.back-to-top');
   if (backToTop) {
-    onScroll(() => backToTop.classList.toggle('visible', getScrollY() > 600));
-    backToTop.addEventListener('click', scrollToTop);
+    onScroll(() => backToTop.classList.toggle('visible', getScrollY() > window.innerHeight * 1.5));
+    backToTop.addEventListener('click', () => scrollToTarget(0));
   }
 
 });

@@ -5,7 +5,6 @@
 .agents/
 skills-lock.json
 
-# Playwright verification artifacts
+# Playwright verification artifacts (root-level screenshots only; real assets live in assets/)
 .playwright-mcp/
-before-*.png
-after-*.png
+/*.png

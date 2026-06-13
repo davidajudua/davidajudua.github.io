@@ -3,124 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script>document.documentElement.classList.add('has-js');</script>
-  <title>Projects | David Ajudua</title>
-  <meta name="description" content="CS projects and technical work by David Ajudua.">
-  <meta property="og:title" content="Projects | David Ajudua">
-  <meta property="og:description" content="CS projects and technical work by David Ajudua.">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary">
-  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/css/style.css?v=7">
+  <meta http-equiv="refresh" content="0; url=/#work">
+  <link rel="canonical" href="https://davidajudua.com/#work">
+  <title>David Ajudua</title>
+  <script>location.replace('/#work');</script>
 </head>
 <body>
-
-  <div class="site-loader" aria-hidden="true"><span class="site-loader__text">David Ajudua</span></div>
-  <div class="cursor-dot" aria-hidden="true"></div>
-  <div class="cursor-ring" aria-hidden="true"></div>
-  <div class="nav__backdrop" aria-hidden="true"></div>
-
-  <nav class="nav" role="navigation" aria-label="Main navigation">
-    <a href="/" class="nav__logo">David Ajudua</a>
-    <ul class="nav__links">
-      <li><a href="/" class="nav__link">Home</a></li>
-      <li><a href="/about" class="nav__link">About</a></li>
-      <li><a href="/projects" class="nav__link active">Projects</a></li>
-      <li><a href="/writing" class="nav__link">Writing</a></li>
-      <li><a href="/contact" class="nav__link">Contact</a></li>
-    </ul>
-    <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-
-  <header class="page-header">
-    <div class="page-header__container">
-      <p class="page-header__eyebrow">Projects</p>
-      <h1 class="page-header__title" data-split>What I've built.</h1>
-      <p class="page-header__desc">Tools I've built to solve real problems, from optimizing gaming performance at the OS level to automating card distribution for teams.</p>
-    </div>
-  </header>
-
-  <section class="section">
-    <div class="section__container">
-      <div class="card-grid" style="grid-template-columns: repeat(2, 1fr);">
-
-        <!-- LowLatencyToolkit -->
-        <div class="project-card reveal reveal-delay-1">
-
-          <div class="project-card__body">
-            <div class="project-card__tags">
-              <span>PowerShell</span>
-              <span>Windows</span>
-              <span>Systems</span>
-            </div>
-            <h3 class="project-card__title">LowLatencyToolkit</h3>
-            <p class="project-card__desc">A modular PowerShell automation toolkit that applies BIOS/OS performance profiles to Windows gaming systems. Five profiles from basic service cleanup to full Fortnite optimization, with idempotent execution, GPU auto-detection (Nvidia/AMD), full rollback support via restore points and snapshots, and structured logging for every change. Built to reduce input latency and maximize frame rates without breaking your system.</p>
-            <div class="project-card__footer">
-              <a href="https://github.com/davidajudua/LowLatencyToolkit" target="_blank" rel="noopener">
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-                GitHub
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- CardSlinger -->
-        <div class="project-card reveal reveal-delay-2">
-
-          <div class="project-card__body">
-            <div class="project-card__tags">
-              <span>Python</span>
-              <span>Discord Bot</span>
-              <span>SQLite</span>
-              <span>Docker</span>
-            </div>
-            <h3 class="project-card__title">CardSlinger</h3>
-            <p class="project-card__desc">A Discord bot that manages and distributes cards (VCCs, gift cards, promo codes, license keys) to teams through slash commands. One card at a time per user with built-in safeguards. Used cards are never recycled, "not used" requires confirmation, error cards auto-replace. Includes CSV bulk loading, admin controls, low stock alerts, activity logging, and multi-server support. Single-file architecture with Docker deployment.</p>
-            <div class="project-card__footer">
-              <a href="https://github.com/davidajudua/cardslinger" target="_blank" rel="noopener">
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-                GitHub
-              </a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--dark">
-    <div class="section__container" style="text-align: center;">
-      <div class="reveal">
-        <p class="section__eyebrow">Want to see more?</p>
-        <h2 class="section__title">Check out my GitHub.</h2>
-        <p class="section__subtitle" style="margin-left: auto; margin-right: auto;">More projects, experiments, and work in progress.</p>
-        <a href="https://github.com/davidajudua" target="_blank" rel="noopener" class="btn btn--primary">
-          Visit GitHub
-          <svg class="btn__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <p class="footer__text">&copy; 2026 David Ajudua</p>
-    <ul class="footer__links">
-      <li><a href="https://github.com/davidajudua" target="_blank" rel="noopener">GitHub</a></li>
-      <li><a href="https://www.linkedin.com/in/david-ajudua-26589b355" target="_blank" rel="noopener">LinkedIn</a></li>
-      <li><a href="/contact">Contact</a></li>
-    </ul>
-  </footer>
-
-  <button class="back-to-top" aria-label="Back to top">
-    <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M8 12V4M4 8l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </button>
-
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" integrity="sha384-pEQB1h4Zmn9xhS6jotzltHSIQq6N0Oh3BXkCNOH5LKI81R2NRbb9efarAJYw9gTY" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js" integrity="sha384-TgZ1GoXcDnrw/czNfaiSZSFV1zgIRv8aQOevBA8ppS4SkNONmzYfjARpXsDfdnUE" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" integrity="sha384-tKsJDT6PlUI0pSBt9/sBKJluKgA19/a6mBrDsZaXotLB4ZYfMGM6xt6/WgGpYhTm" crossorigin="anonymous"></script>
-  <script src="/js/main.js?v=7"></script>
+  <p>Redirecting to <a href="/#work">davidajudua.com</a>&hellip;</p>
 </body>
 </html>
