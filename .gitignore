@@ -1,1 +1,11 @@
 .claude/
+.DS_Store
+
+# Local agent/skill tooling — not part of the deployed site
+.agents/
+skills-lock.json
+
+# Playwright verification artifacts
+.playwright-mcp/
+before-*.png
+after-*.png

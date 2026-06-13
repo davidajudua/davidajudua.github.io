@@ -1,35 +1,36 @@
 /* ============================================
-   DAVID AJUDUA — Portfolio Design System v6
-   Luxe Editorial + Apple Cinematic Scroll
+   DAVID AJUDUA — Portfolio Design System v7
+   Kinetic Dark-Tech · Geist + Lavender
    ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=Jost:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@300..600&display=swap');
 
 :root {
-  --bg-primary: #0a0a0a;
-  --bg-secondary: #101010;
+  --bg-primary: #0b080c;
+  --bg-secondary: #110d16;
   --bg-card: rgba(255, 255, 255, 0.03);
-  --bg-card-hover: rgba(255, 255, 255, 0.055);
-  --bg-elevated: #141414;
-  --bg-reading: #0e0d0b;
+  --bg-card-hover: rgba(194, 164, 255, 0.06);
+  --bg-elevated: #16121d;
+  --bg-reading: #0d0b12;
 
-  --text-primary: #e5e5e5;
-  --text-secondary: #8a8a8a;
-  --text-muted: #555555;
-  --text-bright: #f5f5f5;
+  --text-primary: #e6e3ec;
+  --text-secondary: #948fa3;
+  --text-muted: #595367;
+  --text-bright: #f4f2f9;
 
-  --accent: #c9a84c;
-  --accent-hover: #d9bc6e;
-  --accent-dim: rgba(201, 168, 76, 0.1);
-  --accent-glow: rgba(201, 168, 76, 0.06);
-  --gradient-gold: linear-gradient(135deg, #c9a84c, #e8d5a3, #c9a84c);
+  --accent: #c2a4ff;
+  --accent-hover: #d4c0ff;
+  --accent-dim: rgba(194, 164, 255, 0.1);
+  --accent-glow: rgba(194, 164, 255, 0.08);
+  --gradient-accent: linear-gradient(120deg, #7f40ff 0%, #c2a4ff 55%, #f4f2f9 100%);
 
   --border: rgba(255, 255, 255, 0.06);
   --border-hover: rgba(255, 255, 255, 0.12);
-  --border-accent: rgba(201, 168, 76, 0.2);
+  --border-accent: rgba(194, 164, 255, 0.24);
 
-  --font-display: 'Bodoni Moda', 'Didot', 'Georgia', serif;
-  --font-body: 'Jost', 'Helvetica Neue', sans-serif;
+  --font-display: 'Geist', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+  --font-body: 'Geist', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.45, 0, 0.15, 1);
@@ -55,7 +56,7 @@ body {
   background: var(--bg-primary);
   color: var(--text-primary);
   font-family: var(--font-body);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.7;
   overflow-x: hidden;
 }
@@ -81,16 +82,18 @@ img { max-width: 100%; display: block; }
   }
   html { scroll-behavior: auto; }
   .reveal { opacity: 1 !important; transform: none !important; }
-  .hero__title, .hero__eyebrow, .hero__subtitle, .hero__cta,
-  .hero__scroll-indicator,
+  .hero__title, .hero__eyebrow, .hero__role, .hero__cta,
+  .hero__title .char, .hero__role-word,
   .page-header__eyebrow, .page-header__title, .page-header__desc {
-    opacity: 1 !important; transform: none !important;
+    opacity: 1 !important; transform: none !important; filter: none !important;
   }
+  .has-js .hero__title { opacity: 1 !important; }
+  .hero__glow-blob { animation: none !important; }
 }
 
 /* --- Gradient Text --- */
 .gradient-text {
-  background: var(--gradient-gold);
+  background: var(--gradient-accent);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -189,7 +192,7 @@ body::before {
 .nav__toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
 
 /* ============================================
-   HERO — Left-aligned editorial + scroll fade
+   HERO — Kinetic type + atmospheric glow
    ============================================ */
 .hero {
   min-height: 100vh;
@@ -197,117 +200,127 @@ body::before {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 8rem 3rem 4rem;
+  padding: 6rem 3rem 4rem;
   position: relative;
   overflow: hidden;
 }
 
-.hero::before {
-  content: '';
+/* Atmospheric glow — layered drifting purple/magenta light */
+.hero__glow {
   position: absolute;
-  top: 20%; right: -5%;
-  width: 50vw; height: 50vw;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
+  inset: 0;
+  z-index: 0;
   pointer-events: none;
-  animation: heroGlow 10s ease-in-out infinite alternate;
+  overflow: hidden;
 }
 
-@keyframes heroGlow {
-  0% { opacity: 0.5; transform: translate(0, 0) scale(1); }
-  100% { opacity: 1; transform: translate(-3%, 5%) scale(1.08); }
+.hero__glow-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(72px);
+  opacity: 0.55;
+  mix-blend-mode: screen;
+  will-change: transform;
 }
+
+.hero__glow-blob--1 {
+  top: 4%; right: 0%;
+  width: 44vw; height: 44vw;
+  background: radial-gradient(circle, rgba(127, 64, 255, 0.55) 0%, transparent 66%);
+  animation: glowDrift1 19s ease-in-out infinite alternate;
+}
+.hero__glow-blob--2 {
+  bottom: -8%; right: 24%;
+  width: 34vw; height: 34vw;
+  background: radial-gradient(circle, rgba(194, 164, 255, 0.42) 0%, transparent 66%);
+  animation: glowDrift2 23s ease-in-out infinite alternate;
+}
+.hero__glow-blob--3 {
+  top: 26%; left: -8%;
+  width: 32vw; height: 32vw;
+  background: radial-gradient(circle, rgba(176, 78, 255, 0.3) 0%, transparent 66%);
+  animation: glowDrift3 27s ease-in-out infinite alternate;
+}
+
+@keyframes glowDrift1 { from { transform: translate(0,0) scale(1); } to { transform: translate(-6%, 7%) scale(1.14); } }
+@keyframes glowDrift2 { from { transform: translate(0,0) scale(1); } to { transform: translate(8%, -6%) scale(1.16); } }
+@keyframes glowDrift3 { from { transform: translate(0,0) scale(1); } to { transform: translate(6%, 9%) scale(1.1); } }
+
+/* keep hero content above the glow */
+.hero__eyebrow,
+.hero__title,
+.hero__role,
+.hero__cta { position: relative; z-index: 1; }
 
 .hero__eyebrow {
-  font-family: var(--font-body);
-  font-size: 0.65rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   font-weight: 400;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.85rem;
   opacity: 0;
-  transform: translateY(15px);
-  animation: fadeUp 0.6s var(--ease-out) 0.3s forwards;
+  transform: translateY(14px);
+  animation: fadeUp 0.6s var(--ease-out) 0.25s forwards;
 }
+.hero__eyebrow .dot { opacity: 0.45; margin: 0 0.45em; }
 
 .hero__title {
   font-family: var(--font-display);
-  font-size: clamp(3.2rem, 9vw, 8rem);
-  font-weight: 400;
-  line-height: 1.02;
-  letter-spacing: -0.03em;
+  font-size: clamp(3rem, 11vw, 9rem);
+  font-weight: 600;
+  line-height: 0.94;
+  letter-spacing: -0.05em;
   color: var(--text-bright);
-  margin-bottom: 2rem;
-  max-width: 900px;
-  opacity: 0;
-  transform: translateY(25px);
-  animation: fadeUp 0.8s var(--ease-out) 0.45s forwards;
+  margin-bottom: 1.4rem;
 }
 
-.hero__title em {
-  font-style: italic;
+/* per-character spans injected by JS for the reveal */
+.hero__title .char {
+  display: inline-block;
+  will-change: transform, opacity, filter;
+}
+
+/* When JS is available, hide split titles until GSAP reveals them (prevents flash). */
+.has-js .hero__title,
+.has-js .page-header__title { opacity: 0; }
+/* page-header title normally has a CSS fade-up; let GSAP own it under has-js. */
+.has-js .page-header__title { transform: none; animation: none; }
+
+.hero__role {
+  font-size: clamp(1.2rem, 3vw, 2.1rem);
   font-weight: 400;
+  color: var(--text-secondary);
+  letter-spacing: -0.015em;
+  margin-bottom: 2.75rem;
+  opacity: 0;
+  transform: translateY(14px);
+  animation: fadeUp 0.6s var(--ease-out) 0.75s forwards;
 }
 
-.hero__subtitle {
-  font-size: 1.05rem;
-  font-weight: 300;
-  color: var(--text-secondary);
-  max-width: 480px;
-  line-height: 1.8;
-  opacity: 0;
-  transform: translateY(15px);
-  animation: fadeUp 0.6s var(--ease-out) 0.65s forwards;
+.hero__role-swap {
+  position: relative;
+  display: inline-block;
+  font-weight: 500;
+}
+
+.hero__role-word {
+  display: inline-block;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  will-change: transform, opacity, filter;
 }
 
 .hero__cta {
-  margin-top: 3rem;
   display: flex;
   gap: 1.25rem;
   align-items: center;
   opacity: 0;
-  transform: translateY(15px);
-  animation: fadeUp 0.6s var(--ease-out) 0.85s forwards;
-}
-
-.hero__scroll-indicator {
-  position: absolute;
-  bottom: 2.5rem; left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  opacity: 0;
-  animation: fadeUp 0.6s var(--ease-out) 1.2s forwards;
-}
-
-.hero__scroll-indicator span {
-  font-size: 0.55rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-.hero__scroll-line {
-  width: 1px; height: 40px;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero__scroll-line::after {
-  content: '';
-  position: absolute;
-  top: -100%; left: 0;
-  width: 1px; height: 100%;
-  background: linear-gradient(to bottom, transparent, var(--accent));
-  animation: scrollDrop 2s var(--ease-in-out) infinite;
-}
-
-@keyframes scrollDrop {
-  0% { top: -100%; }
-  100% { top: 100%; }
+  transform: translateY(14px);
+  animation: fadeUp 0.6s var(--ease-out) 0.95s forwards;
 }
 
 /* ============================================
@@ -338,7 +351,7 @@ body::before {
   background: var(--accent-hover);
   color: var(--bg-primary);
   transform: translateY(-2px);
-  box-shadow: 0 12px 40px rgba(201, 168, 76, 0.2);
+  box-shadow: 0 12px 40px rgba(127, 64, 255, 0.28);
 }
 
 .btn--outline {
@@ -389,10 +402,10 @@ body::before {
 .section__title {
   font-family: var(--font-display);
   font-size: clamp(2rem, 4.5vw, 3.5rem);
-  font-weight: 400;
+  font-weight: 600;
   color: var(--text-bright);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
   margin-bottom: 1.25rem;
 }
 
@@ -963,10 +976,10 @@ body::before {
 .page-header__title {
   font-family: var(--font-display);
   font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: 400;
+  font-weight: 600;
   color: var(--text-bright);
-  line-height: 1.08;
-  letter-spacing: -0.03em;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
   margin-bottom: 1.25rem;
   opacity: 0;
   transform: translateY(20px);
@@ -1032,16 +1045,17 @@ body::before {
 
   .cursor-ring {
     width: 32px; height: 32px;
-    border: 1px solid rgba(201, 168, 76, 0.3);
+    border: 1px solid rgba(194, 164, 255, 0.35);
     transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
     transition: width 0.3s var(--ease-out), height 0.3s var(--ease-out),
                 border-color 0.3s var(--ease-out), background 0.3s var(--ease-out);
   }
 
   .cursor-ring.hovering {
     width: 48px; height: 48px;
-    border-color: rgba(201, 168, 76, 0.45);
-    background: rgba(201, 168, 76, 0.04);
+    border-color: rgba(194, 164, 255, 0.55);
+    background: rgba(194, 164, 255, 0.06);
   }
 
   .cursor-dot.hovering { transform: translate(-50%, -50%) scale(0.5); opacity: 0.5; }

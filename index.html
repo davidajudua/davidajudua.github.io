@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>document.documentElement.classList.add('has-js');</script>
   <title>David Ajudua | CS @ Howard University</title>
   <meta name="description" content="David Ajudua. Computer Science student at Howard University.">
   <meta property="og:title" content="David Ajudua | CS @ Howard University">
@@ -13,7 +14,7 @@
   <meta name="twitter:title" content="David Ajudua | CS @ Howard University">
   <meta name="twitter:description" content="Computer Science student at Howard University. Builder, writer, photographer.">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/style.css?v=7">
 </head>
 <body>
 
@@ -46,14 +47,15 @@
 
   <!-- Hero -->
   <section class="hero">
-    <p class="hero__eyebrow">Computer Science &bull; Howard University &bull; Class of 2029</p>
-    <h1 class="hero__title">
-      I build things<br>
-      that <em class="gradient-text">matter.</em>
-    </h1>
-    <p class="hero__subtitle">
-      Computer Science student at Howard University. AI engineering, cybersecurity,
-      and using technology to solve real problems.
+    <div class="hero__glow" aria-hidden="true">
+      <span class="hero__glow-blob hero__glow-blob--1"></span>
+      <span class="hero__glow-blob hero__glow-blob--2"></span>
+      <span class="hero__glow-blob hero__glow-blob--3"></span>
+    </div>
+    <p class="hero__eyebrow">Computer Science <span class="dot">&middot;</span> Howard University</p>
+    <h1 class="hero__title" data-split>David Ajudua</h1>
+    <p class="hero__role">
+      I build <span class="hero__role-swap"><span class="hero__role-word">things that matter.</span></span>
     </p>
     <div class="hero__cta">
       <a href="/projects" class="btn btn--primary">
@@ -63,10 +65,6 @@
         </svg>
       </a>
       <a href="/writing" class="btn btn--outline">Read My Writing</a>
-    </div>
-    <div class="hero__scroll-indicator" aria-hidden="true">
-      <span>Scroll</span>
-      <div class="hero__scroll-line"></div>
     </div>
   </section>
 
@@ -138,6 +136,9 @@
     </ul>
   </footer>
 
-  <script src="/js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" integrity="sha384-pEQB1h4Zmn9xhS6jotzltHSIQq6N0Oh3BXkCNOH5LKI81R2NRbb9efarAJYw9gTY" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js" integrity="sha384-TgZ1GoXcDnrw/czNfaiSZSFV1zgIRv8aQOevBA8ppS4SkNONmzYfjARpXsDfdnUE" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" integrity="sha384-tKsJDT6PlUI0pSBt9/sBKJluKgA19/a6mBrDsZaXotLB4ZYfMGM6xt6/WgGpYhTm" crossorigin="anonymous"></script>
+  <script src="/js/main.js?v=7"></script>
 </body>
 </html>
