@@ -111,21 +111,42 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  /* 6. KINETIC WORD LOOP (About visual) */
+  /* 6. KINETIC WORD LOOP (About visual) — masked roll, no empty/black frame */
   const kw = document.querySelector('.kinetic__word');
   if (kw) {
     const words = ['AI', 'security', 'systems', 'automation'];
-    kw.textContent = words[0];
+    const makeItem = (text) => {
+      const el = document.createElement('span');
+      el.className = 'kinetic__item';
+      el.textContent = text;
+      return el;
+    };
+    kw.textContent = '';
+    let current = makeItem(words[0]);
+    kw.appendChild(current);
     if (hasGSAP && animate) {
       let i = 0;
       const cycle = () => {
-        const tl = gsap.timeline({ onComplete: cycle });
-        tl.to(kw, { opacity: 0, filter: 'blur(10px)', y: -14, duration: 0.45, ease: 'power2.in', delay: 2 })
-          .add(() => { i = (i + 1) % words.length; kw.textContent = words[i]; })
-          .fromTo(kw, { opacity: 0, filter: 'blur(10px)', y: 14 }, { opacity: 1, filter: 'blur(0px)', y: 0, duration: 0.55, ease: 'power2.out' });
+        i = (i + 1) % words.length;
+        const next = makeItem(words[i]);
+        gsap.set(next, { yPercent: 110, opacity: 0 });
+        kw.appendChild(next);
+        const outgoing = current;
+        current = next;
+        gsap.timeline({ delay: 2, onComplete: () => { outgoing.remove(); cycle(); } })
+          .to(outgoing, { yPercent: -110, opacity: 0, duration: 0.6, ease: 'power3.inOut' }, 0)
+          .to(next,     { yPercent: 0,   opacity: 1, duration: 0.6, ease: 'power3.inOut' }, 0);
       };
       cycle();
     }
+  }
+
+  /* 6b. GHOST TITLE — subtle scroll parallax (drift) */
+  const ghost = document.querySelector('.ghost-title');
+  if (ghost && hasST && animate) {
+    gsap.fromTo(ghost, { x: 90 },
+      { x: -90, ease: 'none',
+        scrollTrigger: { trigger: '.whatido', start: 'top bottom', end: 'bottom top', scrub: true } });
   }
 
   /* 7. SCROLL REVEALS */
