@@ -418,10 +418,9 @@ body::before {
    ABOUT — kinetic identity + proof numbers
    ============================================ */
 .about {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  display: flex;
   align-items: center;
+  justify-content: center;
   min-height: 100vh;
 }
 .about__visual { display: flex; align-items: center; justify-content: flex-start; min-width: 0; }
@@ -1067,9 +1066,7 @@ a.contact__value:hover { color: var(--accent); }
   .topnav__links.open { right: 0; }
   .topnav__link { font-size: 1.3rem; color: var(--text-bright); letter-spacing: 0.05em; }
 
-  .about { grid-template-columns: 1fr; gap: 2.5rem; min-height: auto; }
-  .about__visual { order: -1; }
-  .kinetic__word { font-size: clamp(3rem, 18vw, 5rem); }
+  .about { min-height: auto; }
   .about__stats { grid-template-columns: repeat(2, auto); gap: 1.5rem 2.5rem; }
 
   .whatido__inner { grid-template-columns: 1fr; gap: 2.5rem; min-height: auto; }
