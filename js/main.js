@@ -29,12 +29,27 @@ document.addEventListener('DOMContentLoaded', () => {
   /* 1b. AMBIENT BACKDROP — respect reduced motion (poster stays, video never plays),
      and resume playback after Chrome pauses occluded/background tabs. */
   const bgVideo = document.querySelector('.bg-video');
+  const root = document.documentElement;
   if (bgVideo && prefersReducedMotion) {
+    /* Poster stays, video never plays — fall back to the still backdrop. */
     bgVideo.removeAttribute('autoplay');
     bgVideo.pause();
+    root.classList.add('video-idle');
   } else if (bgVideo) {
+    /* When a browser blocks autoplay (notably iOS Low Power Mode), the video
+       stays paused and iOS paints a native play glyph over it. Hide the video
+       in that case so only the matching poster frame shows; reveal it again the
+       moment it actually plays. */
+    bgVideo.addEventListener('playing', () => root.classList.remove('video-idle'));
+    const attemptPlay = () => {
+      const p = bgVideo.play();
+      if (p && typeof p.catch === 'function') {
+        p.catch(() => root.classList.add('video-idle'));
+      }
+    };
+    attemptPlay();
     document.addEventListener('visibilitychange', () => {
-      if (!document.hidden && bgVideo.paused) bgVideo.play().catch(() => {});
+      if (!document.hidden && bgVideo.paused) attemptPlay();
     });
   }
 

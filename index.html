@@ -23,7 +23,11 @@
   <div class="site-loader" aria-hidden="true"><span class="site-loader__text">David Ajudua</span></div>
 
   <!-- The Set: fixed, sharp video the site is staged on (swap assets/ambient.mp4 to re-skin) -->
-  <video class="bg-video" autoplay muted loop playsinline preload="auto"
+  <!-- Poster is a real CSS background so the frame stays even when a mobile browser
+       (e.g. iOS Low Power Mode) blocks autoplay; JS hides the video in that case so
+       no native play glyph appears over it. -->
+  <div class="bg-poster" aria-hidden="true"></div>
+  <video class="bg-video" autoplay muted loop playsinline webkit-playsinline preload="auto"
          poster="/assets/ambient-poster.jpg" aria-hidden="true" tabindex="-1">
     <source src="/assets/ambient.mp4" type="video/mp4">
   </video>
