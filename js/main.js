@@ -1,6 +1,9 @@
 /* ============================================
-   DAVID AJUDUA — Portfolio Scripts v8
-   Single-page cinematic scroll · Lenis · GSAP
+   DAVID AJUDUA — Portfolio Scripts v9
+   Ambient night · Lenis · GSAP
+   The fixed video is the atmosphere; animation
+   belongs to the content (name, proof numbers,
+   kinetic words), not the chrome.
    Progressive enhancement + reduced-motion safe.
    ============================================ */
 
@@ -11,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const hasST    = hasGSAP && typeof window.ScrollTrigger !== 'undefined';
   const hasLenis = typeof window.Lenis !== 'undefined';
   const animate  = !prefersReducedMotion;
-  const isDesktop = window.matchMedia('(min-width: 769px)').matches;
 
   if (hasST) gsap.registerPlugin(ScrollTrigger);
 
@@ -24,13 +26,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }, prefersReducedMotion ? 0 : 400);
   }
 
-  /* 1b. INTRO ENTRANCE — gentle fade/rise on the pill + hint, soft fade-in on marquees */
-  if (hasGSAP && animate) {
-    const introPill = document.querySelector('.intro__pill');
-    const introHint = document.querySelector('.intro__hint');
-    gsap.from('.marquee__track', { opacity: 0, duration: 1.1, ease: 'power2.out', stagger: 0.14, delay: 0.45 });
-    if (introPill) gsap.from(introPill, { y: 18, opacity: 0, duration: 0.85, ease: 'power3.out', delay: 0.6 });
-    if (introHint) gsap.from(introHint, { opacity: 0, duration: 0.8, ease: 'power2.out', delay: 1.0 });
+  /* 1b. AMBIENT BACKDROP — respect reduced motion (poster stays, video never plays),
+     and resume playback after Chrome pauses occluded/background tabs. */
+  const bgVideo = document.querySelector('.bg-video');
+  if (bgVideo && prefersReducedMotion) {
+    bgVideo.removeAttribute('autoplay');
+    bgVideo.pause();
+  } else if (bgVideo) {
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden && bgVideo.paused) bgVideo.play().catch(() => {});
+    });
   }
 
   /* 2. LENIS SMOOTH SCROLL + ScrollTrigger bridge */
@@ -65,20 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
     else window.addEventListener('scroll', fn, { passive: true });
     fn();
   };
-
-  /* 3. LIGHT → DARK background + theme class */
-  const bgLayer = document.querySelector('.bg-layer');
-  const introEl = document.querySelector('.intro');
-  if (hasST && animate && bgLayer) {
-    gsap.to(bgLayer, {
-      backgroundColor: '#0b080c',
-      ease: 'none',
-      scrollTrigger: { trigger: '#about', start: 'top 85%', end: 'top 35%', scrub: true },
-    });
-  }
-  // theme class toggle (works even without GSAP — CSS handles the bg fallback)
-  const themeThreshold = () => (introEl ? introEl.offsetHeight : window.innerHeight) * 0.55;
-  onScroll(() => document.body.classList.toggle('is-dark', getScrollY() > themeThreshold()));
 
   /* 4. SPLIT TEXT helper */
   function splitText(el) {
@@ -149,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
         kw.appendChild(next);
         const outgoing = current;
         current = next;
-        gsap.timeline({ delay: 2, onComplete: () => { outgoing.remove(); cycle(); } })
+        gsap.timeline({ delay: 3.5, onComplete: () => { outgoing.remove(); cycle(); } })
           .to(outgoing, { yPercent: -110, opacity: 0, duration: 0.6, ease: 'power3.inOut' }, 0)
           .to(next,     { yPercent: 0,   opacity: 1, duration: 0.6, ease: 'power3.inOut' }, 0);
       };
@@ -224,6 +215,9 @@ document.addEventListener('DOMContentLoaded', () => {
         trigger: panel, start: 'top 80%', end: 'bottom 25%',
         onEnter: playIn, onEnterBack: playIn,
         onLeave: playOut, onLeaveBack: playOut,
+        // onEnter never fires for a panel the page is ALREADY inside (deep links
+        // like /#mp1, or a refresh after an accordion resize) — catch it here.
+        onRefresh: (self) => { if (self.isActive) playIn(); },
       });
     });
   } else if (animate && 'IntersectionObserver' in window) {
@@ -247,42 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* 9. WORK horizontal pan (desktop only) */
-  const workSection = document.querySelector('.work');
-  const workTrack = document.querySelector('.work__track');
-  const workViewport = document.querySelector('.work__viewport');
-  let workPan = null;
-  if (hasST && animate && isDesktop && workTrack && workViewport) {
-    const distance = () => Math.max(0, workTrack.scrollWidth - workViewport.offsetWidth);
-    workPan = gsap.to(workTrack, {
-      x: () => -distance(),
-      ease: 'none',
-      scrollTrigger: {
-        trigger: workSection,
-        start: 'top top',
-        end: () => '+=' + distance(),
-        pin: true,
-        scrub: 1,
-        invalidateOnRefresh: true,
-        anticipatePin: 1,
-      },
-    });
-  }
-
-  /* 9b. WORK image settle — project images scale 1.1 -> 1 with a gentle stagger
-     as the Work section comes into view (fires before the desktop pin engages). */
-  if (hasST && animate && workTrack && workSection) {
-    const wImgs = workTrack.querySelectorAll('.work-card__media img');
-    if (wImgs.length) {
-      gsap.fromTo(wImgs,
-        { scale: 1.1 },
-        { scale: 1, duration: 1.2, ease: 'power3.out', stagger: 0.12,
-          scrollTrigger: { trigger: workSection, start: 'top 75%', toggleActions: 'restart reset restart reset' } });
-    }
-  }
-
-  /* 9c. WORK DETAIL MODAL — opens a project's deep-dive overlay (keeps the
-     pinned horizontal pan untouched; works on desktop + mobile). */
+  /* 9. WORK DETAIL MODAL — opens a project's deep-dive overlay (desktop + mobile). */
   const workModal = document.querySelector('.work-modal');
   if (workModal) {
     const panel = workModal.querySelector('.work-modal__panel');
@@ -332,7 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* 10. TOP NAV scrolled border already via is-dark; mobile menu */
+  /* 10. MOBILE MENU */
   const toggle = document.querySelector('.topnav__toggle');
   const navLinks = document.querySelector('.topnav__links');
   const backdrop = document.querySelector('.nav__backdrop');
@@ -430,35 +389,15 @@ document.addEventListener('DOMContentLoaded', () => {
   openFromHash();
   window.addEventListener('hashchange', openFromHash);
 
-  /* 15. CUSTOM CURSOR */
-  const cursorDot = document.querySelector('.cursor-dot');
-  const cursorRing = document.querySelector('.cursor-ring');
-  if (cursorDot && cursorRing && window.matchMedia('(hover: hover) and (pointer: fine)').matches && !prefersReducedMotion) {
-    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX; mouseY = e.clientY;
-      cursorDot.style.left = mouseX + 'px';
-      cursorDot.style.top = mouseY + 'px';
-    });
-    (function animateRing() {
-      ringX += (mouseX - ringX) * 0.15;
-      ringY += (mouseY - ringY) * 0.15;
-      cursorRing.style.left = ringX + 'px';
-      cursorRing.style.top = ringY + 'px';
-      requestAnimationFrame(animateRing);
-    })();
-    const hoverTargets = 'a, button, [role="button"], input, textarea, .expand-card, .work-card, .writing-piece__header, .btn, .pill-btn, .intro__pill, .topnav__toggle';
-    document.addEventListener('mouseover', (e) => {
-      if (e.target.closest(hoverTargets)) { cursorDot.classList.add('hovering'); cursorRing.classList.add('hovering'); }
-    });
-    document.addEventListener('mouseout', (e) => {
-      if (e.target.closest(hoverTargets)) { cursorDot.classList.remove('hovering'); cursorRing.classList.remove('hovering'); }
-    });
-    document.addEventListener('mouseleave', () => { cursorDot.style.opacity = '0'; cursorRing.style.opacity = '0'; });
-    document.addEventListener('mouseenter', () => { cursorDot.style.opacity = '1'; cursorRing.style.opacity = '1'; });
-  }
+  /* 14b. HASH-JUMP RESYNC — a same-document hash change makes the browser jump
+     natively, which Lenis (and therefore ScrollTrigger) never hears about,
+     leaving section reveals stuck hidden. Re-sync them to the real position. */
+  window.addEventListener('hashchange', () => {
+    if (lenis) lenis.scrollTo(window.scrollY, { immediate: true, force: true });
+    if (hasST) requestAnimationFrame(() => ScrollTrigger.update());
+  });
 
-  /* 16. BACK TO TOP */
+  /* 15. BACK TO TOP */
   const backToTop = document.querySelector('.back-to-top');
   if (backToTop) {
     onScroll(() => backToTop.classList.toggle('visible', getScrollY() > window.innerHeight * 1.5));

@@ -13,20 +13,21 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="David Ajudua | Software Engineer">
   <meta name="twitter:description" content="Software engineer. I build software that makes an impact on everything I touch, the systems my businesses run on, the tools my campus needs, and whatever's next.">
+  <meta name="theme-color" content="#08090c">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/css/style.css?v=16">
+  <link rel="stylesheet" href="/css/style.css?v=18">
 </head>
 <body>
 
   <!-- Loading Entrance -->
   <div class="site-loader" aria-hidden="true"><span class="site-loader__text">David Ajudua</span></div>
 
-  <!-- Custom Cursor -->
-  <div class="cursor-dot" aria-hidden="true"></div>
-  <div class="cursor-ring" aria-hidden="true"></div>
-
-  <!-- Fixed background layer (light -> dark on scroll) -->
-  <div class="bg-layer" aria-hidden="true"></div>
+  <!-- The Set: fixed, sharp video the site is staged on (swap assets/ambient.mp4 to re-skin) -->
+  <video class="bg-video" autoplay muted loop playsinline preload="auto"
+         poster="/assets/ambient-poster.jpg" aria-hidden="true" tabindex="-1">
+    <source src="/assets/ambient.mp4" type="video/mp4">
+  </video>
+  <div class="bg-overlay" aria-hidden="true"></div>
 
   <!-- Mobile menu backdrop -->
   <div class="nav__backdrop" aria-hidden="true"></div>
@@ -57,27 +58,11 @@
     </a>
   </aside>
 
-  <!-- ============ INTRO (light) ============ -->
-  <section class="intro" id="top">
-    <div class="intro__marquees" aria-hidden="true">
-      <div class="marquee">
-        <div class="marquee__track marquee__track--ltr">
-          <span>Software Engineer<i>✦</i>Full-Stack<i>✦</i>Systems<i>✦</i>Automation<i>✦</i></span>
-          <span>Software Engineer<i>✦</i>Full-Stack<i>✦</i>Systems<i>✦</i>Automation<i>✦</i></span>
-        </div>
-      </div>
-      <div class="marquee">
-        <div class="marquee__track marquee__track--rtl">
-          <span>CS @ Howard<i>✦</i>Founder<i>✦</i>Builder<i>✦</i>Writer<i>✦</i></span>
-          <span>CS @ Howard<i>✦</i>Founder<i>✦</i>Builder<i>✦</i>Writer<i>✦</i></span>
-        </div>
-      </div>
-    </div>
-    <button class="intro__pill" data-scroll-to="#about" aria-label="Enter the site">
-      <span class="intro__pill-dot"></span>
-      Welcome
-    </button>
-    <div class="intro__hint" aria-hidden="true">Scroll to begin</div>
+  <!-- ============ HERO (nameplate) ============ -->
+  <section class="hero" id="top">
+    <h1 class="hero__name">David Ajudua</h1>
+    <p class="hero__role">Software Engineer <span class="hero__sep" aria-hidden="true">·</span> CS @ Howard</p>
+    <div class="hero__hint" aria-hidden="true"><span class="hero__hint-line"></span>Scroll</div>
   </section>
 
   <!-- ============ ABOUT (dark) ============ -->
@@ -206,14 +191,10 @@
       <p class="eyebrow">Selected projects</p>
       <h2 class="section-heading">My <span class="grad">Work</span></h2>
     </div>
-    <div class="work__viewport">
-      <div class="work__track">
+    <div class="work__list">
 
-        <article class="work-card">
-          <div class="work-card__num">01</div>
-          <div class="work-card__media">
-            <img src="https://opengraph.githubassets.com/1/davidajudua/opscore" alt="opscore repository preview" loading="lazy">
-          </div>
+        <article class="work-card reveal">
+          <div class="work-card__num" aria-hidden="true">01</div>
           <div class="work-card__body">
             <div class="work-card__meta">
               <h3 class="work-card__title">opscore</h3>
@@ -251,11 +232,8 @@
           </div>
         </article>
 
-        <article class="work-card">
-          <div class="work-card__num">02</div>
-          <div class="work-card__media">
-            <img src="https://opengraph.githubassets.com/1/davidajudua/LowLatencyToolkit" alt="LowLatencyToolkit repository preview" loading="lazy">
-          </div>
+        <article class="work-card reveal">
+          <div class="work-card__num" aria-hidden="true">02</div>
           <div class="work-card__body">
             <div class="work-card__meta">
               <h3 class="work-card__title">LowLatencyToolkit</h3>
@@ -293,7 +271,7 @@
           </div>
         </article>
 
-        <article class="work-card work-card--cta">
+        <article class="work-card work-card--cta reveal">
           <div class="work-card__cta-inner">
             <h3 class="work-card__title">More on GitHub</h3>
             <p class="work-card__desc">Experiments, work in progress, and everything else I'm building.</p>
@@ -304,7 +282,6 @@
           </div>
         </article>
 
-      </div>
     </div>
   </section>
 
@@ -397,52 +374,6 @@
         </div>
       </div>
 
-      <!-- ==================== MP3 - Howard Selective Orgs ==================== -->
-      <div class="writing-piece reveal reveal-delay-2" id="mp3">
-        <div class="writing-piece__header" role="button" tabindex="0" aria-expanded="false">
-          <div class="writing-piece__meta">
-            <p class="writing-piece__label">Major Paper 3 | Research Paper</p>
-            <h2 class="writing-piece__title">Earned, Not Given: Why Selective Organizations at Howard University Should Stay Selective</h2>
-          </div>
-          <button class="writing-piece__toggle" aria-label="Expand piece" tabindex="-1">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-        </div>
-        <div class="writing-piece__body">
-          <div class="writing-piece__intro">
-            <p class="writing-piece__intro-label">Author's Introduction</p>
-            <p>This was the paper where I finally felt like I had my own voice fully on the page. My professor had been telling me all semester to bring more of myself into the writing, and this topic made that easy because I'm living it. I'm a first-year watching campaign season play out on the yard, scrolling Fizz at 2 AM reading debates about orgs I'm not even in yet. I wanted to write something that took the conversation seriously instead of just picking a side. That meant engaging with the real criticisms, the Kulture Magazine article, the Fizz posts with 1,400 upvotes, and the Brown Paper Bag history. I didn't want to pretend those problems don't exist. But I also wanted to show that the same orgs people criticize today are not the same orgs from 1930, and that selectivity, when it's based on character and service instead of skin tone, builds something real. Mixing Fizz posts with Du Bois was a risk but it felt right. The anonymous posts are where Howard students actually say what they think, and putting those next to a 1903 essay showed that this argument has been going on for over a century.</p>
-          </div>
-          <div class="writing-piece__content">
-
-            <p>There is always one particular week in the fall semester at Howard when the yard completely transforms. Posters that weren't there yesterday suddenly appeared overnight. You can tell which students are members of a selective organization before they even introduce themselves. Model Inc walks around campus and the dining halls in their signature jackets, and they never seem to take them off. The Ladies of Quad roll deep in matching fits, moving together, and you already know which org they belong to before anyone says a name.</p>
-
-            <p>Then there are the Men of George Washington Carver, Incorporated, otherwise known as "The King$." Their three pillars are short and clean: Brotherhood, Manhood, Community Service. On @mogwcinc, their bio calls them "Freshman Organization of the Year Four Times Running." Their mission, in their own words, is to "push boys to become men." They bring in each class by number (K-10 is the tenth class of brothers) and unveil them at a Coming Out Ceremony that pulls a full crowd. For Black History Month they put Dr. King on their feed:</p>
-
-            <blockquote>"The ultimate measure of a man is not where he stands in moments of comfort and convenience, but where he stands at times of challenge and controversy."</blockquote>
-
-            <p>The selective organizations at Howard University (MOGWC, Ladies of Quad, and many of the modeling organizations like Model Inc) should stay selective. Selectivity doesn't make an org cruel. It's what makes the org worth joining in the first place. As soon as the bar drops, the prestige drops with it, and you're left with nothing worth earning. The Mecca did not get its reputation for being the "Mecca" by lowering the bar. A Fizz post from the last election cycle said it flat: "Yall be so surprised when the selective orgs are... selective." 362 upvotes, no further explanation needed.</p>
-
-            <p>This argument isn't new, and Du Bois wasn't just a theorist. W.E.B. Du Bois was the first Black man to earn a PhD from Harvard. He helped found the NAACP, and in that same year, he became an honorary member of Alpha Phi Alpha Fraternity. To this day, Alpha calls him their "spiritual inspiration." So when Du Bois wrote his 1903 essay "The Talented Tenth" and argued that civilizations don't get built from the bottom up, that the most capable rise first and then "pull all that are worth the saving" up with them, he was describing the exact kind of selective Black org he would later join. Look at who else came out of that same fraternity. Martin Luther King Jr. Thurgood Marshall. Paul Robeson. Edward Brooke, the first Black U.S. senator since Reconstruction. Alpha Phi Alpha was founded at Cornell in 1906 and chartered its Beta chapter at Howard in 1907, nearly 120 years ago. Howard's own Alpha Kappa Alpha, founded in 1908, gave the country Vice President Kamala Harris. MOGWC, Ladies of Quad, the entire Divine Nine. They're all running a play Du Bois drew up over a hundred years ago. Call it gatekeeping if you want, but history keeps showing it produces leaders.</p>
-
-            <p>Not everyone agrees with that. A staff writer for Kulture Magazine argues selective cultures at historically black colleges and universities like Howard do more harm than good. The piece claims they isolate certain students and shut them out of the full HBCU experience. "Historically Black or Historically Harmful?" relies on personal accounts from students who felt excluded based on appearance and social connections, including one who said: "there's still a lot of genuine people at Howard but the school definitely has an elitism problem." The author seems to believe selectivity is a symptom of organizational toxicity rather than a feature of HBCU culture. And it isn't just the magazine. One anonymous Fizz post put it harder: "The selective orgs at Howard are horrible. Their selection process sucks, their hazing process is disgusting, and most of the people in it are entitled assholes." That post got 1,400 upvotes. That isn't a frustrated outsider. That's a Howard student seeing this play out on the yard right now.</p>
-
-            <p>Those stories are real, and they matter. But the article mashes two different things together. People being socially ostracized because of how they dress or who they hang around with isn't the same thing as an organization deciding who gets to join. MOGWC and the Ladies of Quad are looking for specific characteristics: character, commitment, and what each member brings to the table. Getting rejected by an org stings. That doesn't mean the process is broken. The org saying no is not the same as Howard saying no.</p>
-
-            <p>Selective HBCU orgs carry a real history. E.M. Price II has written about how many HBCUs and Divine Nine chapters functioned as "Brown Paper Bag Schools," places where skin tone decided who got through the door. That wasn't a rumor. It happened. But look at what those same orgs select for in 2026. Alpha Kappa Alpha's individual chapters use GPA cutoffs and campus leadership benchmarks. MOGWC names its three pillars out loud (Brotherhood, Manhood, Community Service) and unveils new brothers by class number, not by complexion. Imani Smith, the current president of AKA's Alpha chapter at Howard, told Fortune last year that what drew her in was the "level of service" the org showed on campus. That's a different test than the paper bag, and it produces a different product. The 1930s AKA chapter fought to make Black Americans eligible for New Deal jobs. The 2020s AKA chapter helped organize the campaign that made Kamala Harris Vice President. Same org. Different century. It got there by changing.</p>
-
-            <p>None of today's members were alive for the Brown Paper Bag era, and holding them responsible for it freezes the org in time. You can hold both things at once: the history was painful AND today is different. If we refuse to let institutions change, then no institution in America could ever claim to change. That's a trap.</p>
-
-            <p>Here's the part that usually doesn't get said: selective orgs are solving a real problem on this campus. One Fizz post, 555 upvotes, read simply: "I just feel like at Howard (outside of joining a selective org) it is so hard to make new friends once you're a junior. This is lonely." That post comes from someone who sees what the orgs actually build: community, on purpose, tight because the bar to get in is real.</p>
-
-            <p>Rejection hits, and nobody's pretending it doesn't. But getting cut from one of these orgs doesn't mean Howard rejected you. Howard already chose you when it sent you that acceptance letter. The org is just a second filter on top of that. When it says no, it isn't saying you don't belong at The Mecca. It's saying this one specific space isn't your space. That's a redirect, not a failure.</p>
-
-            <p>Selectivity isn't a flaw in Howard's system. It IS Howard's system. People fight to get here. People fight harder to get into the orgs once they're here. Both of those fights matter because the prize on the other side is real. This is my first year at Howard, and I've watched campaign season play out from the outside: the matching fits moving across the yard, the IG flyers dropping at midnight, the Fizz debates at 2 AM about organizations I'm not even in. The people who didn't make it are loud on the internet. The people who did are quiet on the yard and busy building. They're picking up where Du Bois left off in 1903 and walking it into a Coming Out Ceremony in 2026. The Mecca wasn't built on participation trophies and it surely won't survive if we start handing them out now.</p>
-
-          </div>
-        </div>
-      </div>
-
     </div>
     </div>
     <!-- Closing reflection -->
@@ -503,6 +434,6 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" integrity="sha384-pEQB1h4Zmn9xhS6jotzltHSIQq6N0Oh3BXkCNOH5LKI81R2NRbb9efarAJYw9gTY" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js" integrity="sha384-TgZ1GoXcDnrw/czNfaiSZSFV1zgIRv8aQOevBA8ppS4SkNONmzYfjARpXsDfdnUE" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" integrity="sha384-tKsJDT6PlUI0pSBt9/sBKJluKgA19/a6mBrDsZaXotLB4ZYfMGM6xt6/WgGpYhTm" crossorigin="anonymous"></script>
-  <script src="/js/main.js?v=16"></script>
+  <script src="/js/main.js?v=18"></script>
 </body>
 </html>
