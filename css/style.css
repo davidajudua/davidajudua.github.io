@@ -3,9 +3,10 @@
    Ambient Night · Geist over city-light video
    --------------------------------------------
    The fixed video (assets/ambient.mp4) is the
-   atmosphere. Motion belongs to content people
-   look at (name, proof numbers, kinetic words),
-   not to the chrome around it.
+   atmosphere. Ambient motion belongs to content
+   people look at (name, proof numbers, kinetic
+   words); chrome may move only in direct response
+   to the user (hover, press, focus).
    ============================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@300..600&display=swap');
@@ -70,6 +71,9 @@ body {
 
 ::selection { background: var(--accent); color: var(--bg-night); }
 
+a, button {
+  -webkit-tap-highlight-color: transparent; /* the sheen is the tap feedback, not iOS's gray flash */
+}
 a {
   color: var(--accent);
   text-decoration: none;
@@ -199,7 +203,7 @@ body::before {
   font-size: 1.05rem;
   letter-spacing: -0.02em;
   color: var(--text-bright);
-  transition: color var(--duration-fast) var(--ease-out);
+  transition: color var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
 }
 .topnav__logo:hover { color: var(--accent); }
 .topnav__email {
@@ -226,7 +230,7 @@ body::before {
   text-transform: uppercase;
   color: var(--text-secondary);
   position: relative;
-  transition: color var(--duration-fast) var(--ease-out);
+  transition: color var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
 }
 .topnav__link:hover { color: var(--text-bright); }
 .topnav__link::after {
@@ -284,6 +288,7 @@ body::before {
   transition: color var(--duration-med) var(--ease-out), transform var(--duration-fast) var(--ease-out);
 }
 .social-rail a:hover { color: var(--accent); transform: translateY(-2px); }
+.work-card__link { transition: color var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out); }
 
 /* ============================================
    HERO — nameplate over the night
@@ -310,6 +315,30 @@ body::before {
   transform: translateY(22px);
   animation: fadeUp 1s var(--ease-out) 0.35s forwards;
 }
+/* ambient shimmer — a band of light crosses the two names every ~7s
+   (sanctioned content motion; keeps the frozen-poster screens alive) */
+.hero__name, .contact__name { position: relative; }
+.hero__name::after, .contact__name::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  color: transparent;
+  text-shadow: none; /* text-shadow inherits; a shadowed copy would darken the resting look */
+  /* amber, not white: a white band over the near-white glyphs is invisible */
+  background: linear-gradient(105deg, transparent 44%, rgba(212, 169, 97, 0.85) 50%, transparent 56%);
+  background-size: 300% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: nameShimmer 7s var(--ease-in-out) 2s infinite;
+}
+@keyframes nameShimmer {
+  0%   { background-position: 100% 0; }
+  18%  { background-position: 0% 0; }   /* band crosses in ~1.3s, then rests off-glyph */
+  100% { background-position: 0% 0; }
+}
+
 .hero__role {
   margin-top: 1.6rem;
   font-family: var(--font-mono);
@@ -363,7 +392,11 @@ body::before {
   cursor: pointer;
   transition: all var(--duration-med) var(--ease-out);
   border: none;
+  /* hover lift and press compose through vars so they never fight over transform */
+  transform: translateY(var(--lift, 0)) scale(var(--press, 1));
 }
+.btn:hover { --lift: -2px; }
+.btn:active { --lift: 0; --press: 0.98; }
 .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .btn--primary {
   padding: 0.85rem 2rem;
@@ -373,7 +406,6 @@ body::before {
 .btn--primary:hover {
   background: var(--accent-hover);
   color: #0d0b07;
-  transform: translateY(-2px);
   box-shadow: 0 12px 40px rgba(212, 169, 97, 0.22);
 }
 .btn--outline {
@@ -385,10 +417,49 @@ body::before {
 .btn--outline:hover {
   border-color: var(--accent);
   color: var(--accent);
-  transform: translateY(-2px);
 }
 .btn__arrow { transition: transform var(--duration-fast) var(--ease-out); }
 .btn:hover .btn__arrow { transform: translateX(4px); }
+
+/* ============================================
+   SHEEN — the reactive band of light that passes
+   across chrome on hover/press (see CONTEXT.md).
+   Invisible at rest; JS toggles .sweeping.
+   ============================================ */
+.btn, .pill-btn, .writing-piece__header { position: relative; }
+.btn, .pill-btn, .writing-piece__header,
+.back-to-top, .work-modal__close { overflow: hidden; }
+.btn::before, .pill-btn::before,
+.writing-piece__header::before, .back-to-top::before, .work-modal__close::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  left: -70%;
+  width: 55%;
+  /* amber light for glass/dark faces; amber-filled faces override below */
+  background: linear-gradient(105deg, transparent, rgba(212, 169, 97, 0.22), transparent);
+  transform: skewX(-18deg);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+.btn--primary::before, .pill-btn--accent::before {
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+}
+.sweeping::before { animation: sheen 0.5s var(--ease-out) forwards; }
+.writing-piece__header.sweeping::before { animation-duration: 0.7s; } /* wider face, same speed feel */
+@keyframes sheen {
+  from { left: -70%; opacity: 1; }
+  to   { left: 120%; opacity: 1; }
+}
+
+/* press compression for chrome without a face for the sheen */
+.topnav__link, .topnav__logo { display: inline-block; }
+.topnav__link:active, .topnav__logo:active,
+.work-card__details-btn:active, .work-card__link:active { transform: scale(0.97); }
+.social-rail a:active { transform: scale(0.9); }
+.writing-piece__header:active { transform: scale(0.99); }
+.writing-piece__toggle:active, .work-modal__close:active, .back-to-top.visible:active { transform: scale(0.92); }
 
 /* ============================================
    REVEALS — fade-up on important content
@@ -483,6 +554,12 @@ body::before {
   color: var(--text-bright);
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
+  transition: color 0.45s var(--ease-out), text-shadow 0.45s var(--ease-out);
+}
+/* settle flash — a beat of amber when a count-up lands (JS toggles .settled) */
+.about__stat-num.settled {
+  color: var(--accent-hover);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.65), 0 0 20px rgba(212, 169, 97, 0.45);
 }
 .about__stat-label {
   font-family: var(--font-mono);
@@ -605,6 +682,11 @@ body::before {
   border-radius: 50%;
   background: var(--accent);
   box-shadow: 0 0 16px rgba(212, 169, 97, 0.55);
+  animation: nodeBreathe 2.8s var(--ease-in-out) infinite; /* a distant city light */
+}
+@keyframes nodeBreathe {
+  0%, 100% { box-shadow: 0 0 16px rgba(212, 169, 97, 0.55); }
+  50%      { box-shadow: 0 0 30px rgba(212, 169, 97, 0.9); }
 }
 .timeline__rows { display: flex; flex-direction: column; gap: 4.5rem; }
 .timeline__row {
@@ -710,7 +792,7 @@ body::before {
   font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--text-bright); background: none; border: none; padding: 0; cursor: pointer;
   display: inline-flex; align-items: center; gap: 0.4rem;
-  transition: color var(--duration-fast) var(--ease-out);
+  transition: color var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
 }
 .work-card__details-btn:hover { color: var(--accent); }
 .work-card__details-btn svg { transition: transform var(--duration-fast) var(--ease-out); }
@@ -796,7 +878,7 @@ body::before {
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  transition: background var(--duration-fast) var(--ease-out);
+  transition: background var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
 }
 .writing-piece__header:hover { background: rgba(255, 255, 255, 0.012); }
 .writing-piece__meta { flex: 1; }
@@ -924,8 +1006,10 @@ body::before {
   color: var(--text-primary);
   font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em;
   transition: all var(--duration-med) var(--ease-out);
+  transform: translateY(var(--lift, 0)) scale(var(--press, 1));
 }
-.pill-btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+.pill-btn:hover { border-color: var(--accent); color: var(--accent); --lift: -2px; }
+.pill-btn:active { --lift: 0; --press: 0.98; }
 .pill-btn--accent { background: var(--accent); color: #0d0b07; border-color: var(--accent); }
 .pill-btn--accent:hover { background: var(--accent-hover); color: #0d0b07; box-shadow: 0 14px 40px rgba(212, 169, 97, 0.22); }
 .contact__name {

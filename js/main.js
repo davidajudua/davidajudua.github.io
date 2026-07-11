@@ -1,9 +1,10 @@
 /* ============================================
    DAVID AJUDUA — Portfolio Scripts v9
    Ambient night · Lenis · GSAP
-   The fixed video is the atmosphere; animation
-   belongs to the content (name, proof numbers,
-   kinetic words), not the chrome.
+   The fixed video is the atmosphere; ambient
+   animation belongs to the content (name, proof
+   numbers, kinetic words). Chrome moves only in
+   direct response to the user (hover, press).
    Progressive enhancement + reduced-motion safe.
    ============================================ */
 
@@ -36,6 +37,29 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('visibilitychange', () => {
       if (!document.hidden && bgVideo.paused) bgVideo.play().catch(() => {});
     });
+    // iOS Low Power Mode suspends autoplay (the poster shows). A play() inside
+    // a user gesture is still allowed — revive the Set on the first touch.
+    document.addEventListener('pointerdown', () => {
+      if (bgVideo.paused) bgVideo.play().catch(() => {});
+    }, { once: true, passive: true });
+  }
+
+  /* 1c. PRESS + SHEEN — reactive chrome micro-motion (see CONTEXT.md Motion Rule).
+     A band of light sweeps across faced buttons and the writing headers on
+     hover/press; :active compression is pure CSS. */
+  document.addEventListener('touchstart', () => {}, { passive: true }); // enables :active on iOS
+  if (animate) {
+    const sweep = (el) => {
+      el.classList.remove('sweeping');
+      void el.offsetWidth; // restart the animation
+      el.classList.add('sweeping');
+    };
+    const hasHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    document.querySelectorAll('.btn, .pill-btn, .writing-piece__header, .back-to-top, .work-modal__close')
+      .forEach((el) => {
+        el.addEventListener('pointerdown', () => sweep(el));
+        if (hasHover) el.addEventListener('mouseenter', () => sweep(el));
+      });
   }
 
   /* 2. LENIS SMOOTH SCROLL + ScrollTrigger bridge */
@@ -175,15 +199,26 @@ document.addEventListener('DOMContentLoaded', () => {
       const suffix = el.getAttribute('data-suffix') || '';
       const render = (v) => { el.textContent = prefix + Math.round(v) + suffix; };
       const obj = { v: 0 };
-      let tween;
+      let tween, flashTimer;
       render(0);
       counters.push({
         panel: el.closest('.panel'),
         runCount: () => {
           tween?.kill(); obj.v = 0;
-          tween = gsap.to(obj, { v: target, duration: 1.4, ease: 'power2.out', onUpdate: () => render(obj.v), onComplete: () => render(target) });
+          clearTimeout(flashTimer);
+          el.classList.remove('settled');
+          tween = gsap.to(obj, {
+            v: target, duration: 1.4, ease: 'power2.out',
+            onUpdate: () => render(obj.v),
+            onComplete: () => {
+              render(target);
+              // settle flash — a beat of amber as the number lands
+              el.classList.add('settled');
+              flashTimer = setTimeout(() => el.classList.remove('settled'), 700);
+            },
+          });
         },
-        reset: () => { tween?.kill(); obj.v = 0; render(0); },
+        reset: () => { tween?.kill(); obj.v = 0; render(0); clearTimeout(flashTimer); el.classList.remove('settled'); },
       });
     });
 
