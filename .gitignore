@@ -1,0 +1,10 @@
+.claude/
+.DS_Store
+
+# Local agent/skill tooling — not part of the deployed site
+.agents/
+skills-lock.json
+
+# Playwright verification artifacts (root-level screenshots only; real assets live in assets/)
+.playwright-mcp/
+/*.png

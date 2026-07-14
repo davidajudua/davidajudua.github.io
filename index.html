@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>document.documentElement.classList.add('has-js');</script>
+  <title>David Ajudua | Software Engineer</title>
+  <meta name="description" content="David Ajudua, software engineer at Howard University. I build software that makes an impact on everything I touch, the systems my businesses run on, the tools my campus needs, and whatever's next.">
+  <meta property="og:title" content="David Ajudua | Software Engineer">
+  <meta property="og:description" content="Software engineer. I build software that makes an impact on everything I touch, the systems my businesses run on, the tools my campus needs, and whatever's next.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://davidajudua.com">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="David Ajudua | Software Engineer">
+  <meta name="twitter:description" content="Software engineer. I build software that makes an impact on everything I touch, the systems my businesses run on, the tools my campus needs, and whatever's next.">
+  <meta name="theme-color" content="#08090c">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css?v=19">
+</head>
+<body>
+
+  <!-- Loading Entrance -->
+  <div class="site-loader" aria-hidden="true"><span class="site-loader__text">David Ajudua</span></div>
+
+  <!-- The Set: fixed, sharp video the site is staged on (swap assets/ambient.mp4 to re-skin) -->
+  <video class="bg-video" autoplay muted loop playsinline preload="auto"
+         poster="/assets/ambient-poster.jpg" aria-hidden="true" tabindex="-1">
+    <source src="/assets/ambient.mp4" type="video/mp4">
+  </video>
+  <div class="bg-overlay" aria-hidden="true"></div>
+
+  <!-- Mobile menu backdrop -->
+  <div class="nav__backdrop" aria-hidden="true"></div>
+
+  <!-- Fixed top navigation -->
+  <nav class="topnav" role="navigation" aria-label="Main navigation">
+    <a href="#top" class="topnav__logo" data-scroll>David Ajudua</a>
+    <a href="mailto:david@davidajudua.com" class="topnav__email">david@davidajudua.com</a>
+    <ul class="topnav__links">
+      <li><a href="#about" class="topnav__link" data-scroll>About</a></li>
+      <li><a href="#work" class="topnav__link" data-scroll>Work</a></li>
+      <li><a href="#writing" class="topnav__link" data-scroll>Writing</a></li>
+      <li><a href="/assets/David-Ajudua-Resume.pdf" class="topnav__link" target="_blank" rel="noopener">Resume</a></li>
+      <li><a href="#contact" class="topnav__link" data-scroll>Contact</a></li>
+    </ul>
+    <button class="topnav__toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Fixed left social rail -->
+  <aside class="social-rail" aria-label="Social links">
+    <a href="https://github.com/davidajudua" target="_blank" rel="noopener" aria-label="GitHub">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/david-ajudua-26589b355" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+    </a>
+  </aside>
+
+  <!-- ============ HERO (nameplate) ============ -->
+  <section class="hero" id="top">
+    <h1 class="hero__name">David Ajudua</h1>
+    <p class="hero__role">Software Engineer <span class="hero__sep" aria-hidden="true">·</span> CS @ Howard</p>
+    <div class="hero__hint" aria-hidden="true"><span class="hero__hint-line"></span>Scroll</div>
+  </section>
+
+  <!-- ============ ABOUT (dark) ============ -->
+  <section class="panel about" id="about">
+    <div class="about__content">
+      <p class="eyebrow">About Me</p>
+      <p class="about__lead reveal">
+        I'm a <strong>software engineer and technical founder</strong>. I grew a community into a 15,000-member
+        marketplace that has done <strong>$400K across 142,000 orders</strong>, and I wrote the production platform
+        that runs it end to end: payments, ledger, and operations for a ~50-person team.
+      </p>
+      <div class="about__stats reveal">
+        <div class="about__stat"><span class="about__stat-num" data-count="15" data-suffix="K">15K</span><span class="about__stat-label">Community</span></div>
+        <div class="about__stat"><span class="about__stat-num" data-count="400" data-prefix="$" data-suffix="K">$400K</span><span class="about__stat-label">Revenue</span></div>
+        <div class="about__stat"><span class="about__stat-num" data-count="142" data-suffix="K">142K</span><span class="about__stat-label">Orders</span></div>
+        <div class="about__stat"><span class="about__stat-num" data-count="50" data-prefix="~">~50</span><span class="about__stat-label">Team</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ JOURNEY (dark) ============ -->
+  <section class="panel journey" id="journey">
+    <div class="journey__head reveal">
+      <p class="eyebrow">The road so far</p>
+      <h2 class="section-heading">My <span class="grad">journey</span></h2>
+    </div>
+    <div class="timeline">
+      <div class="timeline__line" aria-hidden="true"><span class="timeline__node"></span></div>
+      <div class="timeline__rows">
+        <div class="timeline__row reveal">
+          <div class="timeline__role"><h3>Software Engineer &amp; CS Student</h3><span>Howard University</span></div>
+          <div class="timeline__year">NOW</div>
+          <p class="timeline__desc">Building the production systems my businesses run on while I study computer science, and bringing that same engineering to the organizations and campaigns around campus.</p>
+        </div>
+        <div class="timeline__row reveal">
+          <div class="timeline__role"><h3>Open-Sourced the Platform</h3><span>opscore</span></div>
+          <div class="timeline__year">2025</div>
+          <p class="timeline__desc">Consolidated my operations tooling into opscore, one Node core running a fleet of single-purpose bots, and shipped LowLatencyToolkit, a fully reversible Windows performance toolkit. Both public on GitHub.</p>
+        </div>
+        <div class="timeline__row reveal">
+          <div class="timeline__role"><h3>Built the Marketplace</h3><span>Founder &amp; CEO</span></div>
+          <div class="timeline__year">2022</div>
+          <p class="timeline__desc">Turned the community into an e-commerce marketplace that has done $400K across 142,000 orders, and wrote the platform behind its revenue tracking, fulfillment, and payroll.</p>
+        </div>
+        <div class="timeline__row reveal">
+          <div class="timeline__role"><h3>Founded the Community</h3><span>The beginning</span></div>
+          <div class="timeline__year">2020</div>
+          <p class="timeline__desc">Started a competitive gaming community, grew it to 15,000 members, ran online tournaments, and landed brand sponsorships from HyperX and Razer. Code started as the way to fix what annoyed me, and never stopped.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WORK (dark, horizontal scroll) ============ -->
+  <section class="panel work" id="work">
+    <div class="work__head reveal">
+      <p class="eyebrow">Selected projects</p>
+      <h2 class="section-heading">My <span class="grad">Work</span></h2>
+    </div>
+    <div class="work__list">
+
+        <article class="work-card reveal">
+          <div class="work-card__num" aria-hidden="true">01</div>
+          <div class="work-card__body">
+            <div class="work-card__meta">
+              <h3 class="work-card__title">opscore</h3>
+              <span class="work-card__cat">Node.js / Operations Platform</span>
+            </div>
+            <div class="work-card__tags"><span>Node.js</span><span>SQLite</span><span>Discord</span><span>PM2</span></div>
+            <p class="work-card__desc">The platform my business runs on. One Node core, a fleet of single-purpose bots handling real money and real operations end to end, no spreadsheets, no manual steps.</p>
+            <div class="work-card__actions">
+              <button type="button" class="work-card__details-btn">
+                Details
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </button>
+              <a href="https://github.com/davidajudua/opscore-public" target="_blank" rel="noopener" class="work-card__link">
+                View on GitHub
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="work-card__detail" hidden>
+            <p class="work-detail__lead">opscore is the platform my business runs on, end to end, with no manual spreadsheet step. One shared Node core, a fleet of single-purpose bots, each doing one job well.</p>
+            <p class="work-detail__label">Under the hood</p>
+            <ul class="work-detail__list">
+              <li><strong>Real-time revenue.</strong> Watches Zelle, Venmo and PayPal over a live IMAP IDLE connection, sub-second push instead of polling, with multi-pattern parsers that reject refunds and outbound notices, and exact sender matching that blocks spoofed payment injection.</li>
+              <li><strong>On-chain settlement.</strong> Resolves crypto transactions across nine chains (BTC, ETH, SOL and more), prices them to USD, and matches them to my receiving addresses.</li>
+              <li><strong>An idempotent ledger.</strong> Every payment is written exactly once, so the same email or transaction can never double-count, and a live Discord dashboard shows totals by method and period.</li>
+              <li><strong>Fair, one-at-a-time queues.</strong> A SQLite-backed work queue serves one person at a time with an idle timeout, used to hand out one-time 2FA codes (racing an IMAP fetcher against a webhook fallback, with atomic dedup so no code is ever served twice) and single-use cards (consumed on claim, never reissued).</li>
+              <li><strong>Built to stay up.</strong> A shared core gives every bot a declarative Discord router, zod-validated config, SQLite with migrations applied on boot, an exponential-backoff crash-only supervisor, a fleet-wide kill switch, structured logging, and tests across every package.</li>
+            </ul>
+            <p class="work-detail__label">Stack</p>
+            <div class="work-card__tags"><span>Node.js</span><span>node:sqlite</span><span>discord.js</span><span>imapflow</span><span>zod</span><span>PM2</span></div>
+            <a href="https://github.com/davidajudua/opscore-public" target="_blank" rel="noopener" class="work-card__link">
+              View on GitHub
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="work-card reveal">
+          <div class="work-card__num" aria-hidden="true">02</div>
+          <div class="work-card__body">
+            <div class="work-card__meta">
+              <h3 class="work-card__title">LowLatencyToolkit</h3>
+              <span class="work-card__cat">Systems / Performance</span>
+            </div>
+            <div class="work-card__tags"><span>PowerShell</span><span>Windows</span><span>Rollback</span></div>
+            <p class="work-card__desc">One command to make a Windows machine faster, one command to put it all back. A reversible performance toolkit that doesn't gamble with your system.</p>
+            <div class="work-card__actions">
+              <button type="button" class="work-card__details-btn">
+                Details
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </button>
+              <a href="https://github.com/davidajudua/LowLatencyToolkit" target="_blank" rel="noopener" class="work-card__link">
+                View on GitHub
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="work-card__detail" hidden>
+            <p class="work-detail__lead">One command makes a Windows machine faster; one command puts everything back. A reversible performance toolkit that never gambles with your system.</p>
+            <p class="work-detail__label">Under the hood</p>
+            <ul class="work-detail__list">
+              <li><strong>Profiles, not guesswork.</strong> Sixteen PowerShell modules orchestrated by named profiles (Gaming, Competitive, Fortnite, CleanBoot, Restore), so you pick an outcome instead of pasting a hundred registry edits.</li>
+              <li><strong>Idempotent and previewable.</strong> Every change asserts the desired state, so re-running is always safe, and <code>-WhatIf</code> prints the full diff before anything is touched.</li>
+              <li><strong>Two independent safety nets.</strong> Before any change it creates a Windows System Restore Point and its own JSON snapshot of the exact registry keys, service states, and power plan it's about to modify, so every run is fully reversible.</li>
+              <li><strong>Real Windows internals.</strong> Hardware-accelerated GPU scheduling, MSI-mode interrupts, TDR tuning, core isolation, power plan, and the network stack, with Nvidia and AMD paths auto-selected by hardware.</li>
+              <li><strong>Auditable.</strong> Leveled, structured logging writes every change to a timestamped file.</li>
+            </ul>
+            <p class="work-detail__label">Stack</p>
+            <div class="work-card__tags"><span>PowerShell</span><span>Windows internals</span><span>Registry</span><span>ShouldProcess</span></div>
+            <a href="https://github.com/davidajudua/LowLatencyToolkit" target="_blank" rel="noopener" class="work-card__link">
+              View on GitHub
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="work-card work-card--cta reveal">
+          <div class="work-card__cta-inner">
+            <h3 class="work-card__title">More on GitHub</h3>
+            <p class="work-card__desc">Experiments, work in progress, and everything else I'm building.</p>
+            <a href="https://github.com/davidajudua" target="_blank" rel="noopener" class="btn btn--primary">
+              Visit GitHub
+              <svg class="btn__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </article>
+
+    </div>
+  </section>
+
+  <!-- ============ WRITING (dark) ============ -->
+  <section class="panel writing" id="writing">
+    <div class="writing__head reveal">
+      <p class="eyebrow">ENGW 103 Portfolio</p>
+      <h2 class="section-heading">Words &amp; <span class="grad">Ideas</span></h2>
+      <p class="writing__intro">A curated selection of essays from my freshman writing seminar at Howard, each piece with a reflection on what I learned as a writer.</p>
+    </div>
+    <div class="writing__pieces">
+      <div class="writing-piece reveal" id="mp1">
+        <div class="writing-piece__header" role="button" tabindex="0" aria-expanded="false">
+          <div class="writing-piece__meta">
+            <p class="writing-piece__label">Major Paper 1 | Persuasive Narrative</p>
+            <h2 class="writing-piece__title">Gym as Mental Survival</h2>
+          </div>
+          <button class="writing-piece__toggle" aria-label="Expand piece" tabindex="-1">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <div class="writing-piece__body">
+          <div class="writing-piece__intro">
+            <p class="writing-piece__intro-label">Author's Introduction</p>
+            <p>This was my first real paper at Howard, and I wanted to write about something I actually live every day. I'm a JRA, so I spend my nights helping other students hold it together, but nobody really asks who's holding me together. The gym is that answer, and I wanted to explain why it's not just about getting bigger. When we read Emily Doe's Stanford witness statement in class, that line about wanting to take off her body like a jacket genuinely stopped me. It connected to something I'd been feeling but couldn't name yet: the gym is where I put my body back on. That contrast between her experience and mine became the center of this paper. I'm proud of this piece because it's the most honest thing I've written. The closing line about wearing my body like armor came out in one draft and I never changed it. That's how I knew the paper was done.</p>
+          </div>
+          <div class="writing-piece__content">
+
+            <p>It seems like there's always a knock at 10PM. Occasionally it's a student locked out of his or her room, occasionally it's a noise issue, and frequently, it's someone who simply can't take the pressure of freshman year at Howard anymore and they need someone to talk to. As a Junior Resident Advisor (JRA), I'm that person. Steady hand, conflict resolver, older brother. I put on a face, the calm, authoritative, "I've got this" face, and I take care of it. However, most times, I'm internally shaking with the same anxiety as they are. When I'm trying to complete assignments in my Physics and Computer Science classes, when I'm dealing with the social pressures of campus life, and when I have to worry about an entire floor of students I'm responsible for, I feel like I'm running multiple tabs in a web browser. The fan is spinning, the computer is slowing down, and all I would need is a single "knock, knock, knock" from another resident needing my help, and my system would crash.</p>
+
+            <p>When the noise at home becomes overwhelming, I do not go to the library or attend a party. I go to the gym.</p>
+
+            <p>The weight room is my sensory reset. The air smells different in that place. Metallic, sharp, slightly like rubber or sweat. That is the smell of working out. In the weight room I hear the rhythmic clanging of weights and the hum of the treadmill instead of the chaos from outside my door. My focus for the next ninety minutes will be on nothing but gravity and my refusal to let it win.</p>
+
+            <p>Bodybuilding is often misunderstood as a mere vanity pursuit, lifting weights to develop large muscles and show off your physique when wearing a shirt. However, for myself and many other guys that find solace in the gym, it is a mental and physical discipline. I do not simply "pick things up and put them down." Rather, I am always researching. I spend countless hours studying, such as sarcoplasmic hypertrophy (the growth of the volume of the sarcoplasmic fluid within the muscle cell) versus myofibrillar hypertrophy (the growth of muscle density). I track what I consume in terms of macronutrients, I evaluate how well I execute each exercise, and I approach my body as if it were a physics problem since it is the only variable in my life that I have control over. The variables are: I eat X amount of protein, and I lift Y amount of weight, Z is the resulting outcome from this. It is fair. It is a direct relationship. In a world where you can work hard on a test and still fail it, or you can be a good person and yet be treated unfairly, the fairness of working out is grounding.</p>
+
+            <p>The reason this desire to have control over my physical form has become so important to me is because I felt such a deep sense of haunting when reading "The Stanford Witness Statement," written by Emily Doe. In her victim-impact statement, Doe recounts the traumatic events of the sexual assault that occurred against her by Brock Turner, where she describes the devastating moment that she realized her body was no longer hers but had been used as an object, a crime scene, and a piece of evidence in a court of law. The trauma caused a severing of her attachment to her own skin. In one of the saddest parts of the text, she states:</p>
+
+            <blockquote>"I stood there examining my body beneath the stream of water and decided, I don't want my body anymore. ... I wanted to take off my body like a jacket and leave it at the hospital with everything else."</blockquote>
+
+            <p>When I read this line, I literally had to lay my paper down on the desk. That line spoke to me in terms of my own nightmares about body autonomy loss, not specifically related to her traumatic experience, but because it clearly communicates the ultimate nightmare of being unable to control your body. Doe expressed a desire to get out of the body that had become so vulnerable and cage-like. She wanted to un-zip her skin and leave it behind as the world had shown her that she could be raped or abused.</p>
+
+            <p>The concept of "taking off" for me does not relate to my views on fitness at all. Rather than stripping fat from my body, I view my workouts and diet as an opportunity to protect my body. Each workout, set, rep, and research-based meal. All of it represents an attempt to claim back some level of control that the world has taken away from me. As a young Black male, I recognize how society often looks at my body through the lens of stereotype, sometimes as a threat, other times as a product to be sold. There are fewer opportunities for me to have full control over my body, but when I train, I do have this opportunity. When I'm working out, I am building a barrier. I am involved in a voluntary self-construction, which opposes the voluntary self-surrender that was covered in the AI readings. I am not giving up anything, I am taking charge.</p>
+
+            <p>Doe's tragic experience demonstrates specifically why I believe that the fitness discipline plays an important role for my mental health. She illustrates how fragile my freedom to choose how I will live my life is, and how easily I can lose the sense of security and empowerment that comes with having control over my body. When she describes the sensation of pine needles scratching her skin and the void that she feels, she is referring to an invasion of her body. When I feel lactic acid burning or my muscles expanding through the process of sarcoplasmic hypertrophy, I am experiencing an occupation of my body by myself fully and completely.</p>
+
+            <p>I often hear people discuss mental health and physical health as two different areas in which we are either going to the therapist for our mind, or we're going to the gym for our body. For myself, however, there is no separation. I cannot physically survive the demands of Howard, the expectations of my residents, nor the overwhelming chaos of the world without having a physical base to provide an anchor. The discipline I find from working out provides me with the reminder that I am capable of change, that I can withstand pain or discomfort, and that I am ultimately the one who is responsible for my own decisions and choices, the "captain" of this ship. I do not want to remove my body like a coat. I want to wear it like armor.</p>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== MP2 - Drake, Authenticity, Hip-Hop ==================== -->
+      <div class="writing-piece reveal reveal-delay-1" id="mp2">
+        <div class="writing-piece__header" role="button" tabindex="0" aria-expanded="false">
+          <div class="writing-piece__meta">
+            <p class="writing-piece__label">Major Paper 2 | Artistic Argument</p>
+            <h2 class="writing-piece__title">Beyond the Canon: Drake, Authenticity, and the Strict Rules of Hip-Hop Identity</h2>
+          </div>
+          <button class="writing-piece__toggle" aria-label="Expand piece" tabindex="-1">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <div class="writing-piece__body">
+          <div class="writing-piece__intro">
+            <p class="writing-piece__intro-label">Author's Introduction</p>
+            <p>I chose Drake because the Kendrick beef was everywhere when I was writing this and everyone had an opinion, but nobody was really asking the deeper question: why does hip-hop decide who's allowed in based on where they grew up instead of what they actually make? That question matters to me because I've been in rooms where people tried to tell me what I am and what I'm not based on how I look or where I come from. This paper taught me how to build an argument using sources that actually talk to each other. I pulled from Pitchfork reviews, academic journals, Michael Eric Dyson, and Drake's own lyrics, and I had to figure out how to make all of those voices support one point without losing my own. My professor pushed me to bring more of myself into the writing, which I tried to do in the closing. That last line about Drake's refusal to fake who he is being the most real thing about him is really about how I see authenticity in general.</p>
+          </div>
+          <div class="writing-piece__content">
+
+            <p>Old-school hip-hop has always defined what it means to be an artist by their background. Artists like Tupac Shakur and The Notorious B.I.G. built their reputations on narratives of poverty and street survival, and Jay-Z's credibility came from his story of hustling in Brooklyn's Marcy Projects. As long as an artist could prove they were poor enough, close enough to crime, and masculine enough, they were accepted as authentic. But when Drake entered the industry, his early sound was nothing like that. He leaned into emotional vulnerability and mixed R&B melodies with rap verses, talking about relationships and personal insecurities instead of street narratives. In an interview with the Village Voice, Drake said, "I mean, I'm so light that people are like 'you're white,'" which shows that his emotional openness was not some marketing decision but came directly from the identity confusion he dealt with his entire life. Yet in 2015, with the release of <em>If You're Reading This It's Too Late</em>, critics like Pusha T and later Kendrick Lamar started publicly questioning whether Drake had earned his place in hip-hop, even though he holds the record for the most Billboard Hot 100 entries of any artist in history. By popularizing a melodic rap sub-genre rooted in his own reality, Drake rewrote the rules of the hip-hop canon, but his success is constantly dragged down by critics who use his biracial, middle-class background against him. Really, the gatekeeping in hip-hop has less to do with musical quality and more to do with enforcing a narrow racial and socioeconomic identity, and Drake's career shows just how contradictory that thinking is.</p>
+
+            <p>What made Drake's rise work was that his genre-blending actually felt natural. The professional review of <em>If You're Reading This It's Too Late</em> by Craig Jenkins in Pitchfork notes the project is "best enjoyed as an exercise in the casual excellence of the artist as rhymer and purveyor of hooks." Drake has also pulled from international styles in his music. In an article for Across The Culture defending Drake against cultural theft allegations, accusations that got louder after he started using Caribbean sounds on tracks like "Controlla," Zander Tsadwa writes, "To scream 'cultural appropriation' as someone who isn't of an Afro-Caribbean identity when you hear 'Controlla' or when you see Drake tweet in patois is funny." Tsadwa explains that people have "rigid expectations of a popular artist once they're popular" and a "limited understanding of cultural exchange and identity." And honestly, Tsadwa has a point. Drake spent years in Toronto, which has one of the largest Caribbean diaspora communities in North America. Assuming he has no real connection to those sounds says more about how narrowly people view identity than it says about Drake.</p>
+
+            <p>The cultural theft accusations also feed into a bigger argument: that Drake is not just borrowing sounds but using the whole genre for profit. In The Philadelphia Citizen, Michael Eric Dyson writes about Drake and Kendrick Lamar's rivalry. Lamar goes directly at Drake on the track "Not Like Us," saying, "No, you not a colleague, you a... colonizer." Lamar uses the word "colonizer" to say that Drake treats hip-hop like something to profit off of, not something he actually belongs to. But that argument does not hold up when you look at the fact that Drake has been making hip-hop since he was a teenager, way before the fame and way before there was money in it for him. Calling someone a colonizer means they showed up from the outside, but Drake grew up inside the culture.</p>
+
+            <p>On top of that, Dyson notes that Drake has been called a "tribal impostor" and "bi-racial culture vulture." Dyson says the "rapid pace at which Drake was able to be labeled as not being authentically black reveals the boundaries that are established around race and the genres that are based upon it," and describes this as the "reactionary nativism of cults of pure identity that police the boundaries of Blackness." What Dyson is really talking about is a purity test, and it is one that no biracial person can ever pass. If being accepted in hip-hop means you have to be "fully" Black by somebody else's standard, then the genre is not actually celebrating Black culture. It is gatekeeping it.</p>
+
+            <p>Drake knows about this scrutiny, and he has addressed it himself. In "You & The 6," he raps:</p>
+
+            <blockquote>"I used to get teased for being black / And now I'm here and I'm not black enough / Because I am not acting tough / Or making false stories bout where I'm actually from."</blockquote>
+
+            <p>He gets criticized for not acting tough, which is what the traditional rap canon expects, but he is not going to make up a fake past just to satisfy those expectations.</p>
+
+            <p>Academics have studied this too, and the research backs up what Drake has been saying. In her article, "Musical Artists Capitalizing on Hybrid Identities: A Case Study of Drake the 'Authentic' 'Black' 'Canadian' 'Rapper,'" Amara Pope looks at how Drake deals with his complex identity. Pope writes that when Drake lived with his mom in Toronto, he was called "different" by the Jewish community and "too Black" by others. But then when he moved to Memphis to live with his father Dennis Graham, a drummer who played for Jerry Lee Lewis, he was around Black musicians all the time and still got called "Too White." As Pope puts it, "Hence, Drake cannot escape the prejudice of being labeled black or not black enough, nor ever being labeled fully white." That is the trap that biracial identity creates in a genre that is obsessed with racial purity. Wherever Drake goes, somebody tells him he does not belong. His music ended up being the one space where he could actually define himself on his own terms.</p>
+
+            <p>Drake's story matters because it goes beyond just one rapper's career. It is about who gets to be part of a culture and who gets to make that decision. The traditional hip-hop canon was built around a specific image, and if you do not match that image, people call you a fraud no matter how talented you are. Drake showed that the audience was ready for something else, that being emotional and melodic could work alongside commercial success. The fact that his race and his neighborhood got used against him shows something deeper about hip-hop: a genre that started from people who were shut out is now shutting people out using the same kind of thinking. As somebody who has dealt with my own questions about identity, I think Drake's refusal to fake who he is might be the most real thing about him.</p>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+    </div>
+    <!-- Closing reflection -->
+    <div class="writing__closing reveal">
+      <p class="eyebrow">Looking Back</p>
+      <h3 class="writing__closing-title">What writing taught me.</h3>
+      <p class="writing__closing-text">
+        I came into ENGW 103 thinking writing was something you get through, not something you get better at. My first paper was personal but safe. My second was research-heavy, but my professor could tell I was hiding behind my sources instead of standing next to them. By the third paper I finally understood what she'd been asking for all semester: put yourself in the argument, not behind it. The biggest shift was learning that the strongest writing doesn't come from sounding smart. It comes from being specific. A line about lactic acid burning in your muscles says more about control than a paragraph explaining the concept. I'm a CS major, not an English major, but this class changed how I think about communication in general. Writing is just another way of building something, and the same rules apply: be precise, be intentional, and don't ship anything you wouldn't put your name on.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT (dark) ============ -->
+  <section class="panel contact" id="contact">
+    <div class="contact__cta-row">
+      <a href="mailto:david@davidajudua.com" class="pill-btn">Let's build something <span aria-hidden="true">↗</span></a>
+      <a href="#work" class="pill-btn pill-btn--accent" data-scroll>See the work <span aria-hidden="true">→</span></a>
+    </div>
+    <h2 class="contact__name" data-split>David Ajudua</h2>
+    <div class="contact__cols reveal">
+      <div class="contact__col">
+        <p class="contact__label">Email</p>
+        <a href="mailto:david@davidajudua.com" class="contact__value">david@davidajudua.com</a>
+        <p class="contact__label">Location</p>
+        <p class="contact__value">Washington, D.C.</p>
+      </div>
+      <div class="contact__col">
+        <p class="contact__label">Social</p>
+        <a href="https://github.com/davidajudua" target="_blank" rel="noopener" class="contact__social">GitHub <span aria-hidden="true">↗</span></a>
+        <a href="https://www.linkedin.com/in/david-ajudua-26589b355" target="_blank" rel="noopener" class="contact__social">LinkedIn <span aria-hidden="true">↗</span></a>
+        <a href="/assets/David-Ajudua-Resume.pdf" target="_blank" rel="noopener" class="contact__social">Resume <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="contact__col contact__col--credit">
+        <p class="contact__credit">Designed &amp; built by<br><span class="grad">David Ajudua</span></p>
+        <p class="contact__copy">© 2026</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work project detail overlay -->
+  <div class="work-modal" hidden>
+    <div class="work-modal__backdrop" data-modal-close></div>
+    <div class="work-modal__panel" role="dialog" aria-modal="true" aria-labelledby="work-modal-title" tabindex="-1">
+      <button type="button" class="work-modal__close" aria-label="Close details" data-modal-close>
+        <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+      <div class="work-modal__scroll" data-lenis-prevent>
+        <h3 class="work-modal__title" id="work-modal-title"></h3>
+        <div class="work-modal__body"></div>
+      </div>
+    </div>
+  </div>
+
+  <button class="back-to-top" aria-label="Back to top">
+    <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M8 12V4M4 8l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" integrity="sha384-pEQB1h4Zmn9xhS6jotzltHSIQq6N0Oh3BXkCNOH5LKI81R2NRbb9efarAJYw9gTY" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js" integrity="sha384-TgZ1GoXcDnrw/czNfaiSZSFV1zgIRv8aQOevBA8ppS4SkNONmzYfjARpXsDfdnUE" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" integrity="sha384-tKsJDT6PlUI0pSBt9/sBKJluKgA19/a6mBrDsZaXotLB4ZYfMGM6xt6/WgGpYhTm" crossorigin="anonymous"></script>
+  <script src="/js/main.js?v=18"></script>
+</body>
+</html>
