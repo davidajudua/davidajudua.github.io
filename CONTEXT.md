@@ -34,6 +34,11 @@ The other sanctioned motion moment.
 The heaviest Frosted Furniture: a strongly tinted surface that long-form content (essays, project details) sits on so extended reading stays comfortable over the moving Set.
 Short content floats directly on the video, protected by shadow rather than surface.
 
+**Sheen**
+The reactive band of light that passes across a control's face when the visitor hovers or presses it, and ambiently across the two names.
+It is light moving over a surface, never a new shape: invisible at rest, so the resting look is unchanged.
+
 **Motion Rule**
-Motion belongs to the content people are meant to look at (Proof Numbers, Kinetic Word Loop, the name), never to the chrome around it.
+Ambient (self-playing) motion belongs to the content people are meant to look at (Proof Numbers, Kinetic Word Loop, the names), never to the chrome around it.
+Chrome may move only in direct response to the visitor: hover, press, focus (the Sheen and press compression).
 The Set carries all remaining motion.
