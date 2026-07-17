@@ -325,18 +325,28 @@ body::before {
   pointer-events: none;
   color: transparent;
   text-shadow: none; /* text-shadow inherits; a shadowed copy would darken the resting look */
-  /* amber, not white: a white band over the near-white glyphs is invisible */
-  background: linear-gradient(105deg, transparent 44%, rgba(212, 169, 97, 0.85) 50%, transparent 56%);
-  background-size: 300% 100%;
+  /* amber, not white: a white band over the near-white glyphs is invisible.
+     Use amber-at-0-alpha (not `transparent`) so the gradient doesn't interpolate
+     through black. Opacity stays 0 except during the cross so rest matches the base glyphs. */
+  background: linear-gradient(
+    105deg,
+    rgba(212, 169, 97, 0) 40%,
+    rgba(212, 169, 97, 0.95) 50%,
+    rgba(212, 169, 97, 0) 60%
+  );
+  background-size: 280% 100%;
   background-position: 100% 0;
   -webkit-background-clip: text;
   background-clip: text;
+  opacity: 0;
   animation: nameShimmer 7s var(--ease-in-out) 2s infinite;
 }
 @keyframes nameShimmer {
-  0%   { background-position: 100% 0; }
-  18%  { background-position: 0% 0; }   /* band crosses in ~1.3s, then rests off-glyph */
-  100% { background-position: 0% 0; }
+  0%   { background-position: 100% 0; opacity: 0; }
+  2%   { opacity: 1; }                    /* present only while the band crosses */
+  22%  { background-position: 0% 0; opacity: 1; }
+  24%  { opacity: 0; }                    /* off-glyph again — resting look restored */
+  100% { background-position: 0% 0; opacity: 0; }
 }
 
 .hero__role {
@@ -434,23 +444,34 @@ body::before {
   content: '';
   position: absolute;
   top: 0; bottom: 0;
-  left: -70%;
-  width: 55%;
-  /* amber light for glass/dark faces; amber-filled faces override below */
-  background: linear-gradient(105deg, transparent, rgba(212, 169, 97, 0.22), transparent);
+  left: -80%;
+  width: 60%;
+  /* amber light for glass/dark faces; amber-filled faces override below.
+     0-alpha endpoints (not `transparent`) keep the band from muddying. */
+  background: linear-gradient(
+    105deg,
+    rgba(212, 169, 97, 0),
+    rgba(212, 169, 97, 0.55),
+    rgba(212, 169, 97, 0)
+  );
   transform: skewX(-18deg);
   opacity: 0;
   pointer-events: none;
   z-index: 1;
 }
 .btn--primary::before, .pill-btn--accent::before {
-  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  background: linear-gradient(
+    105deg,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.65),
+    rgba(255, 255, 255, 0)
+  );
 }
-.sweeping::before { animation: sheen 0.5s var(--ease-out) forwards; }
-.writing-piece__header.sweeping::before { animation-duration: 0.7s; } /* wider face, same speed feel */
+.sweeping::before { animation: sheen 0.55s var(--ease-out) forwards; }
+.writing-piece__header.sweeping::before { animation-duration: 0.75s; } /* wider face, same speed feel */
 @keyframes sheen {
-  from { left: -70%; opacity: 1; }
-  to   { left: 120%; opacity: 1; }
+  from { left: -80%; opacity: 1; }
+  to   { left: 130%; opacity: 1; }
 }
 
 /* press compression for chrome without a face for the sheen */
@@ -459,7 +480,7 @@ body::before {
 .work-card__details-btn:active, .work-card__link:active { transform: scale(0.97); }
 .social-rail a:active { transform: scale(0.9); }
 .writing-piece__header:active { transform: scale(0.99); }
-.writing-piece__toggle:active, .work-modal__close:active, .back-to-top.visible:active { transform: scale(0.92); }
+.writing-piece__toggle:active, .work-modal__close:active { transform: scale(0.92); }
 
 /* ============================================
    REVEALS — fade-up on important content
@@ -685,8 +706,8 @@ body::before {
   animation: nodeBreathe 2.8s var(--ease-in-out) infinite; /* a distant city light */
 }
 @keyframes nodeBreathe {
-  0%, 100% { box-shadow: 0 0 16px rgba(212, 169, 97, 0.55); }
-  50%      { box-shadow: 0 0 30px rgba(212, 169, 97, 0.9); }
+  0%, 100% { box-shadow: 0 0 14px rgba(212, 169, 97, 0.45); }
+  50%      { box-shadow: 0 0 36px rgba(212, 169, 97, 1); }
 }
 .timeline__rows { display: flex; flex-direction: column; gap: 4.5rem; }
 .timeline__row {
@@ -1108,7 +1129,13 @@ a.contact__value:hover { color: var(--accent); }
   transform: translateY(8px);
   transition: all var(--duration-med) var(--ease-out);
 }
-.back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  /* compose with press scale so :active doesn't drop the settle translate */
+  transform: translateY(0) scale(var(--press, 1));
+}
+.back-to-top.visible:active { --press: 0.92; }
 .back-to-top:hover {
   background: var(--accent-dim);
   border-color: var(--border-accent);

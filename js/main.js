@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* 1c. PRESS + SHEEN — reactive chrome micro-motion (see CONTEXT.md Motion Rule).
      A band of light sweeps across faced buttons and the writing headers on
-     hover/press; :active compression is pure CSS. */
+     hover/press/focus; :active compression is pure CSS. */
   document.addEventListener('touchstart', () => {}, { passive: true }); // enables :active on iOS
   if (animate) {
     const sweep = (el) => {
@@ -58,6 +58,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.btn, .pill-btn, .writing-piece__header, .back-to-top, .work-modal__close')
       .forEach((el) => {
         el.addEventListener('pointerdown', () => sweep(el));
+        // keyboard only — mouse clicks already swept on pointerdown
+        el.addEventListener('focus', () => {
+          if (el.matches(':focus-visible')) sweep(el);
+        });
         if (hasHover) el.addEventListener('mouseenter', () => sweep(el));
       });
   }
