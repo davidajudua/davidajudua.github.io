@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Design System — David Ajudua</title>
+  <meta name="description" content="Living style guide and design tokens for davidajudua.com.">
+  <meta name="theme-color" content="#08090c">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css?v=20">
+  <link rel="stylesheet" href="/css/styleguide.css?v=1">
+</head>
+<body>
+
+  <!-- The Set: same fixed poster backdrop the site is staged on, so Frosted
+       Furniture and blur tokens read correctly here too. -->
+  <div class="bg-poster" aria-hidden="true"></div>
+  <div class="bg-overlay" aria-hidden="true"></div>
+
+  <main class="sg-main">
+
+    <header class="sg-head">
+      <p class="eyebrow">Design System</p>
+      <h1 class="section-heading">The System</h1>
+      <p class="sg-lede">
+        The living reference for davidajudua.com. Every value below is a token defined in
+        <code>css/style.css</code> and consumed by the site &mdash; one source of truth for
+        colour, type, spacing, radii, elevation, frost, and motion. The Set (the fixed video)
+        stays the aesthetic; this page just names the parts staged on top of it.
+      </p>
+    </header>
+
+    <!-- COLOUR -->
+    <section class="sg-section">
+      <p class="eyebrow">Colour</p>
+      <h2 class="sg-section__title">Primitives</h2>
+      <div class="sg-grid">
+        <div class="sg-swatch"><div class="sg-swatch__chip" style="background:var(--night-900)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">--night-900</div><div class="sg-swatch__val">#08090c</div></div></div>
+        <div class="sg-swatch"><div class="sg-swatch__chip" style="background:var(--night-800)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">--night-800</div><div class="sg-swatch__val">#101216</div></div></div>
+        <div class="sg-swatch"><div class="sg-swatch__chip" style="background:var(--amber-400)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">--amber-400</div><div class="sg-swatch__val">#d4a961</div></div></div>
+        <div class="sg-swatch"><div class="sg-swatch__chip" style="background:var(--amber-300)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">--amber-300</div><div class="sg-swatch__val">#e6c284</div></div></div>
+        <div class="sg-swatch"><div class="sg-swatch__chip" style="background:var(--accent-ink)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">--accent-ink</div><div class="sg-swatch__val">#0d0b07</div></div></div>
+      </div>
+
+      <h2 class="sg-section__title" style="margin-top:2rem">Text</h2>
+      <div class="sg-grid">
+        <div class="sg-swatch"><div class="sg-swatch__chip" style="background:var(--text-bright)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">--text-bright</div><div class="sg-swatch__val">#f2f0ea</div></div></div>
+        <div class="sg-swatch"><div class="sg-swatch__chip" style="background:var(--text-primary)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">--text-primary</div><div class="sg-swatch__val">#dcd9d0</div></div></div>
+        <div class="sg-swatch"><div class="sg-swatch__chip" style="background:var(--text-secondary)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">--text-secondary</div><div class="sg-swatch__val">#9b988f</div></div></div>
+        <div class="sg-swatch"><div class="sg-swatch__chip" style="background:var(--text-muted)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">--text-muted</div><div class="sg-swatch__val">#6b6961</div></div></div>
+      </div>
+
+      <h2 class="sg-section__title" style="margin-top:2rem">Alpha ladders</h2>
+      <div class="sg-grid">
+        <div class="sg-swatch sg-swatch--alpha"><div class="sg-swatch__chip"><span style="background:var(--accent-a12)"></span></div><div class="sg-swatch__meta"><div class="sg-swatch__name">--accent-a12</div><div class="sg-swatch__val">amber / 0.12</div></div></div>
+        <div class="sg-swatch sg-swatch--alpha"><div class="sg-swatch__chip"><span style="background:var(--accent-a28)"></span></div><div class="sg-swatch__meta"><div class="sg-swatch__name">--accent-a28</div><div class="sg-swatch__val">amber / 0.28</div></div></div>
+        <div class="sg-swatch sg-swatch--alpha"><div class="sg-swatch__chip"><span style="background:var(--accent-a55)"></span></div><div class="sg-swatch__meta"><div class="sg-swatch__name">--accent-a55</div><div class="sg-swatch__val">amber / 0.55</div></div></div>
+        <div class="sg-swatch sg-swatch--alpha"><div class="sg-swatch__chip"><span style="background:var(--white-a07)"></span></div><div class="sg-swatch__meta"><div class="sg-swatch__name">--white-a07</div><div class="sg-swatch__val">white / 0.07</div></div></div>
+        <div class="sg-swatch sg-swatch--alpha"><div class="sg-swatch__chip"><span style="background:var(--white-a14)"></span></div><div class="sg-swatch__meta"><div class="sg-swatch__name">--white-a14</div><div class="sg-swatch__val">white / 0.14</div></div></div>
+        <div class="sg-swatch sg-swatch--alpha"><div class="sg-swatch__chip"><span style="background:var(--black-a65)"></span></div><div class="sg-swatch__meta"><div class="sg-swatch__name">--black-a65</div><div class="sg-swatch__val">black / 0.65</div></div></div>
+      </div>
+
+      <h2 class="sg-section__title" style="margin-top:2rem">Semantic surfaces</h2>
+      <div class="sg-panels">
+        <div class="sg-demo-panel" style="background:var(--bg-panel);-webkit-backdrop-filter:var(--frost);backdrop-filter:var(--frost)"><div class="sg-demo-panel__label">--bg-panel</div><p class="sg-demo-panel__desc">Frosted Furniture. Translucent; the Set glows through.</p></div>
+        <div class="sg-demo-panel" style="background:var(--bg-reading);-webkit-backdrop-filter:var(--frost);backdrop-filter:var(--frost)"><div class="sg-demo-panel__label">--bg-reading</div><p class="sg-demo-panel__desc">Reading Panel. Heavier tint for long-form comfort.</p></div>
+        <div class="sg-demo-panel" style="background:var(--bg-elevated)"><div class="sg-demo-panel__label">--bg-elevated</div><p class="sg-demo-panel__desc">Modal. Fully solid, sits above the Set.</p></div>
+        <div class="sg-demo-panel" style="background:var(--bg-card)"><div class="sg-demo-panel__label">--bg-card</div><p class="sg-demo-panel__desc">Faint card wash on the video.</p></div>
+      </div>
+    </section>
+
+    <!-- TYPOGRAPHY -->
+    <section class="sg-section">
+      <p class="eyebrow">Typography</p>
+      <h2 class="sg-section__title">Display scale &mdash; Geist</h2>
+      <div class="sg-type-row"><div class="sg-type-row__tag">--display-hero</div><div class="sg-type-row__sample"><span style="font-family:var(--font-display);font-weight:var(--fw-semibold);font-size:var(--display-hero);letter-spacing:-0.045em;color:var(--text-bright);line-height:0.98">Aa</span></div></div>
+      <div class="sg-type-row"><div class="sg-type-row__tag">--display-section</div><div class="sg-type-row__sample"><span style="font-family:var(--font-display);font-weight:var(--fw-semibold);font-size:var(--display-section);letter-spacing:-0.045em;color:var(--text-bright);line-height:0.96">Section</span></div></div>
+      <div class="sg-type-row"><div class="sg-type-row__tag">--text-lg / body</div><div class="sg-type-row__sample"><span style="font-family:var(--font-body);color:var(--text-primary)">The quick brown fox builds software, systems, platforms, and tools.</span></div></div>
+      <div class="sg-type-row"><div class="sg-type-row__tag">--font-mono</div><div class="sg-type-row__sample"><span style="font-family:var(--font-mono);color:var(--text-secondary);letter-spacing:0.03em">david@davidajudua.com</span></div></div>
+
+      <h2 class="sg-section__title" style="margin-top:2rem">Weights</h2>
+      <div class="sg-weights">
+        <span class="sg-weight" style="font-weight:var(--fw-regular)">Regular 400</span>
+        <span class="sg-weight" style="font-weight:var(--fw-medium)">Medium 500</span>
+        <span class="sg-weight" style="font-weight:var(--fw-semibold)">Semibold 600</span>
+        <span class="sg-weight" style="font-weight:var(--fw-bold)">Bold 700</span>
+      </div>
+    </section>
+
+    <!-- SPACING -->
+    <section class="sg-section">
+      <p class="eyebrow">Spacing</p>
+      <h2 class="sg-section__title">4px base rhythm</h2>
+      <div class="sg-space-row"><div class="sg-space-row__tag">--space-1 &middot; 4px</div><div class="sg-space-bar" style="width:var(--space-1)"></div></div>
+      <div class="sg-space-row"><div class="sg-space-row__tag">--space-2 &middot; 8px</div><div class="sg-space-bar" style="width:var(--space-2)"></div></div>
+      <div class="sg-space-row"><div class="sg-space-row__tag">--space-4 &middot; 16px</div><div class="sg-space-bar" style="width:var(--space-4)"></div></div>
+      <div class="sg-space-row"><div class="sg-space-row__tag">--space-6 &middot; 24px</div><div class="sg-space-bar" style="width:var(--space-6)"></div></div>
+      <div class="sg-space-row"><div class="sg-space-row__tag">--space-8 &middot; 32px</div><div class="sg-space-bar" style="width:var(--space-8)"></div></div>
+      <div class="sg-space-row"><div class="sg-space-row__tag">--space-12 &middot; 48px</div><div class="sg-space-bar" style="width:var(--space-12)"></div></div>
+      <div class="sg-space-row"><div class="sg-space-row__tag">--space-16 &middot; 64px</div><div class="sg-space-bar" style="width:var(--space-16)"></div></div>
+      <div class="sg-space-row"><div class="sg-space-row__tag">--space-24 &middot; 96px</div><div class="sg-space-bar" style="width:var(--space-24)"></div></div>
+    </section>
+
+    <!-- RADII + FROST -->
+    <section class="sg-section">
+      <p class="eyebrow">Radii &amp; Frost</p>
+      <h2 class="sg-section__title">Corners over the Set</h2>
+      <div class="sg-tiles">
+        <div class="sg-tile" style="border-radius:var(--radius-sm)">--radius-sm</div>
+        <div class="sg-tile" style="border-radius:var(--radius-card)">--radius-card</div>
+        <div class="sg-tile" style="border-radius:var(--radius-modal)">--radius-modal</div>
+        <div class="sg-tile" style="border-radius:var(--radius-pill)">--radius-pill</div>
+        <div class="sg-tile" style="border-radius:var(--radius-round)">--radius-round</div>
+      </div>
+    </section>
+
+    <!-- COMPONENTS -->
+    <section class="sg-section">
+      <p class="eyebrow">Components</p>
+      <h2 class="sg-section__title">Buttons</h2>
+      <div class="sg-row">
+        <button class="btn btn--primary">Primary <span class="btn__arrow" aria-hidden="true">&rarr;</span></button>
+        <button class="btn btn--outline">Outline <span class="btn__arrow" aria-hidden="true">&rarr;</span></button>
+        <a class="pill-btn pill-btn--accent">Let's build something <span aria-hidden="true">&#8599;</span></a>
+        <a class="pill-btn">See the work <span aria-hidden="true">&#8599;</span></a>
+      </div>
+
+      <h2 class="sg-section__title" style="margin-top:2.5rem">Tags &amp; eyebrow</h2>
+      <div class="sg-stack">
+        <p class="eyebrow">Selected work</p>
+        <div class="work-card__tags">
+          <span>Node.js</span><span>Postgres</span><span>Stripe</span><span>Systems</span>
+        </div>
+      </div>
+
+      <h2 class="sg-section__title" style="margin-top:2.5rem">Expandable glass card</h2>
+      <div class="expand-card open" style="max-width:520px">
+        <div class="expand-card__head">
+          <div class="expand-card__title">Frosted Furniture</div>
+          <div class="expand-card__sub">Translucent surfaces staged on the Set</div>
+          <span class="expand-card__chevron" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </span>
+        </div>
+        <div class="expand-card__body">
+          <p>Panels use <code style="font-family:var(--font-mono);color:var(--accent)">--bg-panel</code> + <code style="font-family:var(--font-mono);color:var(--accent)">--frost</code> so the video glows through instead of being blocked.</p>
+        </div>
+      </div>
+
+      <h2 class="sg-section__title" style="margin-top:2.5rem">Work card</h2>
+      <div class="work-card" style="max-width:640px">
+        <div class="work-card__num" aria-hidden="true">01</div>
+        <div class="work-card__body">
+          <div class="work-card__meta">
+            <span class="work-card__title">opscore</span>
+            <span class="work-card__cat">Operations Platform</span>
+          </div>
+          <div class="work-card__tags"><span>Node.js</span><span>Postgres</span><span>Stripe</span></div>
+          <p class="work-card__desc">Real-time revenue tracking and on-chain settlement with an idempotent ledger and fair queues.</p>
+          <div class="work-card__actions">
+            <button class="work-card__details-btn">Details <span aria-hidden="true">+</span></button>
+            <a class="work-card__link">GitHub
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="sg-section__title" style="margin-top:2.5rem">Proof numbers</h2>
+      <div class="about__stats">
+        <div class="about__stat"><span class="about__stat-num">15K</span><span class="about__stat-label">Community</span></div>
+        <div class="about__stat"><span class="about__stat-num">$400K</span><span class="about__stat-label">Revenue</span></div>
+        <div class="about__stat"><span class="about__stat-num">142K</span><span class="about__stat-label">Orders</span></div>
+        <div class="about__stat"><span class="about__stat-num">~50</span><span class="about__stat-label">Team</span></div>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>
