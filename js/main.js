@@ -30,17 +30,42 @@ document.addEventListener('DOMContentLoaded', () => {
   /* 1b. AMBIENT BACKDROP — respect reduced motion (poster stays, video never plays),
      and resume playback after Chrome pauses occluded/background tabs. */
   const bgVideo = document.querySelector('.bg-video');
+  const root = document.documentElement;
+  const showPoster = () => root.classList.add('video-idle');
+  const showVideo = () => root.classList.remove('video-idle');
   if (bgVideo && prefersReducedMotion) {
+    /* Poster stays, video never plays — fall back to the still backdrop. */
     bgVideo.removeAttribute('autoplay');
     bgVideo.pause();
+    showPoster();
   } else if (bgVideo) {
+    /* When a browser blocks autoplay (notably iOS Low Power Mode), the video
+       stays paused and iOS paints a native play glyph over it. Hide the video
+       until playback is confirmed so only the matching poster frame shows.
+       Clear idle on both the playing event and a resolved play() promise —
+       either can win the race, and relying on only one left the video stuck
+       hidden after a later successful resume. */
+    showPoster();
+    bgVideo.addEventListener('playing', showVideo);
+    const attemptPlay = () => {
+      const p = bgVideo.play();
+      if (p && typeof p.then === 'function') {
+        p.then(showVideo).catch(() => {
+          if (bgVideo.paused) showPoster();
+        });
+      } else if (!bgVideo.paused) {
+        showVideo();
+      }
+    };
+    if (bgVideo.paused) attemptPlay();
+    else showVideo();
     document.addEventListener('visibilitychange', () => {
-      if (!document.hidden && bgVideo.paused) bgVideo.play().catch(() => {});
+      if (!document.hidden && bgVideo.paused) attemptPlay();
     });
     // iOS Low Power Mode suspends autoplay (the poster shows). A play() inside
     // a user gesture is still allowed — revive the Set on the first touch.
     document.addEventListener('pointerdown', () => {
-      if (bgVideo.paused) bgVideo.play().catch(() => {});
+      if (bgVideo.paused) attemptPlay();
     }, { once: true, passive: true });
   }
 

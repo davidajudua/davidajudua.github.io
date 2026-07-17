@@ -100,6 +100,24 @@ img { max-width: 100%; display: block; }
   pointer-events: none;
 }
 
+/* Poster frame behind the video: identical framing/brightness so it reads as the
+   same shot. Shows through until the video is playing; becomes the whole backdrop
+   when autoplay is blocked (mobile / Low Power Mode). */
+.bg-poster {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  background: #08090c url("/assets/ambient-poster.jpg") center / cover no-repeat;
+  filter: brightness(0.8);
+  pointer-events: none;
+}
+
+/* Autoplay blocked: hide the video so iOS never draws its native play glyph;
+   the matching poster frame remains as an integrated still backdrop. */
+.video-idle .bg-video {
+  display: none;
+}
+
 /* subtle edge vignette — composes the frame, center stays true */
 .bg-overlay {
   position: fixed;

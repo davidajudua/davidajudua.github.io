@@ -1,6 +1,6 @@
 # davidajudua.github.io
 
-Source for my personal site — [davidajudua.github.io](https://davidajudua.github.io).
+Source for my personal site: [davidajudua.github.io](https://davidajudua.github.io).
 
 A static, hand-built portfolio (HTML/CSS/JS, no framework) covering what I build, selected
 projects, and writing. Hosted on GitHub Pages.
