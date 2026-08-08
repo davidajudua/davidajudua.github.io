@@ -15,6 +15,10 @@ projects, and writing. Hosted on GitHub Pages.
 | `writing.html` | Writing |
 | `contact.html` | Contact |
 | `assets/`, `css/`, `js/` | Styles, scripts, and media |
+| `styleguide.html` | Living style guide / design-system reference |
+
+The design system (tokens + usage rules) is documented in [`docs/design-system.md`](docs/design-system.md);
+tokens live in the `:root` block of `css/style.css` and are rendered live at `styleguide.html`.
 
 ## Local preview
 
