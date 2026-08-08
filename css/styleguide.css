@@ -1,0 +1,122 @@
+/* ============================================
+   STYLE GUIDE — page layout only.
+   The design system itself lives in css/style.css;
+   this file only arranges the specimens. All rules
+   are prefixed .sg-* so they never touch the site.
+   ============================================ */
+
+.sg-main {
+  position: relative;
+  z-index: var(--z-raised);
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 7rem 2rem 6rem;
+}
+
+.sg-head { margin-bottom: 4.5rem; }
+.sg-lede {
+  margin-top: 1.25rem;
+  color: var(--text-secondary);
+  max-width: var(--reading-width);
+  line-height: 1.7;
+}
+.sg-lede code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  color: var(--accent);
+  background: var(--accent-dim);
+  padding: 0.1em 0.35em;
+  border-radius: var(--radius-xs);
+}
+
+.sg-section { margin-top: 4.5rem; }
+.sg-section__title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.02em;
+  color: var(--text-bright);
+  margin: 0.75rem 0 1.5rem;
+}
+
+/* --- swatch grid --- */
+.sg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+.sg-swatch {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--bg-card);
+}
+.sg-swatch__chip { height: 72px; }
+.sg-swatch--alpha .sg-swatch__chip {
+  background-image:
+    linear-gradient(45deg, #23262d 25%, transparent 25%),
+    linear-gradient(-45deg, #23262d 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #23262d 75%),
+    linear-gradient(-45deg, transparent 75%, #23262d 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+}
+.sg-swatch--alpha .sg-swatch__chip > span { display: block; height: 100%; }
+.sg-swatch__meta { padding: 0.7rem 0.85rem; }
+.sg-swatch__name { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-primary); }
+.sg-swatch__val { font-family: var(--font-mono); font-size: 0.62rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+/* --- type specimens --- */
+.sg-type-row {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.sg-type-row__tag {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  color: var(--accent);
+  flex: 0 0 150px;
+}
+.sg-type-row__sample { min-width: 0; overflow: hidden; }
+.sg-weights { display: flex; flex-wrap: wrap; gap: 2rem; }
+.sg-weight { font-family: var(--font-display); font-size: 2rem; color: var(--text-bright); }
+
+/* --- spacing scale --- */
+.sg-space-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.6rem; }
+.sg-space-row__tag { font-family: var(--font-mono); font-size: 0.66rem; color: var(--text-muted); flex: 0 0 130px; }
+.sg-space-bar { height: 14px; background: var(--accent); border-radius: var(--radius-xs); }
+
+/* --- radii / frost --- */
+.sg-tiles { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.sg-tile {
+  width: 104px; height: 104px;
+  background: var(--bg-panel);
+  -webkit-backdrop-filter: var(--frost);
+  backdrop-filter: var(--frost);
+  border: 1px solid var(--border-hover);
+  display: grid; place-items: end center;
+  padding-bottom: 0.55rem;
+  font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-secondary);
+}
+
+/* --- surface demo panels --- */
+.sg-panels { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.25rem; }
+.sg-demo-panel {
+  padding: 1.6rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+}
+.sg-demo-panel__label { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+.sg-demo-panel__desc { margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.85rem; line-height: 1.6; }
+
+/* --- component rows --- */
+.sg-row { display: flex; gap: 1.25rem; flex-wrap: wrap; align-items: center; }
+.sg-stack > * + * { margin-top: 1.25rem; }
+
+@media (max-width: 640px) {
+  .sg-type-row { flex-direction: column; gap: 0.5rem; }
+  .sg-type-row__tag { flex-basis: auto; }
+}
