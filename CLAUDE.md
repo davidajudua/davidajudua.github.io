@@ -13,3 +13,7 @@ Uses the five canonical triage labels (`needs-triage`, `needs-info`, `ready-for-
 ### Domain docs
 
 Single-context: one `CONTEXT.md` + `docs/adr/` at the repo root. See `docs/agents/domain.md`.
+
+### Verification
+
+No test suite and nothing to typecheck. Prove changes by diffing computed styles in a real browser against the pre-change commit, never by eyeballing screenshots. See `docs/agents/verification.md`.
