@@ -4,7 +4,7 @@
 
 ### Issue tracker
 
-Issues are tracked in this repo's GitHub Issues (`davidajudua/portfolio-site`) via the `gh` CLI. External PRs are **not** a triage surface. See `docs/agents/issue-tracker.md`.
+Issues are tracked on `davidajudua/davidajudua.github.io` via the `gh` CLI (`gh issue ... -R davidajudua/davidajudua.github.io` when this folder lives inside workspace). External PRs are **not** a triage surface. See `docs/agents/issue-tracker.md`.
 
 ### Triage labels
 

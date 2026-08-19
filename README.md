@@ -1,5 +1,9 @@
 # davidajudua.github.io
 
+Edits belong in `career/portfolio-site` of the private [davidajudua/workspace](https://github.com/davidajudua/workspace) repo.
+This GitHub repo is a public mirror for GitHub Pages.
+Do not commit here.
+
 Source for my personal site: [davidajudua.github.io](https://davidajudua.github.io).
 
 A static, hand-built portfolio (HTML/CSS/JS, no framework) covering what I build, selected

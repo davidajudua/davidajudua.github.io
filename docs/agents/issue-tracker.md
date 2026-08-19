@@ -11,7 +11,9 @@ Issues and PRDs for this repo live as GitHub issues. Use the `gh` CLI for all op
 - **Apply / remove labels**: `gh issue edit <number> --add-label "..."` / `--remove-label "..."`
 - **Close**: `gh issue close <number> --comment "..."`
 
-Infer the repo from `git remote -v` — `gh` does this automatically when run inside a clone.
+The issue tracker lives on `davidajudua/davidajudua.github.io`.
+When this folder is inside `davidajudua/workspace`, pass `-R davidajudua/davidajudua.github.io` on every `gh` issue/PR command.
+A bare `gh` from the workspace root would otherwise hit the private workspace repo.
 
 ## Pull requests as a triage surface
 

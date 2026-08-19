@@ -1,5 +1,9 @@
 # AGENTS.md
 
+Workspace memory and routing live at `../../AGENTS.md` when this folder is inside `davidajudua/workspace`.
+This directory is the site source of truth and is published to the public mirror `davidajudua/davidajudua.github.io`.
+Do not commit on the mirror repo.
+
 ## Cursor Cloud specific instructions
 
 This repo is a **static, hand-built portfolio site** (plain HTML/CSS/JS, no framework,
