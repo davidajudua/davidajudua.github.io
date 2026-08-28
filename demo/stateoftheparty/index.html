@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Next Up — State of the Party</title>
+  <meta name="description" content="This week's State of the Party event. Demo page, not an official announcement.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="demo-banner">
+    <div class="wrap">
+      <p data-slot="demo-banner">Dav's pitch demo. Seeded illustrative data, not an official State of the Party announcement.</p>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow rise">SOTP / Next Up</p>
+        <div data-slot="event">
+          <h1 class="display rise d1" data-slot="title">SOTP Run Club</h1>
+          <div class="meta rise d2">
+            <p class="when" data-slot="when"></p>
+            <p class="where" data-slot="where"></p>
+            <p class="note" data-slot="note" hidden></p>
+          </div>
+          <div class="cta-row rise d3">
+            <a class="btn" data-slot="posh" href="https://posh.vip/g/state-of-the-party" target="_blank" rel="noopener">RSVP on Posh</a>
+            <a class="btn-text" data-slot="strava" href="https://www.strava.com/clubs/stateoftheparty" target="_blank" rel="noopener">Join Strava</a>
+            <a class="btn-text" data-slot="ics" href="#">Add to calendar</a>
+          </div>
+          <p class="demo-label">Demo on Dav's infra</p>
+        </div>
+        <div class="error-box" data-slot="error" hidden role="alert"></div>
+      </div>
+    </section>
+
+    <section class="capture" data-slot="capture" hidden>
+      <div class="wrap">
+        <p class="eyebrow">Next one</p>
+        <h2 class="display">Leave an email</h2>
+        <form data-slot="capture-form" method="POST">
+          <label>
+            Email
+            <input type="email" name="email" required autocomplete="email">
+          </label>
+          <button class="btn" type="submit">Send</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-row">
+        <span class="foot-logo">State of the Party</span>
+        <span class="muted">Demo on Dav's infra</span>
+        <span>
+          <a href="mailto:info@stateoftheparty.org">info@stateoftheparty.org</a>
+          &nbsp;·&nbsp;
+          <a href="https://instagram.com/stateoftheparty" target="_blank" rel="noopener">@stateoftheparty</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="event.js"></script>
+  <script src="next.js"></script>
+</body>
+</html>
