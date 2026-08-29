@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Next Up — State of the Party</title>
+  <title>Next Up - State of the Party</title>
   <meta name="description" content="This week's State of the Party event. Demo page, not an official announcement.">
   <meta name="robots" content="noindex,nofollow">
   <script>
@@ -19,67 +19,87 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="demo-banner">
-    <div class="wrap demo-banner-row">
+  <header class="demo-banner">
+    <div class="demo-banner-row">
       <p data-slot="demo-banner">Dav's pitch demo. Seeded illustrative data, not an official State of the Party announcement.</p>
-      <button type="button" class="theme-toggle" data-slot="theme-toggle" aria-pressed="false" aria-label="Dark mode">Dark</button>
+      <button type="button" class="theme-toggle" data-slot="theme-toggle" aria-pressed="false">View poster</button>
     </div>
-  </div>
+  </header>
 
   <main>
-    <section class="hero">
-      <div class="wrap">
-        <p class="eyebrow rise">SOTP / Next Up</p>
-        <div data-slot="event">
-          <h1 class="display rise d1" data-slot="title">SOTP Run Club</h1>
-          <div class="meta rise d2">
-            <p class="when" data-slot="when"></p>
-            <p class="where" data-slot="where"></p>
-            <p class="note" data-slot="note" hidden></p>
-          </div>
-          <div class="cta-row rise d3">
-            <a class="btn" data-slot="posh" href="https://posh.vip/g/state-of-the-party" target="_blank" rel="noopener">RSVP on Posh</a>
-            <a class="btn-text" data-slot="strava" href="https://www.strava.com/clubs/stateoftheparty" target="_blank" rel="noopener">Join Strava</a>
-            <a class="btn-text" data-slot="ics" href="#">Add to calendar</a>
-          </div>
-          <p class="demo-label">Demo on Dav's infra</p>
+    <article class="poster is-entering" data-slot="event" data-title-length="short">
+      <div class="poster-still" aria-hidden="true"></div>
+
+      <div class="poster-grid">
+        <p class="eyebrow">Next up</p>
+
+        <div class="title-zone">
+          <h1 class="poster-title" data-slot="title">Run Club</h1>
         </div>
-        <div class="error-box" data-slot="error" hidden role="alert"></div>
+
+        <div class="meta-zone">
+          <div class="event-meta">
+            <p class="meta-date" data-slot="date" aria-hidden="true"></p>
+            <p class="meta-time" data-slot="time" aria-hidden="true"></p>
+            <p class="meta-place" data-slot="place-name" aria-hidden="true"></p>
+            <p class="meta-address" data-slot="place-address" aria-hidden="true"></p>
+            <p class="meta-note" data-slot="note" hidden></p>
+            <p class="sr-only" data-slot="when"></p>
+            <p class="sr-only" data-slot="where"></p>
+          </div>
+
+          <div class="cta-row">
+            <a class="btn" data-slot="posh" href="https://posh.vip/g/state-of-the-party" target="_blank" rel="noopener">RSVP on Posh</a>
+            <div class="cta-links">
+              <a class="btn-text" data-slot="strava" href="https://www.strava.com/clubs/stateoftheparty" target="_blank" rel="noopener">Join Strava</a>
+              <a class="btn-text" data-slot="ics" href="#">Add to calendar</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="poster-footer">
+          <p class="poster-url">stateoftheparty.org</p>
+          <p class="poster-slug">Washington, DC</p>
+        </div>
       </div>
-    </section>
+
+      <div class="stamp-stage" aria-hidden="true">
+        <svg class="stamp" viewBox="0 0 340 210" focusable="false">
+          <defs>
+            <path id="stamp-arc-top" d="M 48 122 A 122 68 0 0 1 292 122" fill="none"/>
+            <path id="stamp-arc-bottom" d="M 62 108 A 108 58 0 0 0 278 108" fill="none"/>
+          </defs>
+          <ellipse cx="170" cy="105" rx="158" ry="94" fill="none" stroke="currentColor" stroke-width="3.5"/>
+          <ellipse cx="170" cy="105" rx="144" ry="81" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <text fill="currentColor" font-family="Archivo, sans-serif" font-weight="700" font-size="19" letter-spacing="5">
+            <textPath href="#stamp-arc-top" startOffset="50%" text-anchor="middle">STATE OF THE</textPath>
+          </text>
+          <text x="170" y="122" text-anchor="middle" fill="currentColor" font-family="Archivo, sans-serif" font-style="italic" font-weight="700" font-size="52" transform="skewX(-9)" transform-origin="170 122">PARTY</text>
+          <text fill="currentColor" font-family="Archivo, sans-serif" font-weight="700" font-size="15" letter-spacing="4">
+            <textPath href="#stamp-arc-bottom" startOffset="50%" text-anchor="middle">SINCE 4000 BCE</textPath>
+          </text>
+        </svg>
+      </div>
+    </article>
+
+    <div class="error-box" data-slot="error" hidden role="alert"></div>
 
     <section class="capture" data-slot="capture" hidden>
-      <div class="wrap">
-        <p class="eyebrow">Next one</p>
-        <h2 class="display">Leave an email</h2>
-        <form data-slot="capture-form" method="POST">
-          <label>
-            Email
-            <input type="email" name="email" required autocomplete="email">
-          </label>
-          <button class="btn" type="submit">Send</button>
-        </form>
-      </div>
+      <p class="capture-label">Next one</p>
+      <h2>Leave an email</h2>
+      <form data-slot="capture-form" method="POST">
+        <label>
+          Email
+          <input type="email" name="email" required autocomplete="email">
+        </label>
+        <button class="btn" type="submit">Send</button>
+      </form>
     </section>
   </main>
-
-  <footer>
-    <div class="wrap">
-      <div class="foot-row">
-        <span class="foot-logo">State of the Party</span>
-        <span class="muted">Demo on Dav's infra</span>
-        <span>
-          <a href="mailto:info@stateoftheparty.org">info@stateoftheparty.org</a>
-          &nbsp;·&nbsp;
-          <a href="https://instagram.com/stateoftheparty" target="_blank" rel="noopener">@stateoftheparty</a>
-        </span>
-      </div>
-    </div>
-  </footer>
 
   <script src="event.js"></script>
   <script src="next.js"></script>

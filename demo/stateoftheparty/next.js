@@ -5,7 +5,7 @@
   const THEMES = Object.freeze({ light: "light", dark: "dark" });
 
   const SERIES = Object.freeze({
-    title: "SOTP Run Club",
+    title: "Run Club",
     place: Object.freeze({
       name: "Banneker Rec Center Track",
       address: "2500 Georgia Ave NW, Washington, DC",
@@ -98,9 +98,17 @@
     return { name: place.name.trim(), address: place.address.trim() };
   }
 
+  function displayTitle(title) {
+    const cleaned = String(title || "")
+      .replace(/\bSOTP\b/gi, "")
+      .replace(/\s+/g, " ")
+      .trim();
+    return cleaned || "Next up";
+  }
+
   function parse(raw) {
     if (!raw || typeof raw !== "object") {
-      return err("SOTP_EVENT is missing. Set it in event.js.");
+      return err("Event config is missing. Set it in event.js.");
     }
     const capture = nonEmpty(raw.formspreeAction) ? raw.formspreeAction.trim() : null;
 
@@ -164,6 +172,15 @@
     }).format(date);
   }
 
+  function formatDate(date, zone) {
+    return new Intl.DateTimeFormat("en-US", {
+      timeZone: zone,
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+    }).format(date);
+  }
+
   function formatTime(date, zone) {
     return new Intl.DateTimeFormat("en-US", {
       timeZone: zone,
@@ -224,7 +241,7 @@
         meetLabel: meet ? "Meet at " + formatTime(meet, SERIES.zone) + "." : null,
         past: Date.now() > end.getTime(),
         formspreeAction: parsed.formspreeAction,
-        icsName: "sotp-run-club-" + civilStamp(civil) + ".ics",
+        icsName: "run-club-" + civilStamp(civil) + ".ics",
       });
     }
 
@@ -245,7 +262,7 @@
       past: Date.now() > end.getTime(),
       formspreeAction: parsed.formspreeAction,
       icsName:
-        "sotp-event-" +
+        "event-" +
         startParts.year +
         "-" +
         startParts.month +
@@ -281,15 +298,15 @@
     const lines = [
       "BEGIN:VCALENDAR",
       "VERSION:2.0",
-      "PRODID:-//Dav//SOTP Next Up Demo//EN",
+      "PRODID:-//Dav//Next Up Demo//EN",
       "CALSCALE:GREGORIAN",
       "METHOD:PUBLISH",
       "BEGIN:VEVENT",
-      "UID:" + occurrence.icsName.replace(/\.ics$/, "") + "@sotp-next-demo",
+      "UID:" + occurrence.icsName.replace(/\.ics$/, "") + "@next-up-demo",
       "DTSTAMP:" + icsStamp(new Date()),
       "DTSTART:" + icsStamp(occurrence.start),
       "DTEND:" + icsStamp(occurrence.end),
-      "SUMMARY:" + icsEscape(occurrence.title),
+      "SUMMARY:" + icsEscape(displayTitle(occurrence.title)),
       "LOCATION:" + icsEscape(location),
       "DESCRIPTION:" + icsEscape("RSVP " + occurrence.poshUrl),
       "END:VEVENT",
@@ -315,9 +332,9 @@
   function paintThemeToggle(theme) {
     const btn = slot("theme-toggle");
     if (!btn) return;
-    // Setting-oriented toggle: stable name + aria-pressed for current dark state.
-    btn.textContent = "Dark";
-    btn.setAttribute("aria-label", "Dark mode");
+    const label = theme === THEMES.dark ? "View type post" : "View poster";
+    btn.textContent = label;
+    btn.setAttribute("aria-label", label);
     btn.setAttribute("aria-pressed", theme === THEMES.dark ? "true" : "false");
   }
 
@@ -335,6 +352,21 @@
     return next;
   }
 
+  function clearEntrance() {
+    const eventHost = slot("event");
+    if (eventHost) eventHost.classList.remove("is-entering");
+  }
+
+  function wireEntrance() {
+    const title = slot("title");
+    if (!title) return;
+    if (root.matchMedia && root.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      clearEntrance();
+      return;
+    }
+    title.addEventListener("animationend", clearEntrance, { once: true });
+  }
+
   function wireTheme() {
     const btn = slot("theme-toggle");
     if (!btn) return;
@@ -344,6 +376,7 @@
         root.document.documentElement.getAttribute("data-theme") === THEMES.dark
           ? THEMES.dark
           : THEMES.light;
+      clearEntrance();
       applyTheme(cur === THEMES.light ? THEMES.dark : THEMES.light);
     });
   }
@@ -374,9 +407,17 @@
       errorHost.textContent = "";
     }
 
-    setText("title", occurrence.title);
+    const title = displayTitle(occurrence.title);
+    setText("title", title);
     setText("when", occurrence.whenLabel);
     setText("where", occurrence.whereLabel);
+    setText("date", formatDate(occurrence.start, occurrence.zone));
+    setText("time", formatTime(occurrence.start, occurrence.zone));
+    setText("place-name", occurrence.place.name);
+    setText("place-address", occurrence.place.address);
+    if (eventHost) {
+      eventHost.dataset.titleLength = title.length > 12 ? "long" : "short";
+    }
 
     const note = slot("note");
     if (note) {
@@ -443,6 +484,7 @@
   }
 
   function boot() {
+    wireEntrance();
     wireTheme();
     const parsed = parse(readConfig());
     if (!parsed.ok) {
@@ -463,6 +505,7 @@
     parse: parse,
     resolve: resolve,
     icsText: icsText,
+    displayTitle: displayTitle,
     readTheme: readTheme,
     applyTheme: applyTheme,
     boot: boot,

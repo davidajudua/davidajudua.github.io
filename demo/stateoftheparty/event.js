@@ -1,5 +1,5 @@
 // event.js — the only file Steven touches
-// Demo data: illustrative seed from research. Not an official SOTP announcement.
+// Demo data: illustrative seed from research. Not an official State of the Party announcement.
 // `var` (not const) so the next script can read this as a shared global.
 
 var SOTP_EVENT = {
