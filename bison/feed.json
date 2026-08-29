@@ -1,0 +1,53 @@
+{
+  "updated": "2026-08-27T23:46:00-04:00",
+  "ready": [
+    {
+      "title": "CSCI In-class 1.1.1",
+      "course": "CSCI 136",
+      "due": "Sat Aug 29, 11:59 PM ET",
+      "note": "Waiting on David"
+    },
+    {
+      "title": "CSCI In-class 1.1.2",
+      "course": "CSCI 136",
+      "due": "Sat Aug 29, 11:59 PM ET",
+      "note": "Waiting on David"
+    }
+  ],
+  "submitted": [
+    {
+      "title": "CSCI A1",
+      "course": "CSCI 136",
+      "due": "Sat Aug 29",
+      "note": "Submitted Thu Aug 27"
+    },
+    {
+      "title": "BIOL PPE / Personality Matrix / Internship",
+      "course": "BIOL 101",
+      "due": "Aug 26",
+      "note": "Submitted Aug 26"
+    }
+  ],
+  "submitted_archive": [
+    {
+      "title": "GERM HW#1",
+      "course": "GERM 100",
+      "due": "Aug 21",
+      "note": "Submitted (late)"
+    },
+    {
+      "title": "GERM HW#2",
+      "course": "GERM 100",
+      "due": "Fri Aug 28",
+      "note": "Submitted"
+    }
+  ],
+  "upcoming": [
+    {
+      "title": "BIOL Ch.1 quiz",
+      "course": "BIOL 101",
+      "due": "Thu Sep 3",
+      "note": null
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Bison | David Ajudua</title>
+  <meta name="theme-color" content="#08090c">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css?v=23">
+  <link rel="stylesheet" href="./board.css">
+</head>
+<body>
+
+  <!-- The Set -->
+  <div class="bg-poster" aria-hidden="true"></div>
+  <video class="bg-video" autoplay muted loop playsinline webkit-playsinline preload="auto"
+         poster="/assets/ambient-poster.jpg" aria-hidden="true" tabindex="-1">
+    <source src="/assets/ambient.mp4" type="video/mp4">
+  </video>
+  <div class="bg-overlay" aria-hidden="true"></div>
+
+  <nav class="topnav" role="navigation" aria-label="Main navigation">
+    <a href="/" class="topnav__logo">David Ajudua</a>
+    <ul class="topnav__links">
+      <li><a href="/" class="topnav__link">Home</a></li>
+    </ul>
+  </nav>
+
+  <main class="panel bison" id="top">
+    <header class="bison__head">
+      <p class="eyebrow">School packets</p>
+      <h1 class="bison__title">Bison</h1>
+      <p class="bison__updated" id="bison-updated"></p>
+    </header>
+    <div class="bison-board" id="bison-board" aria-live="polite"></div>
+  </main>
+
+  <script src="./board.js" defer></script>
+</body>
+</html>

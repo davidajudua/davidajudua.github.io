@@ -1,0 +1,128 @@
+/* Bison board — layout only; tokens from /css/style.css */
+
+.bison {
+  padding-top: calc(var(--panel-pad-y) * 0.55);
+  min-height: 100vh;
+}
+
+.bison__head {
+  margin-bottom: 2.5rem;
+  max-width: 40rem;
+}
+
+.bison__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: var(--text-bright);
+  text-shadow: 0 2px 16px var(--black-a70);
+}
+
+.bison__updated {
+  margin-top: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  text-shadow: 0 1px 10px var(--black-a65);
+}
+
+.bison-board {
+  display: grid;
+  gap: 2rem;
+}
+
+.bison-bucket__label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: var(--fw-regular);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.9rem;
+  text-shadow: 0 1px 10px var(--black-a65);
+}
+
+.bison-bucket__list {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.bison-item {
+  border: 1px solid var(--border);
+  background: var(--bg-panel);
+  -webkit-backdrop-filter: var(--frost);
+  backdrop-filter: var(--frost);
+  border-radius: var(--radius-card);
+  padding: 1.15rem 1.35rem;
+}
+
+.bison-item__title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: var(--fw-semibold);
+  color: var(--text-bright);
+  letter-spacing: -0.02em;
+}
+
+.bison-item__meta {
+  margin-top: 0.3rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.bison-item__note {
+  margin-top: 0.55rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.bison-empty {
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-card);
+  padding: 1.1rem 1.25rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  background: var(--bg-card);
+}
+
+.bison-more {
+  display: inline-block;
+  margin-top: 0.9rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  cursor: pointer;
+  text-shadow: 0 1px 10px var(--black-a65);
+}
+
+.bison-more:hover {
+  color: var(--accent-hover);
+}
+
+.bison-more:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+@media (min-width: 900px) {
+  .bison-board {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+    align-items: start;
+  }
+}
+
+@media (max-width: 768px) {
+  .bison {
+    padding-top: 6rem;
+  }
+}
