@@ -1,9 +1,20 @@
-:root {
+:root,
+[data-theme="light"] {
   --ink: #141414;
   --paper: #f3f2ee;
   --muted: #9c9a93;
   --muted-dark: #7c7a73;
   --maxw: 1100px;
+  color-scheme: light;
+}
+
+/* Same paper/ink language, swapped. Not portfolio night/amber. */
+[data-theme="dark"] {
+  --ink: #f3f2ee;
+  --paper: #141414;
+  --muted: #8a8880;
+  --muted-dark: #a8a69e;
+  color-scheme: dark;
 }
 
 * {
@@ -57,8 +68,41 @@ body {
   font-weight: 600;
 }
 
+.demo-banner-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px 24px;
+}
+
 .demo-banner p {
   max-width: 62ch;
+}
+
+.theme-toggle {
+  flex-shrink: 0;
+  background: transparent;
+  border: 2px solid var(--ink);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.theme-toggle:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.theme-toggle:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
 }
 
 .hero {
@@ -259,7 +303,8 @@ footer a:hover {
     transform: none;
   }
 
-  .btn {
+  .btn,
+  .theme-toggle {
     transition: none;
   }
 }

@@ -1,6 +1,8 @@
 (function (root) {
   const ZONE = "America/New_York";
   const WEEKDAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const THEME_KEY = "sotp-next-theme";
+  const THEMES = Object.freeze({ light: "light", dark: "dark" });
 
   const SERIES = Object.freeze({
     title: "SOTP Run Club",
@@ -300,6 +302,52 @@
     return document.querySelector("[data-slot=\"" + name + "\"]");
   }
 
+  function readTheme() {
+    try {
+      const stored = localStorage.getItem(THEME_KEY);
+      if (stored === THEMES.light || stored === THEMES.dark) return stored;
+    } catch (e) {
+      /* private mode / blocked storage */
+    }
+    return THEMES.light;
+  }
+
+  function paintThemeToggle(theme) {
+    const btn = slot("theme-toggle");
+    if (!btn) return;
+    // Setting-oriented toggle: stable name + aria-pressed for current dark state.
+    btn.textContent = "Dark";
+    btn.setAttribute("aria-label", "Dark mode");
+    btn.setAttribute("aria-pressed", theme === THEMES.dark ? "true" : "false");
+  }
+
+  function applyTheme(theme) {
+    const next = theme === THEMES.dark ? THEMES.dark : THEMES.light;
+    if (root.document && root.document.documentElement) {
+      root.document.documentElement.setAttribute("data-theme", next);
+    }
+    try {
+      localStorage.setItem(THEME_KEY, next);
+    } catch (e) {
+      /* ignore write failures; attribute still applies for this load */
+    }
+    paintThemeToggle(next);
+    return next;
+  }
+
+  function wireTheme() {
+    const btn = slot("theme-toggle");
+    if (!btn) return;
+    applyTheme(readTheme());
+    btn.addEventListener("click", function () {
+      const cur =
+        root.document.documentElement.getAttribute("data-theme") === THEMES.dark
+          ? THEMES.dark
+          : THEMES.light;
+      applyTheme(cur === THEMES.light ? THEMES.dark : THEMES.light);
+    });
+  }
+
   function setText(name, text) {
     const node = slot(name);
     if (node) node.textContent = text;
@@ -395,6 +443,7 @@
   }
 
   function boot() {
+    wireTheme();
     const parsed = parse(readConfig());
     if (!parsed.ok) {
       paintError(parsed.error);
@@ -410,9 +459,12 @@
 
   root.SOTP_NEXT = {
     SERIES: SERIES,
+    THEME_KEY: THEME_KEY,
     parse: parse,
     resolve: resolve,
     icsText: icsText,
+    readTheme: readTheme,
+    applyTheme: applyTheme,
     boot: boot,
   };
 

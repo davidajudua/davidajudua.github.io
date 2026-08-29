@@ -1,11 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Next Up — State of the Party</title>
   <meta name="description" content="This week's State of the Party event. Demo page, not an official announcement.">
   <meta name="robots" content="noindex,nofollow">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("sotp-next-theme");
+        if (t !== "light" && t !== "dark") t = "light";
+        document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -13,8 +24,9 @@
 </head>
 <body>
   <div class="demo-banner">
-    <div class="wrap">
+    <div class="wrap demo-banner-row">
       <p data-slot="demo-banner">Dav's pitch demo. Seeded illustrative data, not an official State of the Party announcement.</p>
+      <button type="button" class="theme-toggle" data-slot="theme-toggle" aria-pressed="false" aria-label="Dark mode">Dark</button>
     </div>
   </div>
 
