@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-30T11:46:00-04:00",
+  "updated": "2026-08-30T14:46:00-04:00",
   "ready": [],
   "submitted": [
     {
@@ -24,23 +24,22 @@
       "title": "BIOL PPE / Personality Matrix / Internship",
       "course": "BIOL 101",
       "due": "Aug 26",
-      "note": "Submitted Aug 26"
-    }
-  ],
-  "submitted_archive": [
+      "note": "Submitted Aug 26; PPE/Matrix due tonight"
+    },
     {
       "title": "GERM HW#1",
       "course": "GERM 100",
       "due": "Aug 21",
-      "note": "Submitted (late)"
+      "note": "Graded 100 Sun Aug 30 10:57 AM ET (late submit)"
     },
     {
       "title": "GERM HW#2",
       "course": "GERM 100",
       "due": "Fri Aug 28",
-      "note": "Submitted"
+      "note": "Graded 100 Sun Aug 30 10:58 AM ET"
     }
   ],
+  "submitted_archive": [],
   "upcoming": [
     {
       "title": "BIOL Week 3 Quiz / Labster / Pivot",
