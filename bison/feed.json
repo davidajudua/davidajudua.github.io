@@ -1,63 +1,64 @@
 {
-  "updated": "2026-08-31T08:46:00-04:00",
+  "updated": "2026-08-31T12:24:20.012313-04:00",
   "ready": [],
+  "upcoming": [
+    {
+      "title": "BIOL Week 3 Quiz / Labster / Pivot",
+      "course": "BIOL 101",
+      "due": "Sun Sep 6 11:59 PM ET",
+      "note": "David clicks; not a packet"
+    },
+    {
+      "title": "BIOL Ch.1 Adaptive Quiz",
+      "course": "BIOL 101",
+      "due": "Thu Sep 3 11:59 PM ET",
+      "note": "Achieve; David clicks"
+    },
+    {
+      "title": "GERM HW#3",
+      "course": "GERM 100",
+      "due": "Thu Sep 3 (syllabus; not on Canvas yet)",
+      "note": "Wait until Canvas posts it"
+    }
+  ],
   "submitted": [
     {
       "title": "CSCI In-class 1.1.1",
       "course": "CSCI 136",
-      "due": "Sat Aug 29, 11:59 PM ET",
-      "note": "Submitted late Sun Aug 30 12:41 AM ET"
+      "due": "Sat Aug 29 (late Sun Aug 30 12:41 AM)",
+      "note": "Submitted LATE; ungraded"
     },
     {
       "title": "CSCI In-class 1.1.2",
       "course": "CSCI 136",
-      "due": "Sat Aug 29, 11:59 PM ET",
-      "note": "Submitted late Sun Aug 30 12:42 AM ET"
+      "due": "Sat Aug 29 (late Sun Aug 30 12:42 AM)",
+      "note": "Submitted LATE; ungraded"
     },
     {
       "title": "CSCI A1",
       "course": "CSCI 136",
       "due": "Sat Aug 29",
-      "note": "Submitted Thu Aug 27"
+      "note": "Submitted Thu Aug 27; ungraded"
     },
     {
-      "title": "BIOL PPE / Personality Matrix / Internship",
+      "title": "BIOL PPE / Matrix / Internship / Orientation",
       "course": "BIOL 101",
-      "due": "Aug 26",
-      "note": "Submitted Aug 26; PPE/Matrix due passed Sun Aug 30"
-    },
-    {
-      "title": "GERM HW#1",
-      "course": "GERM 100",
-      "due": "Aug 21",
-      "note": "Graded 100 Sun Aug 30 10:57 AM ET (late submit)"
-    },
-    {
-      "title": "GERM HW#2",
-      "course": "GERM 100",
-      "due": "Fri Aug 28",
-      "note": "Graded 100 Sun Aug 30 10:58 AM ET"
+      "due": "Orientation due stamp Mon Aug 31",
+      "note": "Orientation 4.98/5; PPE/Matrix/Internship submitted ungraded"
     }
   ],
-  "submitted_archive": [],
-  "upcoming": [
+  "submitted_archive": [
     {
-      "title": "BIOL Orientation (dup 631361)",
-      "course": "BIOL 101",
-      "due": "Mon Aug 31 11:59 PM",
-      "note": "621173 graded 4.98/5; dup still dash \u2014 do not launch"
+      "title": "GERM HW#1 Myths",
+      "course": "GERM 100",
+      "due": "Aug 21",
+      "note": "Graded 100/100 Sun Aug 30"
     },
     {
-      "title": "BIOL Week 3 Quiz / Labster / Pivot",
-      "course": "BIOL 101",
-      "due": "Sun Sep 6",
-      "note": "Lab Week 3 unlocked Sun Aug 30"
-    },
-    {
-      "title": "BIOL Ch.1 quiz",
-      "course": "BIOL 101",
-      "due": "Thu Sep 3",
-      "note": null
+      "title": "GERM HW#2 Comparison",
+      "course": "GERM 100",
+      "due": "Fri Aug 28",
+      "note": "Graded 100/100 Sun Aug 30"
     }
   ]
 }
