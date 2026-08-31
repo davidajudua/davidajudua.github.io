@@ -1,6 +1,13 @@
 {
-  "updated": "2026-08-31T14:46:00-04:00",
-  "ready": [],
+  "updated": "2026-08-31T17:46:00-04:00",
+  "ready": [
+    {
+      "title": "GERM HW#3",
+      "course": "GERM 100",
+      "due": "Fri Sep 4 11:59 PM ET",
+      "note": "Option 1 packet ready (634735); wait for David go - do not Canvas-submit"
+    }
+  ],
   "upcoming": [
     {
       "title": "BIOL Orientation (due stamp)",
@@ -13,12 +20,6 @@
       "course": "BIOL 101",
       "due": "Thu Sep 3 11:59 PM ET",
       "note": "Achieve; David clicks"
-    },
-    {
-      "title": "GERM HW#3",
-      "course": "GERM 100",
-      "due": "Fri Sep 4 11:59 PM ET",
-      "note": "Unsubmitted (634735); not drafted this pass"
     },
     {
       "title": "BIOL Week 3 Quiz / Labster / Pivot",
@@ -50,7 +51,7 @@
       "title": "BIOL PPE / Matrix / Internship / Orientation",
       "course": "BIOL 101",
       "due": "Orientation due stamp Mon Aug 31",
-      "note": "Orientation 4.98/5; PPE graded 15/15 Aug 31 11:43 AM ET; Matrix + Internship still ungraded"
+      "note": "Orientation 4.98/5; PPE graded 15/15 Mon Aug 31 11:43 AM ET; Matrix + Internship still ungraded"
     }
   ],
   "submitted_archive": [
