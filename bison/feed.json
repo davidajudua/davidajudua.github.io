@@ -12,8 +12,8 @@
     {
       "title": "BIOL Orientation (due stamp)",
       "course": "BIOL 101",
-      "due": "Mon Aug 31 11:59 PM ET (tonight)",
-      "note": "621173 graded 4.98/5; dup 631361 still dash — do not launch"
+      "due": "Mon Aug 31 11:59 PM ET (PASSED)",
+      "note": "621173 graded 4.98/5; dup 631361 still dash \u2014 do not launch"
     },
     {
       "title": "BIOL Ch.1 Adaptive Quiz",
@@ -67,5 +67,6 @@
       "due": "Fri Aug 28",
       "note": "Graded 100/100 Sun Aug 30"
     }
-  ]
+  ],
+  "last_scan": "2026-09-01 8:46 AM ET"
 }
