@@ -1,13 +1,6 @@
 {
-  "updated": "2026-09-03T12:13:00-04:00",
-  "ready": [
-    {
-      "title": "GERM HW#3",
-      "course": "GERM 100",
-      "due": "Fri Sep 4 11:59 PM ET",
-      "note": "Option 1 packet ready (634735); wait for David go - do not Canvas-submit"
-    }
-  ],
+  "updated": "2026-09-03T13:43:00-04:00",
+  "ready": [],
   "upcoming": [
     {
       "title": "BIOL Ch.1 Adaptive Quiz",
@@ -29,6 +22,12 @@
     }
   ],
   "submitted": [
+    {
+      "title": "GERM HW#3",
+      "course": "GERM 100",
+      "due": "Fri Sep 4 11:59 PM ET",
+      "note": "Submitted Thu Sep 3 1:43 PM ET (GERM100-HW3-Ajudua.pdf); ungraded; do not New Attempt"
+    },
     {
       "title": "CSCI In-class 1.1.1",
       "course": "CSCI 136",
@@ -68,5 +67,5 @@
       "note": "Graded 100/100 Sun Aug 30"
     }
   ],
-  "last_scan": "2026-09-03 8:46 AM ET"
+  "last_scan": "2026-09-03 8:46 AM ET; HW#3 submitted live 1:43 PM ET"
 }
