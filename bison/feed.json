@@ -1,6 +1,13 @@
 {
-  "updated": "2026-09-03T13:43:00-04:00",
-  "ready": [],
+  "updated": "2026-09-03T14:05:00-04:00",
+  "ready": [
+    {
+      "title": "CSCI Assignment 2",
+      "course": "CSCI 136",
+      "due": "Sat Sep 5 11:59 PM ET",
+      "note": "636121 packet ready (task1-3.py + run jpeg); wait for David go - do not Canvas-submit"
+    }
+  ],
   "upcoming": [
     {
       "title": "BIOL Ch.1 Adaptive Quiz",
@@ -67,5 +74,5 @@
       "note": "Graded 100/100 Sun Aug 30"
     }
   ],
-  "last_scan": "2026-09-03 8:46 AM ET; HW#3 submitted live 1:43 PM ET"
+  "last_scan": "2026-09-03 8:46 AM ET; HW#3 submitted live 1:43 PM ET; A2 packet 2:05 PM ET"
 }
