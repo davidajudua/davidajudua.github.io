@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-03T14:29:00-04:00",
+  "updated": "2026-09-03T17:46:00-04:00",
   "ready": [
     {
       "title": "CSCI Assignment 2",
@@ -10,10 +10,28 @@
   ],
   "upcoming": [
     {
+      "title": "CSCI Lab 1.1.1",
+      "course": "CSCI 136",
+      "due": "Sat Sep 5 11:59 PM ET",
+      "note": "Grades-UI only this pass; not drafted; prompt not opened"
+    },
+    {
+      "title": "BIOL Adaptive Ch.2",
+      "course": "BIOL 101",
+      "due": "Fri Sep 4 11:59 PM ET",
+      "note": "Achieve / external tool; David clicks; not a packet"
+    },
+    {
       "title": "BIOL Week 3 Quiz / Labster / Pivot",
       "course": "BIOL 101",
       "due": "Sun Sep 6 11:59 PM ET",
       "note": "David clicks; not a packet; Week 3 Quiz locked until Fri Sep 4 12am"
+    },
+    {
+      "title": "CSCI Lab 1.1.2",
+      "course": "CSCI 136",
+      "due": "Sat Sep 12 11:59 PM ET",
+      "note": "Grades-UI only; not drafted; farther out"
     },
     {
       "title": "BIOL Orientation (due stamp)",
@@ -74,5 +92,5 @@
       "note": "Graded 100/100 Sun Aug 30"
     }
   ],
-  "last_scan": "2026-09-03 8:46 AM ET; HW#3 submitted live 1:43 PM ET; A2 packet 2:05 PM ET; Ch.1 Adaptive mastery 2:29 PM ET"
+  "last_scan": "2026-09-03 2:46 PM ET; packets 5:46 PM ET; A2 still submit-ready; HW#3 submitted 1:43 PM; Ch.1 Achieve 604/600 at 2:29 PM"
 }
