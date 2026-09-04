@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-03T17:46:00-04:00",
+  "updated": "2026-09-03T23:46:00-04:00",
   "ready": [
     {
       "title": "CSCI Assignment 2",
@@ -45,7 +45,7 @@
       "title": "BIOL Ch.1 Adaptive Quiz",
       "course": "BIOL 101",
       "due": "Thu Sep 3 11:59 PM ET",
-      "note": "Completed mastery Thu Sep 3 2:29 PM ET (Achieve 604/600); Canvas grade may still be pending sync; do not relaunch"
+      "note": "Canvas graded 20/20 (8:46 PM LTI sync); Achieve mastery 604/600 at 2:29 PM ET; do not relaunch"
     },
     {
       "title": "GERM HW#3",
@@ -92,5 +92,5 @@
       "note": "Graded 100/100 Sun Aug 30"
     }
   ],
-  "last_scan": "2026-09-03 2:46 PM ET; packets 5:46 PM ET; A2 still submit-ready; HW#3 submitted 1:43 PM; Ch.1 Achieve 604/600 at 2:29 PM"
+  "last_scan": "2026-09-03 8:46 PM ET scan; packets 11:46 PM ET; A2 still submit-ready; HW#3 submitted 1:43 PM; Ch.1 Canvas graded 20/20 (LTI synced); BIOL 99.95%"
 }
