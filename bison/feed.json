@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-03T23:46:00-04:00",
+  "updated": "2026-09-04T17:46:00-04:00",
   "ready": [
     {
       "title": "CSCI Assignment 2",
@@ -13,19 +13,19 @@
       "title": "CSCI Lab 1.1.1",
       "course": "CSCI 136",
       "due": "Sat Sep 5 11:59 PM ET",
-      "note": "Grades-UI only this pass; not drafted; prompt not opened"
+      "note": "Due TOMORROW Sat Sep 5; Grades-UI only; not drafted; prompt not opened"
     },
     {
       "title": "BIOL Adaptive Ch.2",
       "course": "BIOL 101",
       "due": "Fri Sep 4 11:59 PM ET",
-      "note": "Achieve / external tool; David clicks; not a packet"
+      "note": "Achieve / external tool; due TODAY; Load not clicked; David clicks; not a packet"
     },
     {
       "title": "BIOL Week 3 Quiz / Labster / Pivot",
       "course": "BIOL 101",
       "due": "Sun Sep 6 11:59 PM ET",
-      "note": "David clicks; not a packet; Week 3 Quiz locked until Fri Sep 4 12am"
+      "note": "David clicks; not a packet; Week 3 Quiz UNLOCKED (Begin not clicked)"
     },
     {
       "title": "CSCI Lab 1.1.2",
@@ -92,5 +92,5 @@
       "note": "Graded 100/100 Sun Aug 30"
     }
   ],
-  "last_scan": "2026-09-03 8:46 PM ET scan; packets 11:46 PM ET; A2 still submit-ready; HW#3 submitted 1:43 PM; Ch.1 Canvas graded 20/20 (LTI synced); BIOL 99.95%"
+  "last_scan": "2026-09-04 2:46 PM ET scan; packets 5:46 PM ET; A2 still submit-ready; HW#3 submitted 1:43 PM; Ch.1 Canvas graded 20/20; Ch.2 due TODAY; Week3 unlocked; BIOL 99.95%"
 }
