@@ -1,11 +1,11 @@
 {
-  "updated": "2026-09-04T18:47:00-04:00",
+  "updated": "2026-09-04T18:53:00-04:00",
   "ready": [
     {
       "title": "CSCI Lab 1.1.1",
       "course": "CSCI 136",
       "due": "Sat Sep 5 11:59 PM ET",
-      "note": "633452 packet ready (explain + 7 .py); wait for David go - do not Canvas-submit"
+      "note": "633452 packet ready (explain + 7 .py; authoritative PROMPT.md); wait for David go - do not Canvas-submit"
     }
   ],
   "upcoming": [
@@ -92,5 +92,5 @@
       "note": "Graded 100/100 Sun Aug 30"
     }
   ],
-  "last_scan": "2026-09-04 2:46 PM ET scan; packets 6:47 PM ET; Lab 1.1.1 ready; Ch.2 Achieve 615/600 done (Canvas LTI pending); A2 SUBMITTED 6:25 PM ET; HW#3 submitted; Ch.1 Canvas 20/20; BIOL 99.95%"
+  "last_scan": "2026-09-04 2:46 PM ET scan; packets 6:53 PM ET; Lab 1.1.1 ready (prompt-aligned); A2 SUBMITTED 6:25 PM ET; Ch.2 Achieve done; HW#3 submitted"
 }
