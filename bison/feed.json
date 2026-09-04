@@ -1,18 +1,6 @@
 {
-<<<<<<< HEAD
-  "updated": "2026-09-04T18:25:00-04:00",
-  "ready": [],
-=======
   "updated": "2026-09-04T18:39:00-04:00",
-  "ready": [
-    {
-      "title": "CSCI Assignment 2",
-      "course": "CSCI 136",
-      "due": "Sat Sep 5 11:59 PM ET",
-      "note": "636121 packet ready (task1-3.py + run jpeg); wait for David go - do not Canvas-submit"
-    }
-  ],
->>>>>>> d048482 (school: BIOL Ch.2 Adaptive Quiz completed 615/600 Fri Sep 4)
+  "ready": [],
   "upcoming": [
     {
       "title": "CSCI Lab 1.1.1",
@@ -21,23 +9,10 @@
       "note": "Due TOMORROW Sat Sep 5; Grades-UI only; not drafted; prompt not opened"
     },
     {
-<<<<<<< HEAD
-      "title": "BIOL Adaptive Ch.2",
-      "course": "BIOL 101",
-      "due": "Fri Sep 4 11:59 PM ET",
-      "note": "Achieve / external tool; due TODAY; Load not clicked; David clicks; not a packet"
-    },
-    {
       "title": "BIOL Week 3 Quiz / Labster / Pivot",
       "course": "BIOL 101",
       "due": "Sun Sep 6 11:59 PM ET",
       "note": "David clicks; not a packet; Week 3 Quiz UNLOCKED (Begin not clicked)"
-=======
-      "title": "BIOL Week 3 Quiz / Labster / Pivot",
-      "course": "BIOL 101",
-      "due": "Sun Sep 6 11:59 PM ET",
-      "note": "David clicks; not a packet; Week 3 Quiz unlocked (Begin not clicked)"
->>>>>>> d048482 (school: BIOL Ch.2 Adaptive Quiz completed 615/600 Fri Sep 4)
     },
     {
       "title": "CSCI Lab 1.1.2",
@@ -54,17 +29,16 @@
   ],
   "submitted": [
     {
-<<<<<<< HEAD
-      "title": "CSCI Assignment 2",
-      "course": "CSCI 136",
-      "due": "Sat Sep 5 11:59 PM ET",
-      "note": "Submitted Fri Sep 4 6:25 PM ET (New Attempt; text entry with full task1-3.py); 6:22 PM was filenames-only; Canvas text-entry only, screenshot not uploadable via UI; ungraded; do not New Attempt"
-=======
       "title": "BIOL Ch.2 Adaptive Quiz",
       "course": "BIOL 101",
       "due": "Fri Sep 4 11:59 PM ET",
       "note": "Achieve mastery 615/600 ~6:39 PM ET Fri Sep 4; Canvas still - / 20 (LTI pending); course 71775; do not relaunch"
->>>>>>> d048482 (school: BIOL Ch.2 Adaptive Quiz completed 615/600 Fri Sep 4)
+    },
+    {
+      "title": "CSCI Assignment 2",
+      "course": "CSCI 136",
+      "due": "Sat Sep 5 11:59 PM ET",
+      "note": "Submitted Fri Sep 4 6:25 PM ET (New Attempt; text entry with full task1-3.py); 6:22 PM was filenames-only; Canvas text-entry only, screenshot not uploadable via UI; ungraded; do not New Attempt"
     },
     {
       "title": "BIOL Ch.1 Adaptive Quiz",
@@ -117,9 +91,5 @@
       "note": "Graded 100/100 Sun Aug 30"
     }
   ],
-<<<<<<< HEAD
-  "last_scan": "2026-09-04 2:46 PM ET scan; packets 6:25 PM ET; A2 SUBMITTED 6:25 PM ET (text-entry only; 6:22 filenames-only); HW#3 submitted 1:43 PM; Ch.1 Canvas graded 20/20; Ch.2 due TODAY; Week3 unlocked; BIOL 99.95%"
-=======
-  "last_scan": "2026-09-04 2:46 PM ET scan; packets 6:39 PM ET; Ch.2 Achieve 615/600 done (Canvas LTI pending); A2 still submit-ready; HW#3 submitted; Ch.1 Canvas 20/20; BIOL 99.95%"
->>>>>>> d048482 (school: BIOL Ch.2 Adaptive Quiz completed 615/600 Fri Sep 4)
+  "last_scan": "2026-09-04 2:46 PM ET scan; packets 6:39 PM ET; Ch.2 Achieve 615/600 done (Canvas LTI pending); A2 SUBMITTED 6:25 PM ET; HW#3 submitted; Ch.1 Canvas 20/20; BIOL 99.95%"
 }
