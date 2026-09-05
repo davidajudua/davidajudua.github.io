@@ -1,11 +1,11 @@
 {
-  "updated": "2026-09-04T18:53:00-04:00",
+  "updated": "2026-09-05T17:46:00-04:00",
   "ready": [
     {
       "title": "CSCI Lab 1.1.1",
       "course": "CSCI 136",
-      "due": "Sat Sep 5 11:59 PM ET",
-      "note": "633452 packet ready (explain + 7 .py; authoritative PROMPT.md); wait for David go - do not Canvas-submit"
+      "due": "Sat Sep 5 11:59 PM ET (TODAY)",
+      "note": "633452 still submit-ready (explain + 7 .py; locked Fri; Fable 18/20; reconfirmed Sat 5:46 PM); due TONIGHT; wait for David go - do not Canvas-submit"
     }
   ],
   "upcoming": [
@@ -33,7 +33,7 @@
       "title": "BIOL Ch.2 Adaptive Quiz",
       "course": "BIOL 101",
       "due": "Fri Sep 4 11:59 PM ET",
-      "note": "Achieve mastery 615/600 ~6:39 PM ET Fri Sep 4; Canvas still - / 20 (LTI pending); course 71775; do not relaunch"
+      "note": "Canvas graded 20/20; Achieve mastery 615/600 ~6:39 PM ET Fri Sep 4; course 71775; do not relaunch"
     },
     {
       "title": "CSCI Assignment 2",
@@ -92,5 +92,5 @@
       "note": "Graded 100/100 Sun Aug 30"
     }
   ],
-  "last_scan": "2026-09-04 2:46 PM ET scan; packets 6:53 PM ET; Lab 1.1.1 ready (prompt-aligned); A2 SUBMITTED 6:25 PM ET; Ch.2 Achieve done; HW#3 submitted"
+  "last_scan": "2026-09-05 2:46 PM ET scan (AUTH_OK; no material change); packets 5:46 PM ET; Lab 1.1.1 still submit-ready due tonight; A2 SUBMITTED 6:25 PM ET Fri; Ch.2 Canvas 20/20; BIOL 99.97%; HW#3 submitted"
 }
