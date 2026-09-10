@@ -60,6 +60,7 @@
   /* --- Semantic surfaces --- */
   --bg-night: var(--night-900);
   --bg-panel: rgba(10 12 17 / 0.58);   /* frosted furniture — the set glows through */
+  --bg-panel-soft: rgba(10 12 17 / 0.50);
   --bg-reading: rgba(8 9 13 / 0.88);   /* long-form reading surfaces, heavier tint */
   --bg-elevated: var(--night-800);     /* modal — fully solid */
   --bg-card: var(--white-a03);
@@ -127,12 +128,14 @@
   --radius-xs: 3px;
   --radius-sm: 4px;
   --radius-card: 18px;
+  --radius-compact: 12px;
   --radius-modal: 20px;
   --radius-pill: 100px;
   --radius-round: 50%;
 
   /* --- Blur / frost --- */
   --frost: blur(18px) saturate(130%);        /* panels over the set */
+  --frost-soft: blur(14px) saturate(110%);
   --frost-nav: saturate(160%) blur(14px);    /* top nav glass */
   --frost-backdrop: blur(6px);               /* mobile nav scrim */
   --frost-modal: blur(8px);                  /* work-modal scrim */
@@ -167,6 +170,7 @@
   --max-width: 1200px;
   --reading-width: 680px;
   --panel-max: 1280px;
+  --surface-compact: 800px;
   --panel-pad-y: 9rem;
   --panel-pad-x: 3rem;
   --nav-height: 66px;
@@ -1350,8 +1354,12 @@ a.contact__value:hover { color: var(--accent); }
   --text-secondary: var(--text-secondary-readable);
   --text-muted: var(--text-muted-readable);
   --panel-pad-y: clamp(5rem, 7vw, 7rem);
-  --furniture-pad-x: var(--space-12);
-  --furniture-pad-y: var(--space-10);
+  --furniture-pad-x: var(--space-8);
+  --furniture-pad-y: var(--space-6);
+  --bg-panel: var(--bg-panel-soft);
+  --frost: var(--frost-soft);
+  --border: var(--white-a04);
+  --radius-card: var(--radius-compact);
   --content-inset: calc(var(--furniture-pad-x) + 1px);
 }
 .home .bg-video { display: none; }
@@ -1361,7 +1369,10 @@ a.contact__value:hover { color: var(--accent); }
   .home .bg-poster { background-image: url("/assets/city-landscape-poster.jpg"); }
 }
 .home .reveal { opacity: 1; transform: none; transition: none; }
-.home .panel { text-align: center; }
+.home .panel {
+  max-width: calc(var(--surface-compact) + 2 * var(--panel-pad-x));
+  text-align: center;
+}
 .home section[id] { scroll-margin-top: var(--nav-height); }
 .home .about { min-height: auto; justify-content: center; }
 .home .about__content {
@@ -1376,7 +1387,7 @@ a.contact__value:hover { color: var(--accent); }
 .home .about__lead, .home .about__sub { margin-inline: auto; }
 .home .hero__role {
   display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; letter-spacing: 0.16em;
-  padding: var(--space-3) var(--space-4); background: var(--bg-reading);
+  padding: var(--space-2) var(--space-4); background: var(--bg-panel);
   border-radius: var(--radius-pill);
 }
 .home .hero__role > span { white-space: nowrap; }
@@ -1387,6 +1398,7 @@ a.contact__value:hover { color: var(--accent); }
 }
 .home .work__head { margin: 0 var(--content-inset) var(--space-10); }
 .home .work-card { padding: var(--furniture-pad-y) var(--furniture-pad-x); }
+.home .work-card:hover { border-color: var(--border-hover); }
 .home .work__list { max-width: none; gap: var(--space-6); }
 .home .work-card__num { display: none; }
 .home .work-card__title { overflow-wrap: anywhere; }
@@ -1394,7 +1406,12 @@ a.contact__value:hover { color: var(--accent); }
 .home .work-card__body { align-items: center; }
 .home .work-card__meta { flex-direction: column; align-items: center; gap: var(--space-2); }
 .home .work-card__tags, .home .work-card__actions { justify-content: center; }
-.home .work-card--cta { text-align: center; }
+.home .work-card__tags span { background: none; color: var(--text-secondary); }
+.home .work-card__actions { margin-top: var(--space-4); }
+.home .work-card--cta {
+  text-align: center; background: none; border-color: transparent;
+  backdrop-filter: none; -webkit-backdrop-filter: none;
+}
 .home .work-card__cta-inner { padding: 0; align-items: center; gap: var(--space-3); }
 .home .work-card--cta .work-card__desc { max-width: none; }
 .home .work-card__details-btn, .home .work-card__link,
@@ -1407,7 +1424,7 @@ a.contact__value:hover { color: var(--accent); }
 .home .contact__name { font-size: clamp(2.8rem, 10vw, 8rem); margin-inline: var(--content-inset); }
 .home .contact__cta-row { margin-inline: var(--content-inset); justify-content: center; }
 .home .contact__cols {
-  max-width: none; gap: var(--space-8); padding: var(--furniture-pad-y) var(--furniture-pad-x);
+  max-width: none; gap: var(--space-6); padding: var(--furniture-pad-y) var(--furniture-pad-x);
   background: var(--bg-panel); backdrop-filter: var(--frost);
   -webkit-backdrop-filter: var(--frost);
   border: 1px solid var(--border); border-radius: var(--radius-card);
@@ -1415,6 +1432,7 @@ a.contact__value:hover { color: var(--accent); }
 .home .contact__value { overflow-wrap: anywhere; }
 .home .contact__cols { grid-template-columns: minmax(0, 1fr); justify-items: center; }
 .home .contact__col { width: 100%; max-width: var(--reading-width); }
+.home .contact__social { font-size: 1rem; min-height: 44px; }
 .home .work-modal__panel { text-align: center; }
 .home .work-detail__list { padding-inline: 0; list-style-position: inside; }
 .home .back-to-top { width: 44px; height: 44px; bottom: 4.75rem; }
@@ -1444,7 +1462,7 @@ a.contact__value:hover { color: var(--accent); }
 html:not(.has-js) .home .work-card__details-btn { display: none; }
 html:not(.has-js) .home .work-card__detail { display: block; margin-top: var(--space-6); }
 @media (max-width: 768px) {
-  .home { --furniture-pad-x: var(--space-6); --furniture-pad-y: var(--space-8); }
+  .home { --furniture-pad-x: var(--space-5); --furniture-pad-y: var(--space-6); }
   .home .panel { padding-block: var(--space-16); }
   .home .set-toggle { width: 44px; padding: 0; }
   .home .set-toggle__label { display: none; }

@@ -76,3 +76,10 @@ David then clarified that he wants everything centered, including text.
 Section headings, descriptions, project metadata, action groups, and project detail text are centered.
 Contact information forms one centered column.
 The nameplate remains centered.
+David asked for smaller, quieter shapes in the next review.
+Homepage surfaces now cap at 800 pixels, with 24-pixel vertical padding, softer borders and frost, and a 12-pixel corner radius.
+Technology labels and the final project link no longer have filled boxes.
+At 1440 pixels, the introduction measures 800 by 213 pixels, the first project 800 by 282, and the contact surface 800 by 482.
+All three surfaces remain centered at widths 1920, 1440, 1024, 768, 390, and 320, with no horizontal overflow.
+Project actions retain 44-pixel heights, and the project dialog still opens and closes on Escape.
+These intentional surface changes supersede the earlier frost and border preservation targets for the homepage only.
