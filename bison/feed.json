@@ -1,53 +1,96 @@
 {
-  "updated": "2026-08-27T23:46:00-04:00",
+  "updated": "2026-09-05T17:46:00-04:00",
   "ready": [
     {
-      "title": "CSCI In-class 1.1.1",
+      "title": "CSCI Lab 1.1.1",
       "course": "CSCI 136",
-      "due": "Sat Aug 29, 11:59 PM ET",
-      "note": "Waiting on David"
-    },
-    {
-      "title": "CSCI In-class 1.1.2",
-      "course": "CSCI 136",
-      "due": "Sat Aug 29, 11:59 PM ET",
-      "note": "Waiting on David"
-    }
-  ],
-  "submitted": [
-    {
-      "title": "CSCI A1",
-      "course": "CSCI 136",
-      "due": "Sat Aug 29",
-      "note": "Submitted Thu Aug 27"
-    },
-    {
-      "title": "BIOL PPE / Personality Matrix / Internship",
-      "course": "BIOL 101",
-      "due": "Aug 26",
-      "note": "Submitted Aug 26"
-    }
-  ],
-  "submitted_archive": [
-    {
-      "title": "GERM HW#1",
-      "course": "GERM 100",
-      "due": "Aug 21",
-      "note": "Submitted (late)"
-    },
-    {
-      "title": "GERM HW#2",
-      "course": "GERM 100",
-      "due": "Fri Aug 28",
-      "note": "Submitted"
+      "due": "Sat Sep 5 11:59 PM ET (TODAY)",
+      "note": "633452 still submit-ready (explain + 7 .py; locked Fri; Fable 18/20; reconfirmed Sat 5:46 PM); due TONIGHT; wait for David go - do not Canvas-submit"
     }
   ],
   "upcoming": [
     {
-      "title": "BIOL Ch.1 quiz",
+      "title": "BIOL Week 3 Quiz / Labster / Pivot",
       "course": "BIOL 101",
-      "due": "Thu Sep 3",
-      "note": null
+      "due": "Sun Sep 6 11:59 PM ET",
+      "note": "David clicks; not a packet; Week 3 Quiz UNLOCKED (Begin not clicked)"
+    },
+    {
+      "title": "CSCI Lab 1.1.2",
+      "course": "CSCI 136",
+      "due": "Sat Sep 12 11:59 PM ET",
+      "note": "Grades-UI only; not drafted; farther out"
+    },
+    {
+      "title": "BIOL Orientation (due stamp)",
+      "course": "BIOL 101",
+      "due": "Mon Aug 31 11:59 PM ET (PASSED)",
+      "note": "621173 graded 4.98/5; dup 631361 still dash - do not launch"
     }
-  ]
+  ],
+  "submitted": [
+    {
+      "title": "BIOL Ch.2 Adaptive Quiz",
+      "course": "BIOL 101",
+      "due": "Fri Sep 4 11:59 PM ET",
+      "note": "Canvas graded 20/20; Achieve mastery 615/600 ~6:39 PM ET Fri Sep 4; course 71775; do not relaunch"
+    },
+    {
+      "title": "CSCI Assignment 2",
+      "course": "CSCI 136",
+      "due": "Sat Sep 5 11:59 PM ET",
+      "note": "Submitted Fri Sep 4 6:25 PM ET (New Attempt; text entry with full task1-3.py); 6:22 PM was filenames-only; Canvas text-entry only, screenshot not uploadable via UI; ungraded; do not New Attempt"
+    },
+    {
+      "title": "BIOL Ch.1 Adaptive Quiz",
+      "course": "BIOL 101",
+      "due": "Thu Sep 3 11:59 PM ET",
+      "note": "Canvas graded 20/20 (8:46 PM LTI sync); Achieve mastery 604/600 at 2:29 PM ET; do not relaunch"
+    },
+    {
+      "title": "GERM HW#3",
+      "course": "GERM 100",
+      "due": "Fri Sep 4 11:59 PM ET",
+      "note": "Submitted Thu Sep 3 1:43 PM ET (GERM100-HW3-Ajudua.pdf); ungraded; do not New Attempt"
+    },
+    {
+      "title": "CSCI In-class 1.1.1",
+      "course": "CSCI 136",
+      "due": "Sat Aug 29 (late Sun Aug 30 12:41 AM)",
+      "note": "Submitted LATE; ungraded"
+    },
+    {
+      "title": "CSCI In-class 1.1.2",
+      "course": "CSCI 136",
+      "due": "Sat Sep 5 11:59 PM ET (extended; submitted Aug 30)",
+      "note": "Submitted; late flag cleared; ungraded"
+    },
+    {
+      "title": "CSCI A1",
+      "course": "CSCI 136",
+      "due": "Sat Aug 29",
+      "note": "Submitted Thu Aug 27; ungraded"
+    },
+    {
+      "title": "BIOL PPE / Matrix / Internship / Orientation",
+      "course": "BIOL 101",
+      "due": "Orientation due stamp Mon Aug 31",
+      "note": "Orientation 4.98/5; PPE graded 15/15 Mon Aug 31 11:43 AM ET; Matrix + Internship still ungraded"
+    }
+  ],
+  "submitted_archive": [
+    {
+      "title": "GERM HW#1 Myths",
+      "course": "GERM 100",
+      "due": "Aug 21",
+      "note": "Graded 100/100 Sun Aug 30"
+    },
+    {
+      "title": "GERM HW#2 Comparison",
+      "course": "GERM 100",
+      "due": "Fri Aug 28",
+      "note": "Graded 100/100 Sun Aug 30"
+    }
+  ],
+  "last_scan": "2026-09-05 2:46 PM ET scan (AUTH_OK; no material change); packets 5:46 PM ET; Lab 1.1.1 still submit-ready due tonight; A2 SUBMITTED 6:25 PM ET Fri; Ch.2 Canvas 20/20; BIOL 99.97%; HW#3 submitted"
 }
