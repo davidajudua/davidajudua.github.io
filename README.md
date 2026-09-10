@@ -6,8 +6,8 @@ Do not commit here.
 
 Source for my personal site: [davidajudua.github.io](https://davidajudua.github.io).
 
-A static, hand-built portfolio (HTML/CSS/JS, no framework) covering what I build, selected
-projects, and writing. Hosted on GitHub Pages.
+A static personal homepage (HTML/CSS/JS, no framework) about David, life at Howard, and software projects.
+Hosted on GitHub Pages.
 
 ## Structure
 
@@ -16,13 +16,16 @@ projects, and writing. Hosted on GitHub Pages.
 | `index.html` | Home |
 | `about.html` | About |
 | `projects.html` | Projects |
-| `writing.html` | Writing |
+| `writing.html` | Legacy redirect to About |
 | `contact.html` | Contact |
 | `assets/`, `css/`, `js/` | Styles, scripts, and media |
 | `styleguide.html` | Living style guide / design-system reference |
 
-The design system (tokens + usage rules) is documented in [`docs/design-system.md`](docs/design-system.md);
-tokens live in the `:root` block of `css/style.css` and are rendered live at `styleguide.html`.
+The design system (tokens + usage rules) is documented in [`docs/design-system.md`](docs/design-system.md).
+Tokens live in the `:root` block of `css/style.css` and are rendered live at `styleguide.html`.
+The background uses independent landscape and portrait videos with matching posters.
+Reduced motion and unavailable JavaScript use still images.
+The [personal homepage refresh](docs/personal-site-refresh.md) records the content direction and verification.
 
 ## Local preview
 

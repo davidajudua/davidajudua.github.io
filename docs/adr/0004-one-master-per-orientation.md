@@ -1,7 +1,15 @@
 # ADR 0004: One video Master per orientation
 
 Date: 2026-08-08
-Status: accepted, not yet implemented (extends the Swappable Video Contract from ADR 0001; the Set framing from ADR 0002 is unchanged)
+Status: implemented locally, pending publication (extends the Swappable Video Contract from ADR 0001; the Set framing from ADR 0002 is unchanged)
+
+Implementation update, 2026-09-10: implemented in the personal homepage refresh, pending publication.
+The original decision below records the earlier plan.
+Orientation selection now uses the sources' media conditions in JavaScript so resizing can reload the correct Master and reduced-motion visitors never request video bytes.
+Sources hold deferred URLs; without JavaScript, CSS selects the matching poster.
+The landscape assets are `city-landscape.mp4` and `city-landscape-poster.jpg`; the portrait pair remains `ambient.mp4` and `ambient-poster.jpg`.
+The landscape encode is 1920x1080 at 24fps, 26 seconds, 7.5 MB, with no audio.
+Its amber bridge lights work with the existing accent.
 
 ## Context
 
