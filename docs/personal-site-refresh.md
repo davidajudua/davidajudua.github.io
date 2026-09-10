@@ -65,3 +65,12 @@ Selected homepage components matched their intended property changes at all six 
 JavaScript syntax and whitespace checks passed.
 Standards review identified two corrected issues: homepage text colors needed root tokens and edited files needed CRLF normalization.
 The requirements review found no missing requirements.
+
+## Review corrections
+
+David asked for minimal copy that reads like his own texting, with less grammatical polish and no performative origin story.
+The homepage introduction and project summaries use short, casual lowercase sentences.
+He also identified inconsistent alignment.
+The introduction, project cards, and contact surface share their full structural width and common horizontal padding.
+Standalone section headings and contact actions use the same text inset.
+The nameplate remains centered as the intentional hero treatment.
