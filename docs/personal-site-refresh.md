@@ -77,7 +77,8 @@ Section headings, descriptions, project metadata, action groups, and project det
 Contact information forms one centered column.
 The nameplate remains centered.
 David asked for smaller, quieter shapes in the next review.
-Homepage surfaces now cap at 800 pixels, with 24-pixel vertical padding, softer borders and frost, and a 12-pixel corner radius.
+Homepage surfaces now cap at 800 pixels, with 24-pixel vertical padding, softer borders and frost, and a 28-pixel corner radius.
+David requested rounder corners after reviewing the initial 12-pixel treatment; panel sizes and alignment stay unchanged.
 Technology labels and the final project link no longer have filled boxes.
 At 1440 pixels, the introduction measures 800 by 213 pixels, the first project 800 by 282, and the contact surface 800 by 482.
 All three surfaces remain centered at widths 1920, 1440, 1024, 768, 390, and 320, with no horizontal overflow.
