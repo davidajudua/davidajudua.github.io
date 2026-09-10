@@ -72,5 +72,7 @@ David asked for minimal copy that reads like his own texting, with less grammati
 The homepage introduction and project summaries use short, casual lowercase sentences.
 He also identified inconsistent alignment.
 The introduction, project cards, and contact surface share their full structural width and common horizontal padding.
-Standalone section headings and contact actions use the same text inset.
-The nameplate remains centered as the intentional hero treatment.
+David then clarified that he wants everything centered, including text.
+Section headings, descriptions, project metadata, action groups, and project detail text are centered.
+Contact information forms one centered column.
+The nameplate remains centered.

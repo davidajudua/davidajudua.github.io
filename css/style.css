@@ -1361,8 +1361,9 @@ a.contact__value:hover { color: var(--accent); }
   .home .bg-poster { background-image: url("/assets/city-landscape-poster.jpg"); }
 }
 .home .reveal { opacity: 1; transform: none; transition: none; }
+.home .panel { text-align: center; }
 .home section[id] { scroll-margin-top: var(--nav-height); }
-.home .about { min-height: auto; justify-content: flex-start; }
+.home .about { min-height: auto; justify-content: center; }
 .home .about__content {
   width: 100%; max-width: none;
   padding: var(--furniture-pad-y) var(--furniture-pad-x);
@@ -1372,6 +1373,7 @@ a.contact__value:hover { color: var(--accent); }
 }
 .home .about__lead { max-width: var(--reading-width); font-size: clamp(1.35rem, 2.4vw, 1.9rem); line-height: 1.55; }
 .home .about__sub { max-width: var(--reading-width); font-size: 1.05rem; }
+.home .about__lead, .home .about__sub { margin-inline: auto; }
 .home .hero__role {
   display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; letter-spacing: 0.16em;
   padding: var(--space-3) var(--space-4); background: var(--bg-reading);
@@ -1389,8 +1391,11 @@ a.contact__value:hover { color: var(--accent); }
 .home .work-card__num { display: none; }
 .home .work-card__title { overflow-wrap: anywhere; }
 .home .work-card__desc { max-width: var(--reading-width); }
-.home .work-card--cta { text-align: left; }
-.home .work-card__cta-inner { padding: 0; align-items: flex-start; gap: var(--space-3); }
+.home .work-card__body { align-items: center; }
+.home .work-card__meta { flex-direction: column; align-items: center; gap: var(--space-2); }
+.home .work-card__tags, .home .work-card__actions { justify-content: center; }
+.home .work-card--cta { text-align: center; }
+.home .work-card__cta-inner { padding: 0; align-items: center; gap: var(--space-3); }
 .home .work-card--cta .work-card__desc { max-width: none; }
 .home .work-card__details-btn, .home .work-card__link,
 .home .topnav__link, .home .topnav__email, .home .topnav__logo {
@@ -1400,7 +1405,7 @@ a.contact__value:hover { color: var(--accent); }
 .home .work-card__details-btn { padding-inline: var(--space-3); border: 1px solid var(--border-hover); border-radius: var(--radius-pill); }
 .home .contact { min-height: auto; padding-bottom: var(--space-36); }
 .home .contact__name { font-size: clamp(2.8rem, 10vw, 8rem); margin-inline: var(--content-inset); }
-.home .contact__cta-row { margin-inline: var(--content-inset); }
+.home .contact__cta-row { margin-inline: var(--content-inset); justify-content: center; }
 .home .contact__cols {
   max-width: none; gap: var(--space-8); padding: var(--furniture-pad-y) var(--furniture-pad-x);
   background: var(--bg-panel); backdrop-filter: var(--frost);
@@ -1408,6 +1413,10 @@ a.contact__value:hover { color: var(--accent); }
   border: 1px solid var(--border); border-radius: var(--radius-card);
 }
 .home .contact__value { overflow-wrap: anywhere; }
+.home .contact__cols { grid-template-columns: minmax(0, 1fr); justify-items: center; }
+.home .contact__col { width: 100%; max-width: var(--reading-width); }
+.home .work-modal__panel { text-align: center; }
+.home .work-detail__list { padding-inline: 0; list-style-position: inside; }
 .home .back-to-top { width: 44px; height: 44px; bottom: 4.75rem; }
 .home .work-modal__close { min-width: 44px; min-height: 44px; }
 .home :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
