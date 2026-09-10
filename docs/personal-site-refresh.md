@@ -79,7 +79,7 @@ The nameplate remains centered.
 David asked for smaller, quieter shapes in the next review.
 Homepage surfaces now cap at 800 pixels, with 24-pixel vertical padding, softer borders and frost, and a 28-pixel corner radius.
 David requested rounder corners after reviewing the initial 12-pixel treatment; panel sizes and alignment stay unchanged.
-The hero label now says "i study computer science / at howard university" on two lines at every breakpoint, without claiming a software engineer job title.
+The hero label now says "CS + Math / @ Howard University" on two lines at every breakpoint, without claiming a software engineer job title.
 Its shared width, padding, frost, and 28-pixel radius replace the mismatched desktop row and mobile stack; the search description also reflects the student wording.
 Technology labels and the final project link no longer have filled boxes.
 At 1440 pixels, the introduction measures 800 by 213 pixels, the first project 800 by 282, and the contact surface 800 by 482.
