@@ -145,12 +145,25 @@
       const start = new Date(raw.start);
       if (Number.isNaN(start.getTime())) return err("One-off `start` is not a readable datetime.");
       const stravaUrl = nonEmpty(raw.stravaUrl) ? raw.stravaUrl.trim() : null;
+      let duration = null;
+      if (typeof raw.duration === "string") {
+        const trimmed = raw.duration.trim();
+        if (trimmed !== "") {
+          if (parseDuration(trimmed) == null) {
+            return err("One-off `duration` must be an ISO-8601 duration such as PT2H.");
+          }
+          duration = trimmed;
+        }
+      } else if (raw.duration != null) {
+        return err("One-off `duration` must be an ISO-8601 duration such as PT2H.");
+      }
       return ok({
         kind: "one-off",
         title: raw.title.trim(),
         start: start,
         place: place,
         poshUrl: raw.poshUrl.trim(),
+        duration: duration,
         stravaUrl: stravaUrl,
         formspreeAction: capture,
       });
@@ -201,8 +214,8 @@
   }
 
   function resolve(parsed) {
-    const durationMs = parseDuration(SERIES.duration);
-    if (durationMs == null) return err("SERIES duration is not a readable ISO duration.");
+    const seriesDurationMs = parseDuration(SERIES.duration);
+    if (seriesDurationMs == null) return err("SERIES duration is not a readable ISO duration.");
 
     if (parsed.kind === "run-club") {
       const civil = parsed.civil;
@@ -226,7 +239,7 @@
               slot.meetMinute,
               SERIES.zone
             );
-      const end = new Date(start.getTime() + durationMs);
+      const end = new Date(start.getTime() + seriesDurationMs);
       return ok({
         title: SERIES.title,
         start: start,
@@ -245,6 +258,12 @@
       });
     }
 
+    const durationMs = parsed.duration
+      ? parseDuration(parsed.duration)
+      : seriesDurationMs;
+    if (durationMs == null) {
+      return err("One-off `duration` must be an ISO-8601 duration such as PT2H.");
+    }
     const end = new Date(parsed.start.getTime() + durationMs);
     const startParts = zonedParts(parsed.start, ZONE);
     return ok({
