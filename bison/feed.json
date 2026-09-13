@@ -1,51 +1,93 @@
 {
-  "updated": "2026-09-05T17:46:00-04:00",
+  "updated": "2026-09-12T23:05:00-04:00",
   "ready": [
+    {
+      "title": "CSCI Homework 1.2.1",
+      "course": "CSCI 136",
+      "due": "Sat Sep 12 11:59 PM ET (PASSED)",
+      "note": "636100 submit-ready (answers + 6 .py; Grok extra high); still unsubmitted as of Sat 11pm AUTH_OK; wait for David go - do not Canvas-submit"
+    },
+    {
+      "title": "CSCI In-class 1.2.1",
+      "course": "CSCI 136",
+      "due": "Sat Sep 12 11:59 PM ET (PASSED)",
+      "note": "636097 submit-ready (answers.txt; Apply .py extras); Canvas wants answers in the document; wait for David go - do not Canvas-submit"
+    },
+    {
+      "title": "CSCI In-class 1.2.2",
+      "course": "CSCI 136",
+      "due": "Sat Sep 12 11:59 PM ET (PASSED)",
+      "note": "636098 submit-ready (answers + 3 .py); wait for David go - do not Canvas-submit"
+    },
+    {
+      "title": "CSCI Lab 1.2.1",
+      "course": "CSCI 136",
+      "due": "Sat Sep 12 11:59 PM ET (PASSED)",
+      "note": "636096 submit-ready (explain + 7 .py); wait for David go - do not Canvas-submit"
+    },
     {
       "title": "CSCI Lab 1.1.1",
       "course": "CSCI 136",
-      "due": "Sat Sep 5 11:59 PM ET (TODAY)",
-      "note": "633452 still submit-ready (explain + 7 .py; locked Fri; Fable 18/20; reconfirmed Sat 5:46 PM); due TONIGHT; wait for David go - do not Canvas-submit"
+      "due": "Sat Sep 5 11:59 PM ET (PASSED - LATE)",
+      "note": "633452 still submit-ready (explain + 7 .py; locked Fri); overdue / out of Sat-Sun draft scope; wait for David go - do not Canvas-submit"
     }
   ],
   "upcoming": [
     {
-      "title": "BIOL Week 3 Quiz / Labster / Pivot",
+      "title": "BIOL Labster x5 + Pivot",
       "course": "BIOL 101",
-      "due": "Sun Sep 6 11:59 PM ET",
-      "note": "David clicks; not a packet; Week 3 Quiz UNLOCKED (Begin not clicked)"
+      "due": "Sun Sep 13 11:59 PM ET",
+      "note": "blocked LTI; Carbon Valence / Pivot + Benedict / Biuret / Iodine / Sudan; David clicks; not a packet; do not invent answers"
     },
     {
-      "title": "CSCI Lab 1.1.2",
-      "course": "CSCI 136",
-      "due": "Sat Sep 12 11:59 PM ET",
-      "note": "Grades-UI only; not drafted; farther out"
+      "title": "BIOL Week 4 Quiz",
+      "course": "BIOL 101",
+      "due": "Sat Sep 20 11:59 PM ET",
+      "note": "631373; not a packet; do not Begin"
     },
     {
-      "title": "BIOL Orientation (due stamp)",
+      "title": "BIOL Ch.5 Adaptive",
       "course": "BIOL 101",
-      "due": "Mon Aug 31 11:59 PM ET (PASSED)",
-      "note": "621173 graded 4.98/5; dup 631361 still dash - do not launch"
+      "due": "Sun Sep 21 11:59 PM ET",
+      "note": "not a packet; do not launch Achieve"
     }
   ],
   "submitted": [
     {
+      "title": "BIOL Week 3 Quiz",
+      "course": "BIOL 101",
+      "due": "Sun Sep 6 11:59 PM ET",
+      "note": "631370 late-submitted Sep 11 10:46 PM graded 15/15"
+    },
+    {
+      "title": "BIOL Exam 1",
+      "course": "BIOL 101",
+      "due": "Exam 1 Ch.1-4",
+      "note": "636012 submitted Sep 11 10:44 PM graded 200/200"
+    },
+    {
+      "title": "BIOL Ch.3 Adaptive Quiz",
+      "course": "BIOL 101",
+      "due": "Wed Sep 9 11:59 PM ET",
+      "note": "Canvas graded 0/20; overdue / out of Sat-Sun packet scope; do not relaunch"
+    },
+    {
       "title": "BIOL Ch.2 Adaptive Quiz",
       "course": "BIOL 101",
       "due": "Fri Sep 4 11:59 PM ET",
-      "note": "Canvas graded 20/20; Achieve mastery 615/600 ~6:39 PM ET Fri Sep 4; course 71775; do not relaunch"
+      "note": "Canvas graded 20/20; Achieve mastery 615/600; do not relaunch"
     },
     {
       "title": "CSCI Assignment 2",
       "course": "CSCI 136",
       "due": "Sat Sep 5 11:59 PM ET",
-      "note": "Submitted Fri Sep 4 6:25 PM ET (New Attempt; text entry with full task1-3.py); 6:22 PM was filenames-only; Canvas text-entry only, screenshot not uploadable via UI; ungraded; do not New Attempt"
+      "note": "Submitted Fri Sep 4 6:25 PM ET (New Attempt; text entry with full task1-3.py); ungraded; do not New Attempt"
     },
     {
       "title": "BIOL Ch.1 Adaptive Quiz",
       "course": "BIOL 101",
       "due": "Thu Sep 3 11:59 PM ET",
-      "note": "Canvas graded 20/20 (8:46 PM LTI sync); Achieve mastery 604/600 at 2:29 PM ET; do not relaunch"
+      "note": "Canvas graded 20/20; Achieve mastery 604/600; do not relaunch"
     },
     {
       "title": "GERM HW#3",
@@ -92,5 +134,5 @@
       "note": "Graded 100/100 Sun Aug 30"
     }
   ],
-  "last_scan": "2026-09-05 2:46 PM ET scan (AUTH_OK; no material change); packets 5:46 PM ET; Lab 1.1.1 still submit-ready due tonight; A2 SUBMITTED 6:25 PM ET Fri; Ch.2 Canvas 20/20; BIOL 99.97%; HW#3 submitted"
+  "last_scan": "2026-09-12 ~5:00 AM ET / 0459ET AUTH_OK; packets 11:05 PM ET / 2305ET; four CSCI 1.2 packets ready unsubmitted; Lab 1.1.1 still Missing; Labster/Pivot blocked LTI due Sep 13; Ch.3 Adaptive 0/20 out of scope; BIOL 93.21%"
 }
