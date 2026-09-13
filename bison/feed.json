@@ -1,24 +1,6 @@
 {
-  "updated": "2026-09-12T23:36:00-04:00",
+  "updated": "2026-09-13T00:08:00-04:00",
   "ready": [
-    {
-      "title": "CSCI In-class 1.2.1",
-      "course": "CSCI 136",
-      "due": "Sat Sep 12 11:59 PM ET (PASSED)",
-      "note": "636097 paste answers.txt onto live Discover ? boxes then upload Word/PDF (not txt alone); Apply .py extras; Grok ~18/20; wait for David go - do not Canvas-submit"
-    },
-    {
-      "title": "CSCI In-class 1.2.2",
-      "course": "CSCI 136",
-      "due": "Sat Sep 12 11:59 PM ET (PASSED)",
-      "note": "636098 submit-ready (answers + 3 .py); wait for David go - do not Canvas-submit"
-    },
-    {
-      "title": "CSCI Lab 1.2.1",
-      "course": "CSCI 136",
-      "due": "Sat Sep 12 11:59 PM ET (PASSED)",
-      "note": "636096 submit-ready (explain + 7 .py; Grok 18/20; tax % and some __str__ assumed); wait for David go - do not Canvas-submit"
-    },
     {
       "title": "CSCI Lab 1.1.1",
       "course": "CSCI 136",
@@ -47,6 +29,24 @@
     }
   ],
   "submitted": [
+    {
+      "title": "CSCI Lab 1.2.1",
+      "course": "CSCI 136",
+      "due": "Sat Sep 12 11:59 PM ET (PASSED - LATE)",
+      "note": "636096 SUBMITTED Sun Sep 13 12:08 AM ET (late); explain + 7 .py; Grok 18/20; ungraded; do not New Attempt"
+    },
+    {
+      "title": "CSCI In-class 1.2.2",
+      "course": "CSCI 136",
+      "due": "Sat Sep 12 11:59 PM ET (PASSED - LATE)",
+      "note": "636098 SUBMITTED Sun Sep 13 12:02 AM ET (late); answers + 3 .py; ungraded; do not New Attempt"
+    },
+    {
+      "title": "CSCI In-class 1.2.1",
+      "course": "CSCI 136",
+      "due": "Sat Sep 12 11:59 PM ET (PASSED)",
+      "note": "636097 SUBMITTED Sat Sep 12 11:58 PM ET; live Discover ? boxes then Word/PDF; Grok ~18/20; ungraded; do not New Attempt"
+    },
     {
       "title": "CSCI Homework 1.2.1",
       "course": "CSCI 136",
@@ -134,5 +134,5 @@
       "note": "Graded 100/100 Sun Aug 30"
     }
   ],
-  "last_scan": "2026-09-12 ~5:00 AM ET / 0459ET AUTH_OK; packets 11:36 PM ET / 2336ET; HW 1.2.1 SUBMITTED 11:36 PM ET; three CSCI 1.2 packets still ready; Lab 1.1.1 still Missing; Labster/Pivot blocked LTI due Sep 13; Ch.3 Adaptive 0/20 out of scope; BIOL 93.21%"
+  "last_scan": "2026-09-12 ~5:00 AM ET / 0459ET AUTH_OK; packets 12:08 AM ET / 0008ET; HW 1.2.1 SUBMITTED 11:36 PM ET; In-class 1.2.1 SUBMITTED 11:58 PM ET; In-class 1.2.2 SUBMITTED 12:02 AM ET late; Lab 1.2.1 SUBMITTED 12:08 AM ET late; Lab 1.1.1 still Missing; Labster/Pivot blocked LTI due Sep 13; Ch.3 Adaptive 0/20 out of scope; BIOL 93.21%"
 }
