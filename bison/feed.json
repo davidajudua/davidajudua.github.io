@@ -22,6 +22,36 @@
       "note": "639743 Homework #4: Pausing to reflect on Martin Luther; blank -/100; upcoming"
     },
     {
+      "title": "CSCI Homework 1.3.1",
+      "course": "CSCI 136",
+      "due": "Sat Sep 19 11:59 PM ET",
+      "note": "640087; blank -/100; upcoming"
+    },
+    {
+      "title": "CSCI In-class 1.3.1",
+      "course": "CSCI 136",
+      "due": "Sat Sep 19 11:59 PM ET",
+      "note": "640084; blank -/100; upcoming"
+    },
+    {
+      "title": "CSCI In-class 1.3.2",
+      "course": "CSCI 136",
+      "due": "Sat Sep 19 11:59 PM ET",
+      "note": "640085; blank -/100; upcoming"
+    },
+    {
+      "title": "CSCI Lab 1.3.1",
+      "course": "CSCI 136",
+      "due": "Sat Sep 19 11:59 PM ET",
+      "note": "640091; blank -/100; upcoming"
+    },
+    {
+      "title": "CSCI Project 1 Black Astronauts",
+      "course": "CSCI 136",
+      "due": "Sat Sep 19 11:59 PM ET",
+      "note": "638601 Project 1 - Black Astronauts, Student File; blank -/100; upcoming"
+    },
+    {
       "title": "BIOL Week 4 Quiz",
       "course": "BIOL 101",
       "due": "Sat Sep 20 11:59 PM ET",
@@ -164,5 +194,5 @@
       "note": "Graded 100/100 Sun Aug 30"
     }
   ],
-  "last_scan": "2026-09-14 ~2:46 PM ET / 1446ET AUTH_OK; material_change true; inbox 24; GERM HW#4 639743 due Sep 18 -/100; GERM ann 798992 HU Convocation Fri 9/18; BIOL 631360 now -/10 (was -/50); Labster/Pivot blank past due; CSCI 1.2 four ungraded; Lab 1.1.1 Missing; GERM 300/300; BIOL 93.21%"
+  "last_scan": "2026-09-14 ~8:46 PM ET / 2046ET AUTH_OK; material_change true; inbox 24; CSCI 22.22%; Homework 100/100; new Sep 19: HW 1.3.1 640087, In-class 1.3.1 640084, In-class 1.3.2 640085, Lab 1.3.1 640091, Project 1 638601; Lab 1.1.1 Missing; 1.2 four ungraded; GERM 300/300; BIOL 93.21%"
 }
