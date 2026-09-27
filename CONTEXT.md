@@ -59,3 +59,29 @@ It is light moving over a surface, never a new shape: invisible at rest, so the 
 Ambient (self-playing) motion belongs to the names and The Set, never to the chrome around them.
 Chrome may move only in direct response to the visitor: hover, press, focus (the Sheen and press compression).
 The Set carries all remaining motion.
+
+**Entrance**
+The once-only move a piece of content or Frosted Furniture makes the first time it scrolls into view: frost forming, words rising, mono labels resolving out of scrambled characters.
+Scrolling something into view counts as the visitor asking for it, the same way the reveal before the motion pass already did, so Entrances sit inside the Motion Rule.
+Whatever is already on screen at load gets none, and every Entrance rests on the element's stylesheet look.
+_Avoid_: reveal, scroll animation
+
+**Lights Up**
+The opening, once per page load: a night curtain lifts off The Set while the name warms on glyph by glyph and its role pill forms beneath it.
+It replaces the plain fade-up of the Nameplate Hero and belongs to the names and The Set.
+
+**Pointer Light**
+Light that follows the visitor's hand: an amber glow steering across the names, and light pooling in the frost and catching the rim of Frosted Furniture.
+Like the Sheen it is invisible at rest, and touch never shows it.
+
+**Lift into Reading**
+The press move that grows a project card into the Reading Panel, flying its title along, and folds the panel back into the card on close.
+
+**Glide**
+The eased scroll used for nav jumps and back to top, longer for longer distances.
+Any wheel, touch or key hands the page straight back to the visitor.
+
+**Finished at Rest**
+David's rule for anything scroll-linked, from his review of the animation pass on 2026-09-25: nothing driven by scroll position may have a resting state that looks unfinished.
+Scroll may trigger a move or set its direction, but the in-between frames belong to time, not to where the page happens to stop.
+It is why the hero name dissolves only along a fixed band under the nav instead of blurring as a whole.

@@ -3,7 +3,7 @@
 How to prove a change to this site is correct.
 
 This repo has no test suite, no build step and nothing to typecheck.
-It is static HTML, CSS and one JS file.
+It is static HTML, CSS and two JS files.
 So the instruction in `/implement` to "run the full test suite" has nothing to run here, and screenshots are not a substitute.
 Verify by diffing **computed styles in a real browser** between the pre-change commit and the working tree.
 
@@ -28,6 +28,7 @@ Serve both versions from one origin so a single page can read both documents.
 Two ports means two origins, and cross-origin iframes cannot be inspected.
 
 1. Check out the baseline into a temp worktree: `git worktree add <tmp>/base <ref> --detach`.
+   Where worktrees are off limits, `git archive <ref> -- . | tar -x -C <tmp>/cmp/b` exports the same files.
 2. Copy the working tree to `<tmp>/cmp/a` and the baseline to `<tmp>/cmp/b`.
 3. Rewrite absolute paths to relative in both copies, or nothing resolves from a subdirectory.
    Affects `href="/`, `src="/` and `url(/` in `index.html`, `css/style.css` and `js/main.js`.
@@ -56,6 +57,11 @@ Always re-run a position before believing a diff there.
 
 **`url()` computed values resolve to absolute URLs** containing `/a/` or `/b/`, so they always differ.
 Normalise the prefix before comparing.
+
+**Layers that exist on one side only break the index alignment.**
+The motion pass adds elements (`.mo-light`, `.mo-fx`, split text while an entrance plays) and a second script tag.
+Skip those and every `<script>` on both sides, or every element after the first extra one reports a false diff.
+Marker classes such as `mo-lit` are on real elements and must not be skipped.
 
 **Custom properties are not comparable in a token refactor.**
 The whole point of such a change is that `--*` definitions differ.

@@ -26,6 +26,7 @@ Tokens live in the `:root` block of `css/style.css` and are rendered live at `st
 The background uses independent landscape and portrait videos with matching posters.
 Reduced motion and unavailable JavaScript use still images.
 The [personal homepage refresh](docs/personal-site-refresh.md) records the content direction and verification.
+The [motion pass](docs/motion-pass.md) records every move of the homepage's animation layer and how it was verified.
 
 ## Local preview
 

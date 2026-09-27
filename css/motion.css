@@ -1,0 +1,248 @@
+/* ============================================
+   MOTION PASS (ADR 0006)
+   Every rule here is gated on html.mo, which the inline head
+   script in index.html sets before first paint only when scripts
+   run AND the visitor has not asked for reduced motion. Without
+   that class this file is inert and the page is the site as it
+   was. js/motion.js owns the choreography; each move rests on the
+   element's stylesheet look once it ends, so nothing here changes
+   a resting pixel. Move IDs (N1, S2, C3...) follow docs/motion-pass.md.
+   ============================================ */
+
+/* Registered so the pooled light on the frost can interpolate. */
+@property --mo-hot { syntax: '<number>'; inherits: true; initial-value: 0; }
+
+/* Split text: glyph and word boxes used only while an entrance plays.
+   The original text node is put back the moment the entrance ends. */
+.mo-split { display: inline; }
+.mo-seg { display: inline-block; white-space: pre; }
+.mo-word { white-space: nowrap; }
+.mo-sr {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+
+/* ---------- N1 Lights up: the opening ---------- */
+/* A night curtain lifts off the Set while the name warms on. */
+.mo .bg-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--night-900);
+  opacity: 0;
+  animation: mo-curtain 2.3s cubic-bezier(0.33, 0, 0.2, 1) 0.05s backwards;
+}
+@keyframes mo-curtain { from { opacity: 0.94; } to { opacity: 0; } }
+/* The name and role wait for the script; today's fade-up is replaced. */
+.mo .hero__name,
+.mo .hero__role { animation: none; opacity: 0; transform: none; }
+.mo .hero__name.mo-lit,
+.mo .hero__role.mo-lit { opacity: 1; }
+.mo .hero__hint { animation-delay: 1.55s; }
+/* the first shimmer crosses just after the name settles */
+.mo .hero__name::after { animation-delay: 2.4s; }
+
+/* ---------- N2 Steer the shine: pointer light on the names ---------- */
+.mo .hero__name::before,
+.mo .contact__name::before {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  color: transparent;
+  text-shadow: none;
+  background: radial-gradient(
+    var(--mo-gr, 240px) circle at var(--mo-gx, 50%) var(--mo-gy, 50%),
+    var(--amber-300),
+    var(--accent-a00) 72%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  opacity: var(--mo-go, 0);
+  transition: opacity 0.7s var(--ease-out);
+}
+
+/* ---------- S1 Dissolve in: the video fades in over its poster ---------- */
+.has-js.mo .home .bg-video { display: block; opacity: 1; transition: opacity 1.4s var(--ease-out); }
+.has-js.mo.video-idle .home .bg-video { opacity: 0; transition-duration: 0.5s; }
+
+/* ---------- S2 Lighting cues: the Set dims a touch for reading ---------- */
+.mo-light {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-set-overlay);
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 92% 88% at 50% 50%, rgba(8 9 12 / 0) 38%, rgba(8 9 12 / 0.42) 100%),
+    rgba(8 9 12 / 0.1);
+  opacity: 0;
+  will-change: opacity;
+}
+
+/* ---------- C1 Glass catches light (hover) ---------- */
+.mo .about__content, .mo .contact__cols { position: relative; }
+.mo-fx {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  --mo-mx: 50%;
+  --mo-my: 50%;
+  transition: --mo-hot 0.6s var(--ease-out);
+}
+.mo-fx::before,
+.mo-fx::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+/* light pooling in the frost under the pointer */
+.mo-fx::before {
+  background: radial-gradient(
+    520px circle at var(--mo-mx) var(--mo-my),
+    rgba(212 169 97 / calc(0.17 * var(--mo-hot))),
+    rgba(212 169 97 / calc(0.05 * var(--mo-hot))) 35%,
+    var(--accent-a00) 70%
+  );
+}
+/* the rim catches the light near the pointer */
+.mo-fx::after {
+  padding: 1px;
+  background: radial-gradient(
+    340px circle at var(--mo-mx) var(--mo-my),
+    rgba(230 194 132 / calc(1 * var(--mo-hot))),
+    rgba(212 169 97 / calc(0.35 * var(--mo-hot))) 45%,
+    var(--accent-a00) 75%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+.mo-fx.is-hot { --mo-hot: 1; }
+
+/* ---------- C2 Lean (hover) ---------- */
+.mo .work-card.mo-tilt {
+  transform: perspective(1400px) rotateX(var(--mo-rx, 0deg)) rotateY(var(--mo-ry, 0deg));
+  transition: transform 0.6s var(--ease-out), border-color var(--duration-med) var(--ease-out);
+}
+
+/* ---------- C4 Magnetic pills (hover) ---------- */
+/* Composed as separate functions so the unitless --lift: 0 from :active stays valid. */
+.mo .pill-btn,
+.mo .btn {
+  transform: translate(var(--mo-mgx, 0px), var(--mo-mgy, 0px)) translateY(var(--lift, 0)) scale(var(--press, 1));
+}
+
+/* ---------- C5 Arrow flight + centered nav underline (hover, focus) ---------- */
+.mo a:hover > [data-mo-arrow],
+.mo a:focus-visible > [data-mo-arrow] { display: inline-block; }
+.mo a:hover > [data-mo-arrow="ne"],
+.mo a:focus-visible > [data-mo-arrow="ne"] { animation: mo-fly-ne 0.55s var(--ease-out); }
+.mo a:hover > [data-mo-arrow="e"],
+.mo a:focus-visible > [data-mo-arrow="e"] { animation: mo-fly-e 0.55s var(--ease-out); }
+.mo a:hover > [data-mo-arrow="s"],
+.mo a:focus-visible > [data-mo-arrow="s"] { animation: mo-fly-s 0.6s var(--ease-out); }
+@keyframes mo-fly-ne {
+  0% { transform: none; opacity: 1; }
+  42% { transform: translate(0.55em, -0.55em); opacity: 0; }
+  43% { transform: translate(-0.45em, 0.45em); opacity: 0; }
+  100% { transform: none; opacity: 1; }
+}
+@keyframes mo-fly-e {
+  0% { transform: none; opacity: 1; }
+  42% { transform: translateX(0.7em); opacity: 0; }
+  43% { transform: translateX(-0.6em); opacity: 0; }
+  100% { transform: none; opacity: 1; }
+}
+@keyframes mo-fly-s {
+  0% { transform: none; opacity: 1; }
+  42% { transform: translateY(0.6em); opacity: 0; }
+  43% { transform: translateY(-0.5em); opacity: 0; }
+  100% { transform: none; opacity: 1; }
+}
+.mo .topnav__link::after { left: 50%; transform: translateX(-50%); }
+
+/* ---------- C6 Iris menu (press, phones) ---------- */
+@media (max-width: 768px) {
+  .has-js.mo .home .topnav__links {
+    right: 0;
+    clip-path: circle(0px at calc(100% - 46px) calc(var(--nav-height) / 2));
+    transition: clip-path 0.5s cubic-bezier(0.7, 0, 0.3, 1), visibility 0s linear 0.5s;
+  }
+  .has-js.mo .home .topnav__links.open {
+    clip-path: circle(160vmax at calc(100% - 46px) calc(var(--nav-height) / 2));
+    transition: clip-path 0.75s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s;
+  }
+  .has-js.mo .home .topnav__links li {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(6px);
+    transition: opacity 0.2s var(--ease-out), transform 0.2s var(--ease-out), filter 0.2s var(--ease-out);
+  }
+  .has-js.mo .home .topnav__links.open li {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: opacity 0.55s var(--ease-out), transform 0.7s var(--ease-out), filter 0.55s var(--ease-out);
+  }
+  .has-js.mo .home .topnav__links.open li:nth-child(1) { transition-delay: 0.16s; }
+  .has-js.mo .home .topnav__links.open li:nth-child(2) { transition-delay: 0.23s; }
+  .has-js.mo .home .topnav__links.open li:nth-child(3) { transition-delay: 0.3s; }
+}
+
+/* ---------- C3 Lift into reading (press) ---------- */
+.mo-ghost {
+  position: fixed;
+  z-index: 1;
+  pointer-events: none;
+  box-sizing: border-box;
+  border: 1px solid var(--border-hover);
+  background: var(--bg-elevated);
+}
+.mo-ghost--scrim {
+  inset: 0;
+  z-index: var(--z-modal);
+  border: 0;
+  background: var(--bg-modal-scrim);
+  -webkit-backdrop-filter: var(--frost-modal);
+  backdrop-filter: var(--frost-modal);
+}
+.mo-ghost--surface-out { z-index: calc(var(--z-modal) + 1); }
+.mo-ghost-title {
+  position: fixed;
+  z-index: 2;
+  pointer-events: none;
+  white-space: nowrap;
+  transform-origin: 0 0;
+  margin: 0;
+}
+
+/* ---------- F3 Typing: the intro arrives like a text ---------- */
+.mo-typing {
+  position: absolute;
+  display: flex;
+  gap: 5px;
+  padding: 11px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--white-a07);
+  border: 1px solid var(--white-a07);
+  -webkit-backdrop-filter: var(--frost-soft);
+  backdrop-filter: var(--frost-soft);
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+.mo-typing i {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-round);
+  background: var(--text-secondary);
+  animation: mo-typing 0.9s var(--ease-in-out) infinite;
+}
+.mo-typing i:nth-child(2) { animation-delay: 0.12s; }
+.mo-typing i:nth-child(3) { animation-delay: 0.24s; }
+@keyframes mo-typing {
+  0%, 60%, 100% { transform: none; opacity: 0.45; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}

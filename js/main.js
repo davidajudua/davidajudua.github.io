@@ -63,8 +63,10 @@ document.addEventListener('DOMContentLoaded', () => {
     syncSet();
   }
 
-  /* One short reveal, leaving readable HTML in place if scripts fail. */
-  if ('IntersectionObserver' in window) {
+  /* One short reveal, leaving readable HTML in place if scripts fail.
+     When the motion pass is on, js/motion.js has published window.motionPass
+     before this runs and owns the entrances, so the generic reveal stands down. */
+  if ('IntersectionObserver' in window && !window.motionPass) {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(({target, isIntersecting}) => {
         if (!isIntersecting) return;
@@ -76,10 +78,19 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }, {threshold: 0.06});
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    motion.addEventListener('change', () => {
-      if (motion.matches) document.getAnimations().forEach(animation => animation.cancel());
-    });
   }
+  motion.addEventListener('change', () => {
+    if (motion.matches) document.getAnimations().forEach(animation => animation.cancel());
+  });
+
+  /* Page scrolls go through one helper: instant under reduced motion, the
+     motion pass's glide when it is on, otherwise the browser's smooth scroll. */
+  const scrollPageTo = top => {
+    if (motion.matches) window.scrollTo({top, behavior: 'instant'});
+    else if (window.motionPass) window.motionPass.glideTo(top);
+    else window.scrollTo({top, behavior: 'smooth'});
+  };
+  const anchorTop = el => el.getBoundingClientRect().top + scrollY - (parseFloat(getComputedStyle(el).scrollMarginTop) || 0);
 
   document.querySelectorAll('.btn, .pill-btn, .back-to-top, .work-modal__close').forEach(el => {
     const sweep = () => {
@@ -135,10 +146,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalTitle = modal?.querySelector('.work-modal__title');
   const modalBody = modal?.querySelector('.work-modal__body');
   const modalClose = modal?.querySelector('.work-modal__close');
-  let lastTrigger;
+  let lastTrigger, lastCard;
+  /* modal:open fires once the panel is laid out and modal:close before it
+     hides, so js/motion.js can measure the card and the panel for its lift. */
   const closeModal = () => {
     if (!modalOpen) return;
     modalOpen = false;
+    modal.dispatchEvent(new CustomEvent('modal:close', {detail: {card: lastCard}}));
     modal.classList.remove('open');
     modal.hidden = true;
     modalBody.replaceChildren();
@@ -151,12 +165,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const detail = card?.querySelector('.work-card__detail');
       if (!modal || !detail) return;
       lastTrigger = button;
+      lastCard = card;
       modalTitle.textContent = card.querySelector('.work-card__title').textContent;
       modalBody.replaceChildren(...detail.cloneNode(true).childNodes);
       modal.hidden = false;
       modal.classList.add('open');
       modalOpen = true;
       syncPageAccess();
+      modal.dispatchEvent(new CustomEvent('modal:open', {detail: {card}}));
       modalClose.focus();
     });
   });
@@ -185,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
       event.preventDefault();
       setMenu(false);
       history.pushState(null, '', href);
-      target.scrollIntoView({behavior: motion.matches ? 'instant' : 'smooth'});
+      scrollPageTo(anchorTop(target));
       if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
       target.focus({preventScroll: true});
     });
@@ -204,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', update, {passive: true});
     update();
     backToTop.addEventListener('click', () => {
-      window.scrollTo({top: 0, behavior: motion.matches ? 'instant' : 'smooth'});
+      scrollPageTo(0);
       document.querySelector('.topnav__logo')?.focus({preventScroll: true});
     });
   }

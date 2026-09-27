@@ -302,7 +302,7 @@ body::before {
 }
 
 /* text floating directly on the set gets a soft grounding shadow */
-.eyebrow, .hero__role,
+.eyebrow, .hero__role, .hero__hint,
 .about__lead, .about__sub, .about__stat-num, .about__stat-label,
 .kinetic__static, .whatido__heading,
 .timeline__role h3, .timeline__role span, .timeline__year, .timeline__desc,
@@ -1421,6 +1421,8 @@ a.contact__value:hover { color: var(--accent); }
   display: inline-flex; align-items: center; min-height: 44px;
 }
 .home .topnav__toggle { min-width: 44px; min-height: 44px; }
+/* the 44px target made the hover underline sit 18px under the text; keep it 4px under the glyphs */
+.home .topnav__link::after { bottom: calc(50% - 0.75em - 4px); }
 .home .work-card__details-btn { padding-inline: var(--space-3); border: 1px solid var(--border-hover); border-radius: var(--radius-pill); }
 .home .contact { min-height: auto; padding-bottom: var(--space-36); }
 .home .contact__name { font-size: clamp(2.8rem, 10vw, 8rem); margin-inline: var(--content-inset); }
