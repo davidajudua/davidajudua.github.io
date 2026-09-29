@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Private demo</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600&display=swap">
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #141414;
+      --paper: #f3f2ee;
+      --muted: #9c9a93;
+      --line: #4a4945;
+      --error: #ff9b85;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      padding: 32px 16px 12vh;
+      background: var(--ink);
+      color: var(--paper);
+      font: 400 17px/1.5 "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    [hidden] { display: none !important; }
+    main { width: 100%; max-width: 400px; }
+    .eyebrow, label {
+      display: block;
+      margin: 0 0 12px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .eyebrow { color: var(--muted); }
+    h1 {
+      margin: 0;
+      font: 400 clamp(48px, 13vw, 72px)/0.95 "Anton", Impact, "Arial Narrow Bold", sans-serif;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+    }
+    .lede { margin: 16px 0 32px; color: var(--muted); }
+    .row { display: flex; gap: 8px; }
+    input {
+      flex: 1;
+      min-width: 0;
+      height: 48px;
+      padding: 0 14px;
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--paper);
+      font: inherit;
+    }
+    input:focus { outline: none; border-color: var(--paper); }
+    input[aria-invalid="true"] { border-color: var(--error); }
+    button {
+      height: 48px;
+      padding: 0 24px;
+      border: 0;
+      border-radius: 2px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    button:disabled { opacity: 0.6; cursor: progress; }
+    :focus-visible { outline: 2px solid var(--paper); outline-offset: 3px; }
+    ::selection { background: var(--paper); color: var(--ink); }
+    .msg { min-height: 1.5em; margin: 12px 0 0; font-size: 15px; color: var(--muted); }
+    [data-tone="error"] { color: var(--error); }
+  </style>
+  <noscript><style>#lede, #gate, #msg { display: none; }</style></noscript>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">davidajudua.com</p>
+    <h1>Private demo</h1>
+    <p class="lede" id="lede">Enter the password to open it.</p>
+    <noscript><p class="lede" data-tone="error">This demo needs JavaScript.</p></noscript>
+    <form id="gate">
+      <input type="text" name="username" value="demo" autocomplete="username" hidden>
+      <label for="password">Password</label>
+      <div class="row">
+        <input id="password" type="password" autocomplete="current-password" required autofocus>
+        <button type="submit">Open</button>
+      </div>
+    </form>
+    <p class="msg" id="msg" aria-live="polite"></p>
+  </main>
+  <script>
+    (() => {
+      const lede = document.getElementById("lede");
+      const form = document.getElementById("gate");
+      const input = document.getElementById("password");
+      const button = form.querySelector("button");
+      const msg = document.getElementById("msg");
+      const say = (el, text, tone = "") => {
+        el.textContent = text;
+        el.dataset.tone = tone;
+      };
+      const unsupported = () => {
+        form.hidden = msg.hidden = true;
+        say(lede, "This browser blocks what the demo needs to open. Try another browser, or a window that is not private.", "error");
+      };
+      if (!("serviceWorker" in navigator)) return unsupported();
+
+      const ready = navigator.serviceWorker.register("sw.js").then(() => navigator.serviceWorker.ready);
+      ready.catch(unsupported);
+      const ask = (question) =>
+        ready.then((reg) => new Promise((resolve) => {
+          const channel = new MessageChannel();
+          channel.port1.onmessage = (event) => resolve(event.data);
+          reg.active.postMessage(question, [channel.port2]);
+        }));
+
+      // A hard reload skips the worker, so a browser that already unlocked can land here. Send it through once.
+      const bounce = () => {
+        try {
+          if (Date.now() - Number(sessionStorage.getItem("sotp-gate-bounce")) < 10000) return false;
+          sessionStorage.setItem("sotp-gate-bounce", String(Date.now()));
+        } catch {}
+        return true;
+      };
+      if (!navigator.serviceWorker.controller) {
+        ask({}).then((unlocked) => unlocked && bounce() && location.reload(), () => {});
+      }
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        button.disabled = true;
+        input.removeAttribute("aria-invalid");
+        say(msg, "Opening…");
+        if (await ask({ password: input.value }).catch(() => false)) return location.reload();
+        button.disabled = false;
+        input.setAttribute("aria-invalid", "true");
+        say(msg, "That password didn't work.", "error");
+        input.select();
+      });
+    })();
+  </script>
+  <script type="application/octet-stream" id="sealed">PDA29nDDprFlM2HCc7f5lCuubYbNierpEKIKT9LvUd2SLythYBJcgL/d8zhkLLs+J9CimbU3HVaYzhkn4QoUjn9KOaH+x4qdNLatFHZ1FL8VwslXZglQPVPkT2aBokaJkiibDLggOKOuZN1FnuyNrXNWkdvw7JxEKu1L7NC7P9I9UsdL55/8aGe3hY0a1BUYrXSOwvZDF+IsJcx5IElRlRwneNaBzsxxb9TTsCyq+A0/Hn+Zaj8PQKhaujDjKE+goObgvrPdq6F35t4RqsQ59mZtKwKb2pDIqryw5WGFXtijRdJsn/xIwGT5aR606dvG7IBXsOHCLhuPi03pILNSdFkbjg2qbT/7yU3Neaa3+6nkT+mDtHDIBdQiA7cxNl7sPAO6FRXXFTo7Xu1jL0Om5OjHaQ6L6MNMUMbw7I7i+TYserMxdqNX2QSWc8Rq+ts4NwCXFIloWmIUhO5Swtau8GkFyF9wJRbWBpNRrY8qpGEzxbhsSorZ7ZvFr7seOjASou3C2wp5i+FUdv7c4l50WgpwUdWkk/MV0AYf830TkwZpfLtT4Qku/U1xwYvq3qx8oLpWo6MpP5NRAcYO7FlchXbHlUOAKr1nAMv6M7H6dmZwO87BbMRGbFmW3whuufnSFjPfxqIcUvCkl4xpjfrnjjUgwbBUekXEw8IBIrZoBg8gsU5TQUm9dQST0HuAp28rwB1wk0rTZ/hsWzFVTVXQ82SAVna1X2Ym3t3TeoX+SxbdAuV6b6klQx/8VOuw5BI4LeAWe3CPJ24LUV8N2tMu8E/krGHCB0k/nFzZDpN4NhrAVSgMupbYCKae3o4zNaSMjOmlpTV29++hJA2dXZZdZkSubRxaTY3GXJ6R9Xw7DYS2q9SZkZ6qTVIDv00XVEFE3zQzyNSmtRz6vM3e2F+tlH+UKRyML3b2woKP9XPR14vi1UQ1/tso4HxluRTCrQNZTaFUPxNFi388nRlWw7olje+9hY0x2deTyakDiigmylkciMZzEibezMTxKip9HNEljz8gi28+fUt5WDP43wbPuOCrpLCg9CoAwYzDv8aXLB5RbhIN6A1gZekl7cwjg5lPC+V3eGrWnQ6rot5+ECn0/NolCIrnU98KsUrB+IHtyU+b4yd4p4c88tQT0KtGGTROSrtmXbHP3tUSiF5qjz3vwP8k02W2LGGPQPgeSppvmjTwmodD+84i6GYseoHqwwyjOph1AWGn6OWn0TrbieGcNl6imeNd8mcYR75CB2toUt01SVZpKxInjo6Kl1/4gWrMyCME4m6fd3teJXVh259jGiJ4gGFFtj8g2pUuP5hzyGWo9gZ2DvQntyr+++G6vcaytjgjNENeWgNt2HSaRgU1RgGzI6uXwX5zzmf9IgqT0BaFF7YQ7MpxxdwsmFMy/vCl9pm/Dn5KymAmXpyfIZ6MobboAaXKGJiv9mm3i5BCbM4WMqo2vv6T08NVBwD2U0ikaga1M+xzBo80hejBKGJuojyXCfrSAaMRU/FgYko8Y0JXpKqYr5vVsZ3W4psZzEBlj8HC5rmqyq2aMTV1GxTf5JyXLwX14YlVTTc29MLUxTt2Ztv/War2yfFPgTQybtn1OJbRgjsU2bP2zrmSGIgRs2pH+VAbKZc0xx+b0x4ggWuuTfy8NBYXyzapnAC+P6R/Io/t6gDxW7fC7KPNNgP8+QAYpLbRWLi7+vi8N2KJHnnN2X9V3tqtUcmLJ8hj97Rz/aExFe8sejZDPnPYnmkOXMzkmUjL+C0oXoJkivpD6lLBn15p6n6vHvJOQr+vMUrGZLXllWG3IFFINSSQ1/7aUsrbzbAUh78xWvrdV8ov9+HxU3NhG9aDVR5g/t7hwwYBnE6v5qQYCWAII4Nr3LWI5GMn3DOxDWBiGpQVlg==</script>
+</body>
+</html>
