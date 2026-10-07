@@ -16,7 +16,6 @@ Keep that visual identity while introducing his life at Howard and his software 
 ## Implementation
 
 The page order is nameplate, short introduction, projects, and contact.
-The resume remains available in the contact section.
 Writing routes and old writing/timeline bookmarks lead to About.
 Each orientation has its own video and matching poster.
 The landscape loop uses 13 seconds of the selected footage followed by its reverse.
