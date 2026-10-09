@@ -1486,3 +1486,9 @@ html:not(.has-js) .home .work-card__detail { display: block; margin-top: var(--s
   .home *, .home *::before, .home *::after { animation: none !important; transition: none !important; }
   .home .hero__name, .home .hero__role, .home .hero__hint { opacity: 1; transform: none; }
 }
+
+/* The centered topnav email collides with the nav links below this width. */
+@media (max-width: 900px) {
+  .topnav__email,
+  .home .topnav__email { display: none; }
+}
