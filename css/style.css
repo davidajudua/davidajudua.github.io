@@ -546,6 +546,7 @@ body::before {
   cursor: pointer;
   transition: all var(--duration-med) var(--ease-out);
   border: none;
+  border-radius: var(--radius-pill);
   /* hover lift and press compose through vars so they never fight over transform */
   transform: translateY(var(--lift, 0)) scale(var(--press, 1));
 }
